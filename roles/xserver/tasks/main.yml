@@ -1,0 +1,61 @@
+---
+# This Ansible playbook defines an environment in which X works for user
+# friendliness.
+
+# Important to install the packages in this order, otherwise icons will not
+# load correctly.
+- name: Install Ubuntu packages needed to run X server.
+  apt:
+    pkg={{ item }}
+    state=latest
+    update_cache=yes
+    cache_valid_time=86400
+  with_items:
+   - dictionaries-common
+   - xfce4
+   - gnome-icon-theme-full
+  sudo: yes
+
+- name: Allow everyone to start X.
+  lineinfile:
+    dest=/etc/X11/Xwrapper.config
+    create=yes
+    state=present
+    regexp="^allowed_users="
+    line="allowed_users=anybody"
+  sudo: yes
+
+- name: Configure X to start at login.
+  lineinfile:
+    dest=/etc/skel/.bashrc
+    create=yes
+    state=present
+    regexp="^[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx"
+    line="[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx"
+  sudo: yes
+
+- name: Configure XFCE to start when startx is called.
+  lineinfile:
+    dest=/etc/skel/.xinitrc
+    create=yes
+    state=present
+    regexp="^exec startxfce4"
+    line="exec startxfce4"
+  sudo: yes
+
+# Replace existing XFCE4 wallpaper. Setting the wallpaper seems to require an
+# X-display, which seems overcomplicated.
+- name: Download and set wallpaper.
+  get_url:
+    url={{ WALLPAPER_URL }}
+    force=yes
+    dest=/usr/share/backgrounds/xfce/xfce-blue.jpg
+  sudo: yes
+
+- name: Set permissions of wallpaper.
+  file:
+    path=/usr/share/backgrounds/xfce/xfce-blue.jpg
+    owner=root
+    group=root
+    mode=644
+  sudo: yes

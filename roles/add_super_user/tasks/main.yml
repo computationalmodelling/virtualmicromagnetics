@@ -1,0 +1,23 @@
+---
+# This Ansible role adds a super user {{ USERNAME }}, and sets automatic login
+# if LXDM is installed.
+- name: Add the user.
+  user:
+    name={{ USERNAME }}
+    password={{ PASSWORD }}
+    state=present
+    groups=sudo,adm
+  sudo: yes
+
+- name: Determine if LXDM is installed.
+  command: dpkg-query -l lxdm
+  register: query_lxdm
+
+- name: Set this as the default user if LXDM is installed.
+  lineinfile:
+    dest=/etc/lxdm/lxdm.conf
+    create=yes
+    regexp="^(# )?autologin.*="
+    line="autologin=vagrant"
+  sudo: yes
+  when: query_lxdm.stdout.find('no packages found') != -1

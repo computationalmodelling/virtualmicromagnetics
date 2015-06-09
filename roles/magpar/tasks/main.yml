@@ -1,0 +1,7 @@
+- include: install_required_debian_packages.yml
+- include: download_and_extract_magpar_tarball.yml
+- include: apply_tweaks_and_patches.yml
+- include: build_magpar_dependencies.yml
+- include: build_magpar.yml
+- include: add_magpar_to_PATH.yml dest=/etc/profile.d/magpar.sh
+- include: set_ownership.yml

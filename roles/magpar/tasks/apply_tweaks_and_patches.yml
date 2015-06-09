@@ -1,0 +1,29 @@
+- name: In file 'Makefile.in.defaults', set variable 'MAGPAR_HOME' to the desired installation location
+  lineinfile:
+    dest="{{ MAGPAR_INSTALL_PREFIX }}/{{ MAGPAR_EXTRACTED_DIR.stdout }}/src/Makefile.in.defaults"
+    regexp="^MAGPAR_HOME.*="
+    line="MAGPAR_HOME={{ MAGPAR_INSTALL_PREFIX }}/{{ MAGPAR_EXTRACTED_DIR.stdout }}"
+  sudo: yes
+
+- name: Copy Magpar patches
+  copy:
+    src={{ item }}
+    dest={{ MAGPAR_INSTALL_PREFIX }}/{{ MAGPAR_EXTRACTED_DIR.stdout }}/src/
+  with_items:
+    - magpar.patch
+    - magpar_code.patch
+    - magpar_Makefile_libs.patch
+  sudo: yes
+
+# Note: The following needs the 'patch' module from Ansible Galaxy [1]
+#       It can be installed via: "sudo ansible-galaxy install thydel.patch"
+# [1] https://galaxy.ansible.com/list#/roles/1825
+- name: Apply patches to Magpar source
+  patch:
+    src={{ MAGPAR_INSTALL_PREFIX }}/{{ MAGPAR_EXTRACTED_DIR.stdout }}/src/{{ item }}
+    basedir={{ MAGPAR_INSTALL_PREFIX }}/{{ MAGPAR_EXTRACTED_DIR.stdout }}/src/
+  with_items:
+    - magpar.patch
+    - magpar_code.patch
+    - magpar_Makefile_libs.patch
+  sudo: yes

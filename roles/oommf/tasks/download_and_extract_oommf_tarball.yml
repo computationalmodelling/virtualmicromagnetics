@@ -1,0 +1,32 @@
+---
+- name: Download OOMMF tarball to OOMMF_DOWNLOAD_FOLDER
+  get_url:
+     url={{ OOMMF_URL }}
+     dest={{ OOMMF_DOWNLOAD_FOLDER }}/{{ OOMMF_TARBALL }}
+     sha256sum=7a7e33bc49618e3c24e05de408b5b70a3908a1e0e233c5f6e69d6aa46d1c01a0
+  sudo: yes
+
+- name: Determine directory name of extracted OOMMF tarball
+  shell: "tar tzf {{ OOMMF_DOWNLOAD_FOLDER }}/{{ OOMMF_TARBALL }} | head -1 | sed -e 's|/.*||'"
+  register: OOMMF_EXTRACTED_DIR
+  changed_when: false
+
+- name: Ensure the directory OOMMF_INSTALL_PREFIX exists
+  file:
+    path={{ OOMMF_INSTALL_PREFIX }}
+    state=directory
+  sudo: yes
+
+# We use an explicit 'tar' invocation here (rather than ansible's built-in 'unarchive' functionality)
+# to ensure that the permissions are set correctly.
+- name: Extract OOMMF tarball in OOMMF_INSTALL_PREFIX
+  command: tar --no-same-permissions --no-same-owner -xzf {{ OOMMF_DOWNLOAD_FOLDER }}/{{ OOMMF_TARBALL }} -C {{ OOMMF_INSTALL_PREFIX }}
+    creates={{ OOMMF_INSTALL_PREFIX }}/{{ OOMMF_EXTRACTED_DIR.stdout }}/oommf.tcl
+  sudo: yes
+
+- name: Make sure the extracted files are readable by all users
+  file:
+    path={{ OOMMF_INSTALL_PREFIX }}
+    mode="a+r"
+    recurse=yes
+  sudo: yes

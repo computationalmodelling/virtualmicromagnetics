@@ -1,0 +1,37 @@
+- name: Install debian packages for a comfortable environment.
+  apt:
+    pkg={{ item }}
+    state=latest
+    update_cache=yes
+    cache_valid_time=86400
+  sudo: yes
+  with_items:
+    - cython
+    - emacs23
+    - evince
+    - firefox
+    - gmsh
+    - gnuplot
+    - grace
+    - git
+    - libsundials-serial-dev
+    - mercurial
+    - netgen
+    - netgen-doc
+    - openssh-client
+    - paraview-python
+    - python-m2crypto
+    - python-matplotlib
+    - python-netifaces
+    - python-pip
+    - python-progressbar
+    - python-setuptools
+    - python-scipy
+    - python-visual
+    - secure-delete
+    - software-properties-common
+    - vim
+    - xpra
+
+
+

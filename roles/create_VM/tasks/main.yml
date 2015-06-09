@@ -1,0 +1,62 @@
+---
+# This Ansible playbook creates a virtual machine using vagrant and the
+# Vagrantfile template.
+
+- name: Define a directory for the vagrant environment for this machine to inhabit. It will be the directory of the Makefile concatenated with the name of the machine.
+  set_fact:
+    vm_dir: "{{ lookup('pipe','pwd') }}/../../../machines/{{ vm_name }}"
+
+- name: Ensure that a directory is created for the virtual machine.
+  file:
+    name={{ vm_dir }}
+    state=directory
+
+- name: Place the Vagrantfile in the virtual machine directory.
+  template:
+    src=Vagrantfile
+    dest={{ vm_dir }}
+
+- name: Check the status of virtual machine and store it.
+  command: vagrant status
+    chdir={{ vm_dir }}
+  register: status
+  changed_when: false
+
+- name: Destroy the virtual machine if its status suggests it exists and it is desired to do so.
+  command: vagrant destroy --force
+    chdir={{ vm_dir }}
+  when: (not "not created" in status.stdout) and destroy_existing_vm
+
+- name: Copy the provisioning playbook to the virtual machine directory.
+  copy:
+    src={{ playbook_root_dir }}/{{ playbook }}
+    dest={{ vm_dir }}
+
+- name: Copy the extra resources directory to the virtual machine directory if it was specified.
+  copy:
+    src={{ extra_resources_dir }}/
+    dest={{ vm_dir }}/extra_resources
+  when: extra_resources_dir is defined
+
+- name: Add the roles directory of this repository to the ansible configuration in the virtual machine directory so that roles can be found.
+  ini_file:
+    dest={{ vm_dir }}/ansible.cfg
+    section=defaults
+    option=roles_path
+    value={{ lookup('pipe','pwd') }}/../..
+
+- name: Start the virtual machine. Vagrant may attempt to install VirtualBox Guest Additions here.
+  command: vagrant up --no-provision
+    chdir={{ vm_dir }}
+
+- name: Provision the virtual machine.
+  shell: vagrant provision > {{ vm_name }}.log
+    chdir={{ vm_dir }}
+
+- name: Install VirtualBox Guest Additions.
+  command: vagrant vbguest --auto-reboot --no-provision --do install
+    chdir={{ vm_dir }}
+
+- name: Run post-build hooks if a hookbook has been passed.
+  include: "../../../{{ playbook_root_dir }}/{{ hookbook }}"
+  when: hookbook is defined

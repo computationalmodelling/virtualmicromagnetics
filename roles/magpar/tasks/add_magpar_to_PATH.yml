@@ -1,0 +1,14 @@
+- name: Add Magpar to PATH
+  blockinfile:
+    dest={{ dest }}
+    marker="# --- {mark} ADDED BY ANSIBLE ---"
+    content="\n# Add Magpar to PATH\nexport PATH={{ MAGPAR_INSTALL_PREFIX }}/{{ MAGPAR_EXTRACTED_DIR.stdout }}/src:$PATH\n"
+    create=yes
+  sudo: yes
+
+- name: Create symlink for magpar
+  file:
+    path={{ MAGPAR_INSTALL_PREFIX }}/{{ MAGPAR_EXTRACTED_DIR.stdout }}/src/magpar
+    src={{ MAGPAR_INSTALL_PREFIX }}/{{ MAGPAR_EXTRACTED_DIR.stdout }}/src/magpar.exe
+    state=hard
+  sudo: yes

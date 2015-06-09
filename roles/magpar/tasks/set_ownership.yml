@@ -1,0 +1,7 @@
+- name: Ensure all files are owned by MAGPAR_INSTALL_USER
+  file:
+    path={{ MAGPAR_INSTALL_PREFIX }}/{{ MAGPAR_EXTRACTED_DIR.stdout }}
+    owner={{ MAGPAR_INSTALL_USER }}
+    group={{ MAGPAR_INSTALL_USER }}
+    recurse=yes
+  sudo: yes

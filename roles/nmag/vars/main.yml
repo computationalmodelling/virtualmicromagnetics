@@ -1,0 +1,11 @@
+NMAG_VERSION: nmag-0.2.1
+NMAG_TARBALL: "{{NMAG_VERSION}}.tar.gz"
+NMAG_URL: "http://nmag.soton.ac.uk/nmag/0.2/download/all/{{NMAG_TARBALL}}"
+
+# Location where the downloaded tarball will be placed
+NMAG_DOWNLOAD_FOLDER: /etc/skel
+
+# Location where Nmag will be installed (and user which
+# should be used for installation).
+NMAG_INSTALL_PREFIX: /opt/nmag
+NMAG_INSTALL_USER: root

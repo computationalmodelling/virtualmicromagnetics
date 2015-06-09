@@ -1,0 +1,23 @@
+- name: Install required Python packages using pip
+  pip:
+    name={{ item }}
+    extra_args=--upgrade
+  sudo: yes
+  with_items:
+    # We re-install pip to get a specific version (to ensure that certain flags
+    # are supported, but to avoid upgrading to pip >= 6).
+    - aeon
+    - diff-match-patch
+    - mpi4py
+    - numpy==1.9.1
+    - pip==1.5.2
+    - pytest
+    - scipy
+    - sh
+    - sphinx
+    - sumatra
+
+    # The follwing packages are needed by ipython and the ipython notebook
+    - ipython
+    - pyzmq
+    - tornado

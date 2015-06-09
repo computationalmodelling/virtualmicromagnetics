@@ -1,0 +1,5 @@
+---
+- name: Create a virtual machine
+  hosts: localhost
+  roles:
+    - create_VM

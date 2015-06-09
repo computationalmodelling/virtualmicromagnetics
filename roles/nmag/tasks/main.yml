@@ -1,0 +1,4 @@
+- include: install_required_debian_packages.yml
+- include: download_and_extract_nmag_tarball.yml
+- include: compile_nmag.yml
+- include: add_nmag_to_PATH.yml dest=/etc/profile.d/nmag.sh

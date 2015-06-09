@@ -1,0 +1,11 @@
+- set_fact: TCLTKVERSION=8.5
+  when: TCLTKVERSION is not defined and ansible_distribution_version == '12.04'
+- set_fact: TCLTKVERSION=8.6
+  when: TCLTKVERSION is not defined and ansible_distribution_version == '14.04'
+
+- include_vars: tcltkvars_version_8.5.yml
+  when: TCLTKVERSION|string == '8.5'
+- include_vars: tcltkvars_version_8.6.yml
+  when: TCLTKVERSION|string == '8.6'
+
+- debug: msg='Using TCLTKVERSION={{ TCLTKVERSION }}, OOMMF_TCL_CONFIG={{ OOMMF_TCL_CONFIG }}, OOMMF_TK_CONFIG={{ OOMMF_TK_CONFIG }}'

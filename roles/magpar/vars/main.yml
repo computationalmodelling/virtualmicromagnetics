@@ -1,0 +1,11 @@
+MAGPAR_VERSION: magpar-0.9
+MAGPAR_TARBALL: "{{ MAGPAR_VERSION }}.tar.gz"
+MAGPAR_URL: "http://www.magpar.net/static/{{ MAGPAR_VERSION }}/download/{{ MAGPAR_TARBALL }}"
+
+# Location where the downloaded tarball will be placed
+MAGPAR_DOWNLOAD_FOLDER: /etc/skel
+
+# Location where MAGPAR will be installed (and user which
+# should be used for installation).
+MAGPAR_INSTALL_PREFIX: /opt/magpar
+MAGPAR_INSTALL_USER: root

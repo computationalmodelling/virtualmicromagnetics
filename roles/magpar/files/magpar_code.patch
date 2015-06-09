@@ -1,0 +1,26 @@
+--- io/writedataavs.c.orig	2010-03-27 23:42:48.000000000 +0000
++++ io/writedataavs.c	2014-09-29 03:15:08.345866699 +0000
+@@ -102,7 +102,7 @@
+ 
+     for (int i=0; i<gdata->n_vert; i++) {
+       ierr = PetscFPrintf(PETSC_COMM_WORLD,fd,
+-        "%i %g %g %g\n",
++        "%i %0.15e %0.15e %0.15e\n",
+         i+1,
+         PetscRealPart(gdata->vertxyz[ND*i+0]),
+         PetscRealPart(gdata->vertxyz[ND*i+1]),
+@@ -203,11 +203,11 @@
+     snprintf(
+       wbufe,
+       nmax-(wbufe-wbufs),
+-      "%i %g %g %g %g %g %g %g %g %g "
++      "%i %0.15e %0.15e %0.15e %0.15e %0.15e %0.15e %0.15e %0.15e %0.15e "
+ #ifdef EXCH
+-      "%g %g %g "
++      "%0.15e %0.15e %0.15e "
+ #endif
+-      "%g %g %g\n",
++      "%0.15e %0.15e %0.15e\n",
+       gdata->vertl2g[i]+1,
+       ta_M[ND*i+0],
+       ta_M[ND*i+1],

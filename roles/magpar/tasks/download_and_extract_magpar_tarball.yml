@@ -1,0 +1,35 @@
+- name: Download Magpar tarball to MAGPAR_DOWNLOAD_FOLDER
+  get_url:
+     url={{ MAGPAR_URL }}
+     dest={{ MAGPAR_DOWNLOAD_FOLDER }}/{{ MAGPAR_TARBALL }}
+     sha256sum=5f28481345729c5c58ff1b7e7307d9dfca1b8ade01061e51ea194b33cd73dd77
+  sudo: yes
+
+- name: Determine directory name of Magpar tarball to be extracted
+  shell: "tar tzf {{ MAGPAR_DOWNLOAD_FOLDER }}/{{ MAGPAR_TARBALL }} | head -1 | sed -e 's|/.*||'"
+  register: MAGPAR_EXTRACTED_DIR
+  changed_when: false
+
+- name: Ensure the directory MAGPAR_INSTALL_PREFIX exists
+  file:
+    path={{ MAGPAR_INSTALL_PREFIX }}
+    state=directory
+  sudo: yes
+
+# TODO: This is a workaround for the fact that the 'creates' keyword in the 'unarchive' task below
+#       does not seem to be working. This task (and the 'when' clause in the target below) can be
+#       removed once this is fixed in ansible.
+- stat:
+    path={{ MAGPAR_INSTALL_PREFIX }}/{{ MAGPAR_EXTRACTED_DIR.stdout }}
+  register: p
+  changed_when: false
+  sudo: yes
+
+- name: Extract Magpar tarball in MAGPAR_INSTALL_PREFIX
+  unarchive:
+    copy=no
+    src={{ MAGPAR_DOWNLOAD_FOLDER }}/{{ MAGPAR_TARBALL }}
+    dest={{ MAGPAR_INSTALL_PREFIX }}
+    creates={{ MAGPAR_INSTALL_PREFIX }}/{{ MAGPAR_EXTRACTED_DIR.stdout }}/src/Makefile.in.defaults
+  when: p.stat.exists == false
+  sudo: yes

@@ -1,0 +1,17 @@
+---
+# This Ansible role changes the hostname to {{ HOSTNAME }, which can be defined
+# externally.
+- name: Set hostname of the machine in /etc/hostname.
+  hostname:
+    name={{ HOSTNAME }}
+  sudo: yes
+
+- name: Set hostname of the machine in /etc/hosts.
+  lineinfile:
+    dest=/etc/hosts
+    create=yes
+    state=present
+    regexp="^127.0.0.1\t{{ HOSTNAME }}"
+    line="127.0.0.1\t{{ HOSTNAME }}"
+  sudo: yes
+

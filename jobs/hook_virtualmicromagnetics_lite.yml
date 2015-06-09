@@ -1,0 +1,67 @@
+---
+# This Ansible playbook outlines actions taken on the host machine on the
+# virtual machine after the virtual machine is provisioned. It is included in
+# the create_VM playbook.
+
+- name: Set the location to look for and place build artefacts, and whether or not to clobber the output virtual hard disk file.
+  set_fact:
+    artefact_dir: "{{ vm_dir }}/../../artefacts/"
+    clobber_vhd: false
+
+- name: Ensure that a directory is created for build artefacts.
+  file:
+    name={{ artefact_dir }}
+    state=directory
+
+- name: Get current repository version.
+  command: git rev-parse HEAD
+  register: current_revision
+
+- name: Define the name used for output files, sans extension.
+  set_fact:
+    output_name: virtualmicromagnetics_lite_{{ current_revision.stdout }}
+
+# We can skip the creation of the VHD if it already exists (for
+# idempotency). Hence we check for the VHD here and, if it is found, other
+# creation tasks are not run. User can override this setting by setting
+# clobber_vhd to true.
+- name: Determine whether or not the VHD is already built.
+  stat:
+    path={{ artefact_dir }}/{{ output_name }}.vhd
+  register: vhd_status
+
+- name: Create box file using vagrant.
+  command: vagrant package --output {{ artefact_dir }}/{{ output_name }}.box
+    chdir={{ vm_dir }}
+    creates={{ artefact_dir }}/{{ output_name }}.box
+  when: not vhd_status.stat.exists or (vhd_status.stat.isreg and clobber_vhd)
+
+- name: Extract the virtual machine disk (VMDK) file from the box.
+  command: tar -xvf {{ output_name }}.box -C {{ artefact_dir }} ./box-disk1.vmdk
+    chdir={{ artefact_dir }}
+    creates={{ artefact_dir }}/box-disk1.vmdk
+  when: not vhd_status.stat.exists or (vhd_status.stat.isreg and clobber_vhd)
+
+- name: Convert the virtual machine disk (VMDK) to a virtual hard disk (VHD).
+  command: VBoxManage clonehd --format VHD box-disk1.vmdk {{ output_name }}.vhd
+    chdir={{ artefact_dir }}
+    creates={{ artefact_dir }}/{{ output_name }}.vhd
+  when: not vhd_status.stat.exists or (vhd_status.stat.isreg and clobber_vhd)
+
+- name: Remove the box.
+  file:
+    path={{ artefact_dir }}/{{ output_name }}.box
+    state=absent
+
+- name: Remove the virtual machine disk (VMDK).
+  file:
+    path={{ artefact_dir }}/box-disk1.vmdk
+    state=absent
+
+- name: Destroy the virtual machine.
+  command: vagrant destroy --force
+    chdir={{ vm_dir }}
+
+- name: Inform the user that the virtual hard disk has been created.
+  debug:
+    msg="Virtual machine '{{ vm_name }}' has been successfully created, and a build artefact is in {{ artefact_dir }}."

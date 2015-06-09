@@ -1,0 +1,5 @@
+# TODO: How to ensure that this task is idempotent? Also, does it rebuild missing libraries if some of them were deleted in the meantime?
+- name: Build Magpar dependencies
+  command: make -f Makefile.libs all
+    chdir={{ MAGPAR_INSTALL_PREFIX }}/{{ MAGPAR_EXTRACTED_DIR.stdout }}/src/
+#    creates={{ MAGPAR_INSTALL_PREFIX }}/{{ MAGPAR_EXTRACTED_DIR.stdout }}/libs/tao-1.10-p1/lib/PETSc-config-magpar/libtao.a

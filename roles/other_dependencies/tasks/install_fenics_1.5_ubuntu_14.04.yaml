@@ -1,0 +1,43 @@
+- name: Install python-pycurl (required to add the FEniCS PPA)
+  apt:
+    pkg=python-pycurl
+    state=latest
+    update_cache=yes
+    cache_valid_time=86400
+  sudo: yes
+
+- name: Add the FEniCS PPA to make the latest version of FEniCS available (also updates the apt cache)
+  apt_repository:
+    repo="ppa:fenics-packages/fenics"
+    state=present
+    update_cache=yes
+  sudo: yes
+
+- name: Install FEniCS packages and dependencies
+  apt:
+    pkg={{ item }}
+  sudo: yes
+  with_items:
+    - fenics=1:1.5.0.1~ppa1~trusty1
+    - libboost-python-dev
+    - libboost-test-dev
+    - libcgal-dev
+    - python-pyvtk
+    - python-h5py
+
+- name: Install slepc4py 3.4 from the Bitbucket source
+  pip:
+    name=https://bitbucket.org/slepc/slepc4py/downloads/slepc4py-3.4.tar.gz
+    extra_args="--allow-all-external --no-deps"
+  sudo: yes
+  environment:
+    PETSC_DIR: /usr/lib/petsc
+    PETSC_ARCH: linux-gnu-c-opt
+    SLEPC_DIR: /usr/lib/slepc
+    SLEPC_ARCH: linux-gnu-c-opt
+
+- name: Install Fenicstools
+  pip:
+    name=https://github.com/mikaem/fenicstools/archive/1.5.0.tar.gz
+    extra_args="--allow-all-external"
+  sudo: yes

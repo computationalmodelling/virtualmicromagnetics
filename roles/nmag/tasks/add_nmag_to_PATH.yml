@@ -1,0 +1,7 @@
+- name: Add Nmag to PATH
+  blockinfile:
+    dest={{ dest }}
+    marker="# --- {mark} ADDED BY ANSIBLE ---"
+    content="\n# Add Nmag to PATH\nexport PATH={{NMAG_INSTALL_PREFIX}}/{{NMAG_EXTRACTED_DIR.stdout}}/nsim/bin:$PATH\n"
+    create=yes
+  sudo: yes

@@ -1,0 +1,17 @@
+# Filename of the tarball to download and extract.
+MAGPAR_EXAMPLES_TARBALL: magpar-0_9_ex.tar.gz
+
+# Location to download the magpar examples from.
+MAGPAR_EXAMPLES_URL: http://www.magpar.net/static/magpar/download/{{ MAGPAR_EXAMPLES_TARBALL }}
+
+# Examples location
+EXAMPLES_FOLDER: /etc/skel
+MAGPAR_EXAMPLES_FOLDER: "{{ EXAMPLES_FOLDER }}/magpar-0.9/magpar-examples"
+OOMMF_EXAMPLES_FOLDER: "{{ EXAMPLES_FOLDER }}/oommf-oxs-examples"
+NMAG_EXAMPLES_FOLDER: "{{ EXAMPLES_FOLDER }}/nmag-examples"
+
+# Name of the RST template to generate HTML examples from.
+EXAMPLES_RST_FILE: magpar_oommf_nmag_examples.rst
+
+# Location to place the HTML documentation.
+EXAMPLES_DOC_FOLDER: "{{ EXAMPLES_FOLDER }}/Desktop"

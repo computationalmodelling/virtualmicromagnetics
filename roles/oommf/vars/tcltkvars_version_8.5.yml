@@ -1,0 +1,2 @@
+OOMMF_TCL_CONFIG: "/usr/lib/tcl{{ TCLTKVERSION }}/tclConfig.sh"
+OOMMF_TK_CONFIG: "/usr/lib/tk{{ TCLTKVERSION }}/tkConfig.sh"

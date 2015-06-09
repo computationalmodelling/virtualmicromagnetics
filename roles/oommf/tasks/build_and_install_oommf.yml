@@ -1,0 +1,62 @@
+- name: Determine architecture
+  shell: dpkg-architecture -qDEB_HOST_MULTIARCH
+  register: ARCH
+  changed_when: false
+
+- name:
+  file:
+    path=/usr/lib/tcl{{ TCLTKVERSION }}/tclConfig.sh
+    src=/usr/lib/{{ ARCH.stdout }}/tcl{{ TCLTKVERSION }}/tclConfig.sh
+    state=link
+    force=yes
+  sudo: yes
+
+- name:
+  file:
+    path=/usr/lib/tk{{ TCLTKVERSION }}/tkConfig.sh
+    src=/usr/lib/{{ ARCH.stdout }}/tk{{ TCLTKVERSION }}/tkConfig.sh
+    state=link
+    force=yes
+  sudo: yes
+
+# If oommf/app/mmsolve/linux-x86_64/mmsolve already exists we skip
+# the build step. This is not the most robust test but should cover
+# most cases (unless compilation was aborted or something similar).
+- name: Build OOMMF
+  shell: tclsh{{ TCLTKVERSION }} oommf.tcl {{ item }}
+    chdir={{ OOMMF_INSTALL_PREFIX }}/{{ OOMMF_EXTRACTED_DIR.stdout }}
+    creates={{ OOMMF_INSTALL_PREFIX }}/{{ OOMMF_EXTRACTED_DIR.stdout }}/app/mmsolve/linux-x86_64/mmsolve
+  with_items:
+    - pimake distclean
+    - pimake upgrade
+    - pimake
+    - +platform
+  environment:
+    OOMMF_TCL_CONFIG: "{{ OOMMF_TCL_CONFIG }}"
+    OOMMF_TK_CONFIG: "{{ OOMMF_TK_CONFIG }}"
+  sudo: yes
+
+- name: Create a file /usr/local/bin/oommf which calls the OOMMF script in the installed location
+  template:
+    src=oommf.template
+    dest=/usr/local/bin/oommf
+    owner=root
+    group=root
+    mode=0755
+  sudo: yes
+
+- name: Define environment variable OOMMF_TCL_CONFIG in /etc/profile.d/oommf.sh
+  lineinfile:
+    dest=/etc/profile.d/oommf.sh
+    regexp="^export OOMMF_TCL_CONFIG="
+    line="export OOMMF_TCL_CONFIG=\"/usr/lib/{{ ARCH.stdout }}/tcl{{ TCLTKVERSION }}/tclConfig.sh\""
+    create=yes
+  sudo: yes
+
+- name: Define environment variable OOMMF_TK_CONFIG in /etc/profile.d/oommf.sh
+  lineinfile:
+    dest=/etc/profile.d/oommf.sh
+    regexp="^export OOMMF_TK_CONFIG="
+    line="export OOMMF_TK_CONFIG=\"/usr/lib/{{ ARCH.stdout }}/tk{{ TCLTKVERSION }}/tkConfig.sh\""
+    create=yes
+  sudo: yes

@@ -1,0 +1,11 @@
+OOMMF_VERSION: oommf12a5bis_20120928
+OOMMF_TARBALL: "{{ OOMMF_VERSION }}.tar.gz"
+OOMMF_URL: "http://math.nist.gov/oommf/dist/{{ OOMMF_TARBALL }}"
+
+# Location where the downloaded tarball will be placed
+OOMMF_DOWNLOAD_FOLDER: /etc/skel
+
+# Location where OOMMF will be installed (and user which
+# should be used for installation).
+OOMMF_INSTALL_PREFIX: /opt/oommf
+OOMMF_INSTALL_USER: root

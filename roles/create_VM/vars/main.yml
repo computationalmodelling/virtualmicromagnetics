@@ -1,0 +1,27 @@
+# This Ansible playbook of variables contains the following deriving parameters:
+#
+#   - destroy_existing_vm: A boolean variable which results in the destruction
+#         of a virtual machine if it exists. This ensures a clean build, but
+#         removes idempotency.
+#   - playbook_root_dir: The root directory of playbooks to search for.
+#   - ubuntu_version: The version of ubuntu to use for the base box.
+#   - vm_memory: The amount of memory used in the virtual machine (MB)
+#
+# Derived parameters:
+#
+#   - base_box_url: The URL to obtain the basebox from.
+#
+# Mandatory user-supplied deriving parameters:
+#
+#   - vm_name: The name to give the virtual machine.
+#
+# Optional user-supplied deriving parameters:
+#
+#   - extra_resources_dir: Path copied to /vagrant on the guest machine.
+
+destroy_existing_vm: False
+playbook_root_dir: "jobs"
+ubuntu_version: "14.04"
+vm_memory: 4096
+
+base_box_url: https://github.com/kraksoft/vagrant-box-ubuntu/releases/download/{{ ubuntu_version }}/ubuntu-{{ ubuntu_version }}-amd64.box

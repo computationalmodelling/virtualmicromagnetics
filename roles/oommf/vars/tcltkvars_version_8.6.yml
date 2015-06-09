@@ -1,0 +1,2 @@
+OOMMF_TCL_CONFIG: "/usr/lib/{{ ansible_architecture }}-linux-gnu/tcl{{ TCLTKVERSION }}/tclConfig.sh"
+OOMMF_TK_CONFIG: "/usr/lib/{{ ansible_architecture }}-linux-gnu/tk{{ TCLTKVERSION }}/tkConfig.sh"

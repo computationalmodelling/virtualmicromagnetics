@@ -1,0 +1,3 @@
+#! /bin/bash
+
+tclsh{{TCLTKVERSION}} {{OOMMF_INSTALL_PREFIX}}/{{OOMMF_EXTRACTED_DIR.stdout}}/oommf.tcl "$@"

@@ -1,0 +1,4 @@
+- include: define_tcl_tk_variables.yml
+- include: install_required_debian_packages.yml
+- include: download_and_extract_oommf_tarball.yml
+- include: build_and_install_oommf.yml
