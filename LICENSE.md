@@ -1,7 +1,8 @@
 Virtualmicromagnetics source code, documentation, and build artefacts are
 licensed by the 3-Clause BSD License as follows:
 
-Copyright (c) 2015, Mark Vousden, University of Southampton
+Copyright (c) 2015, Mark Vousden, Maximilian Albert, Hans Fangohr,
+University of Southampton
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
