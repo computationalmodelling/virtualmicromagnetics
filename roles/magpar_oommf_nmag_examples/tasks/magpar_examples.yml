@@ -12,13 +12,16 @@
     creates={{ MAGPAR_EXAMPLES_FOLDER }}/sphere_demag/run  # Does this work?
   sudo: yes
 
+- name: Get the path for each magpar example.
+  shell: ls {{ MAGPAR_EXAMPLES_FOLDER }}/* -d
+  register: magpar_example_directories
+
 - name: Alter the magpar examples to fit this environment.
   replace:
-    dest={{ MAGPAR_EXAMPLES_FOLDER }}/{{ item }}/run
-    regexp="prg=\$PWD"
+    dest={{ item }}/run
+    regexp="prg=\$PWD/"
     replace="prg="
-  with_fileglob:
-    - "{{ MAGPAR_EXAMPLES_FOLDER }}/*"
+  with_items: magpar_example_directories.stdout_lines
   sudo: yes
 
 - name: Move magpar-examples to the directory of extraction for clarity.
