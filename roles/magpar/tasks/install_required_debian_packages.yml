@@ -9,4 +9,5 @@
     - gfortran
     - g++
     - liblapack-dev
+    - mpich2
   sudo: yes
