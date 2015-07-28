@@ -102,16 +102,20 @@ intended purpose:
       doesn't like Python 3.0. You may need to create a virtualenv
       (https://pypi.python.org/pypi/virtualenv) to ensure you are working with
       an older python version.
-  - VirtualBox >= 4.3.28
-  - Vagrant >= 1.7.2
-  - Ansible >= 1.9
-    > available from the python package index (https://pypi.python.org/pypi).
-  - thydel.patch Ansible role
-    > command "ansible-galaxy install thydel.patch" with privileges.
-  - yaegashi.blockinfile Ansible role
-    > command "ansible-galaxy install yaegashi.blockinfile" with privileges.
+  - VirtualBox >= 5.0
+    > available from https://www.virtualbox.org/wiki/downloads
+  - Vagrant >= 1.7.4
+    > available from https://www.vagrantup.com/downloads
   - Vagrant-vbguest plugin >= 0.10.0
     > command "vagrant plugin install vagrant-vbguest"
+  - Ansible >= 1.9
+    > available from the python package index (https://pypi.python.org/pypi).
+  - thydel.patch Ansible role, to be installed in ./roles.
+    > command "ansible-galaxy install thydel.patch" from the
+      virtualmicromagnetics directory.
+  - yaegashi.blockinfile Ansible role, to be installed in ./roles
+    > command "ansible-galaxy install yaegashi.blockinfile" from the
+      virtualmicromagnetics directory.
 
 The following software is recommended:
 
