@@ -150,7 +150,9 @@ file types could be produced by future jobs. These files are to be used with
 virtual machine providers, such as VirtualBox. To use these files with the
 VirtualBox GUI, build a "New" machine with an 64 bit Ubuntu OS, and supply as
 much RAM as you are able. All virtual machines in this repository are built off
-such an operating system.
+such an operating system. The username/password for the virtual machine is
+defined in roles/add_super_user/vars/main.yml, but both are
+"virtualmicromagnetics" by default.
 
 Where Things Are
 ================
