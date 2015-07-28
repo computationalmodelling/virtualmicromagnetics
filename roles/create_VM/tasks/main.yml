@@ -49,7 +49,7 @@
   command: vagrant up --no-provision
     chdir={{ vm_dir }}
 
-- name: Provision the virtual machine.
+- name: Provision the virtual machine. A log exists in machines/.
   shell: vagrant provision > {{ vm_name }}.log
     chdir={{ vm_dir }}
 
