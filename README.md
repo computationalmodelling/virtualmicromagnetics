@@ -5,6 +5,16 @@ To use virtual machine software VirtualBox and vagrant, and provisioning
 software Ansible, to produce an environment suitable for micromagnetic
 simulation.
 
+Example Artefact
+================
+
+A successful Virtual Micromagnetics machine is available at the following
+temporary link. To use the machine, download and unzip the file, and follow
+the instructions in the README. VirtualBox, or another virtual machine
+provider is needed to use the virtual hard disk file in the ZIP file.
+
+https://www.dropbox.com/s/1wzqdh6j2iau50u/virtualmicromagnetics_full_9df447e4cc.zip?dl=0
+
 Quick Start
 ===========
 
