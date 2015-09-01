@@ -1,0 +1,11 @@
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install python cowsay vagrant=1:1.7.4 python-pip=1.5.4-1ubuntu1
+  - sudo pip install ansible==1.9.0.1
+  - ansible-galaxy install thydel.patch -proles/
+  - ansible-galaxy install yaegashi.blockinfile -proles/
+  - vagrant plugin install vagrant-vbguest
+
+script:
+  - make full
+  - make lite

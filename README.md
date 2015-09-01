@@ -107,9 +107,9 @@ intended purpose:
   - Ansible >= 1.9
     > available from the python package index (https://pypi.python.org/pypi).
   - thydel.patch Ansible role
-    > command "ansible-galaxy install thydel.patch" with privileges.
+    > command "ansible-galaxy install thydel.patch -proles/".
   - yaegashi.blockinfile Ansible role
-    > command "ansible-galaxy install yaegashi.blockinfile" with privileges.
+    > command "ansible-galaxy install yaegashi.blockinfile -proles/".
   - Vagrant-vbguest plugin >= 0.10.0
     > command "vagrant plugin install vagrant-vbguest"
 
