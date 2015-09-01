@@ -1,3 +1,7 @@
+# This integration does not work, since necessary headers are missing for the
+# linux build Travis-CI uses. For more information, see
+# https://github.com/travis-ci/travis-ci/issues/811.
+
 before_install:
   - sudo apt-get update -y
   - sudo apt-get install -y gdebi python cowsay python-pip linux-headers-generic
