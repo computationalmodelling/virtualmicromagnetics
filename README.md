@@ -5,6 +5,16 @@ To use virtual machine software VirtualBox and vagrant, and provisioning
 software Ansible, to produce an environment suitable for micromagnetic
 simulation.
 
+Example Artefact
+================
+
+A successful Virtual Micromagnetics machine is available at the following
+temporary link. To use the machine, download and unzip the file, and follow
+the instructions in the README. VirtualBox, or another virtual machine
+provider is needed to use the virtual hard disk file in the ZIP file.
+
+https://www.dropbox.com/s/1wzqdh6j2iau50u/virtualmicromagnetics_full_9df447e4cc.zip?dl=0
+
 Quick Start
 ===========
 
@@ -101,17 +111,19 @@ intended purpose:
     > A note for bleeding-edge distribution users like ArchLinux; Ansible
       doesn't like Python 3.0. You may need to create a virtualenv
       (https://pypi.python.org/pypi/virtualenv) to ensure you are working with
-      an older python version.
-  - VirtualBox >= 4.3.28
-  - Vagrant >= 1.7.2
+      an older python version
+  - VirtualBox >= 5.0
+    > available from https://www.virtualbox.org/wiki/downloads
+  - Vagrant >= 1.7.4
+    > available from https://www.vagrantup.com/downloads
   - Ansible >= 1.9
     > available from the python package index (https://pypi.python.org/pypi).
   - thydel.patch Ansible role
-    > command "ansible-galaxy install thydel.patch -proles/".
+    > command "ansible-galaxy install thydel.patch -proles/" from the
+      virtualmicromagnetics directory.
   - yaegashi.blockinfile Ansible role
-    > command "ansible-galaxy install yaegashi.blockinfile -proles/".
-  - Vagrant-vbguest plugin >= 0.10.0
-    > command "vagrant plugin install vagrant-vbguest"
+    > command "ansible-galaxy install yaegashi.blockinfile -proles/" from the
+      virtualmicromagnetics directory.
 
 The following software is recommended:
 
@@ -146,7 +158,9 @@ file types could be produced by future jobs. These files are to be used with
 virtual machine providers, such as VirtualBox. To use these files with the
 VirtualBox GUI, build a "New" machine with an 64 bit Ubuntu OS, and supply as
 much RAM as you are able. All virtual machines in this repository are built off
-such an operating system.
+such an operating system. The username/password for the virtual machine is
+defined in roles/add_super_user/vars/main.yml, but both are
+"virtualmicromagnetics" by default.
 
 Where Things Are
 ================
