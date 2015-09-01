@@ -1,8 +1,10 @@
 before_install:
   - sudo apt-get update -y
-  - sudo apt-get install -y gdebi python cowsay vagrant=1:1.7.4 python-pip=1.5.4-1ubuntu1
+  - sudo apt-get install -y gdebi python cowsay python-pip
   - wget http://download.virtualbox.org/virtualbox/5.0.2/virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_i386.deb
   - sudo gdebi virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_i386.deb
+  - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4_x86_64.deb
+  - sudo gdebi vagrant_1.7.4_x86_64.deb
   - sudo pip install ansible==1.9.0.1
   - ansible-galaxy install thydel.patch -proles/
   - ansible-galaxy install yaegashi.blockinfile -proles/
