@@ -38,6 +38,6 @@
 
 - name: Install Fenicstools
   pip:
-    name=https://github.com/mikaem/fenicstools/archive/1.6.0.tar.gz
+    name=https://github.com/mikaem/fenicstools/archive/1.6.tar.gz
     extra_args="--allow-all-external"
   sudo: yes
