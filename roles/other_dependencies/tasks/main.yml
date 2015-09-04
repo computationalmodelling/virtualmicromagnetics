@@ -1,6 +1,6 @@
 - include: install_debian_packages.yml
 
-- include: install_fenics_1.5_ubuntu_14.04.yaml
+- include: install_fenics_1.6_ubuntu_14.04.yaml
   when: ansible_distribution_version == "14.04"
 
 - include: install_python_packages_with_pip.yml
