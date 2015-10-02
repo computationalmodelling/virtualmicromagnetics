@@ -22,6 +22,6 @@
 destroy_existing_vm: False
 playbook_root_dir: "jobs"
 ubuntu_version: "14.04"
-vm_memory: 2048
+# vm_memory: 2048
 
 base_box_url: https://github.com/kraksoft/vagrant-box-ubuntu/releases/download/{{ ubuntu_version }}/ubuntu-{{ ubuntu_version }}-amd64.box
