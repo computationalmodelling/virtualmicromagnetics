@@ -1,9 +1,3 @@
 ---
 dependencies:
-  - thydel.patch
   - yaegashi.blockinfile
-
-
-#  can install tools with 
-#sudo ansible-galaxy install thydel.patch
-#sudo ansible-galaxy install yaegashi.blockinfile

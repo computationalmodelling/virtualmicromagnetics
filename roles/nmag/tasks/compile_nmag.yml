@@ -10,15 +10,9 @@
     creates={{ NMAG_INSTALL_PREFIX }}/{{ NMAG_EXTRACTED_DIR.stdout }}/.deps_hdf5_untar
   sudo: yes
 
-- name: Copy Nmag patch
-  copy:
-    src=nmag-patch-cpp-comment-2014-05-12.patch
-    dest={{ NMAG_INSTALL_PREFIX }}/{{ NMAG_EXTRACTED_DIR.stdout }}
-  sudo: yes
-
 - name: Apply patch to fix C++ comment in hdf5 source
   patch:
-    src={{ NMAG_INSTALL_PREFIX }}/{{ NMAG_EXTRACTED_DIR.stdout }}/nmag-patch-cpp-comment-2014-05-12.patch
+    src=nmag-patch-cpp-comment-2014-05-12.patch
     strip=1
     basedir={{ NMAG_INSTALL_PREFIX }}/{{ NMAG_EXTRACTED_DIR.stdout }}
   sudo: yes

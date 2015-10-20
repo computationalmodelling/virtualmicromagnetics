@@ -118,9 +118,6 @@ intended purpose:
     > available from https://www.vagrantup.com/downloads
   - Ansible >= 1.9
     > available from the python package index (https://pypi.python.org/pypi).
-  - thydel.patch Ansible role
-    > command "ansible-galaxy install thydel.patch -proles/" from the
-      virtualmicromagnetics directory.
   - yaegashi.blockinfile Ansible role
     > command "ansible-galaxy install yaegashi.blockinfile -proles/" from the
       virtualmicromagnetics directory.
