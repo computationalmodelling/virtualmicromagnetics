@@ -15,13 +15,11 @@
     - magpar_Makefile_libs.patch
   sudo: yes
 
-# Note: The following needs the 'patch' module from Ansible Galaxy [1]
-#       It can be installed via: "sudo ansible-galaxy install thydel.patch"
-# [1] https://galaxy.ansible.com/list#/roles/1825
 - name: Apply patches to Magpar source
   patch:
     src={{ MAGPAR_INSTALL_PREFIX }}/{{ MAGPAR_EXTRACTED_DIR.stdout }}/src/{{ item }}
     basedir={{ MAGPAR_INSTALL_PREFIX }}/{{ MAGPAR_EXTRACTED_DIR.stdout }}/src/
+    remote_src=True
   with_items:
     - magpar.patch
     - magpar_code.patch
