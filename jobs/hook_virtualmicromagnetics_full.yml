@@ -48,11 +48,6 @@
     creates={{ artefact_dir }}/{{ output_name }}.vhd
   when: not vhd_status.stat.exists or (vhd_status.stat.isreg and clobber_vhd)
 
-- name: Remove the box.
-  file:
-    path={{ artefact_dir }}/{{ output_name }}.box
-    state=absent
-
 - name: Remove the virtual machine disk (VMDK).
   file:
     path={{ artefact_dir }}/box-disk1.vmdk
