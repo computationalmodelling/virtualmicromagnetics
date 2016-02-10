@@ -1,0 +1,30 @@
+
+# ----------------------- #
+#      Main Configs       #
+# ----------------------- #
+
+url: "http://yoursite.com"
+title: Virtual Micromagnetics
+email: mark.vousden@soton.ac.uk
+author: Mark Vousden
+description: >
+  Virtual Micromagnetics enables accessible and reproducible micromagnetic
+  simulation.
+
+# ----------------------- #
+#    Jekyll & Plugins     #
+# ----------------------- #
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+# ----------------------- #
+#   3rd Party Settings    #
+# ----------------------- #
+
+# social:
+#   - title: Get started
+#     url:
+#   - title: github
+#     url: https://github.com/fangohr/virtualmicromagnetics
