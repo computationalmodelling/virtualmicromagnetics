@@ -21,36 +21,52 @@
   set_fact:
     output_name: virtualmicromagnetics_lite_{{ current_revision.stdout }}
 
-# We can skip the creation of the VHD if it already exists (for
-# idempotency). Hence we check for the VHD here and, if it is found, other
+# We can skip the creation of the zipped VHD if it already exists (for
+# idempotency). Hence we check for the ZIP here and, if it is found, other
 # creation tasks are not run. User can override this setting by setting
 # clobber_vhd to true.
-- name: Determine whether or not the VHD is already built.
+
+- name: Define the name used for the ZIP output file, with extension.
+  set_fact:
+    output_zip: {{ output_name }}_vhd.zip
+
+- name: Determine whether or not the ZIP is already built.
   stat:
-    path={{ artefact_dir }}/{{ output_name }}.vhd
-  register: vhd_status
+    path={{ artefact_dir }}/{{ output_zip }}
+  register: zip_status
 
 - name: Create box file using vagrant.
   command: vagrant package --output {{ artefact_dir }}/{{ output_name }}.box
     chdir={{ vm_dir }}
     creates={{ artefact_dir }}/{{ output_name }}.box
-  when: not vhd_status.stat.exists or (vhd_status.stat.isreg and clobber_vhd)
+  when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_vhd)
 
 - name: Extract the virtual machine disk (VMDK) file from the box.
   command: tar -xvf {{ output_name }}.box -C {{ artefact_dir }} ./box-disk1.vmdk
     chdir={{ artefact_dir }}
     creates={{ artefact_dir }}/box-disk1.vmdk
-  when: not vhd_status.stat.exists or (vhd_status.stat.isreg and clobber_vhd)
+  when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_vhd)
 
 - name: Convert the virtual machine disk (VMDK) to a virtual hard disk (VHD).
   command: VBoxManage clonehd --format VHD box-disk1.vmdk {{ output_name }}.vhd
     chdir={{ artefact_dir }}
     creates={{ artefact_dir }}/{{ output_name }}.vhd
-  when: not vhd_status.stat.exists or (vhd_status.stat.isreg and clobber_vhd)
+  when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_vhd)
 
 - name: Remove the virtual machine disk (VMDK).
   file:
     path={{ artefact_dir }}/box-disk1.vmdk
+    state=absent
+
+- name: Compress the virtual hard disk (VHD) into a zip file with a readme.
+  command zip {{ output_zip }} {{ output_name }}.vhd ../guest_resources/zip_readme.txt
+    chdir={{ artefact_dir }}
+    creates={{ artefact_dir }}/{{ output_zip }}
+  when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_vhd)
+
+- name: Remove the virtual hard disk (VHD).
+  file:
+    path={{ artefact_dir }}/{{ output_name }}.vhd
     state=absent
 
 - name: Destroy the virtual machine.
@@ -59,4 +75,4 @@
 
 - name: Inform the user that the virtual hard disk has been created.
   debug:
-    msg="Virtual machine '{{ vm_name }}' has been successfully created, and a build artefact is in {{ artefact_dir }}."
+    msg="Virtual machine '{{ vm_name }}' has been successfully created, and build artefacts are in {{ artefact_dir }}."
