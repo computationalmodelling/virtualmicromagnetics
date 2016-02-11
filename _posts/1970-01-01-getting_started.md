@@ -1,0 +1,51 @@
+---
+layout: default
+category: 'Getting Started'
+title:
+---
+
+Introduction
+------------
+
+Virtual Micromagnetics is an environment that creates [system virtual
+machines](https://en.wikipedia.org/wiki/Virtual_machine#System_virtual_machines)
+(VMs) designed for high-performance, reproducible, and distributable
+research. This essentially means it emulates a configured set of software on
+your computer. Instead of managing many different software packages on your
+computer for simulation, you only need to manage the single software that
+supports the VM. This creates an environment far simpler to maintain for
+research, meaning you have more time to solve the mysteries of the universe,
+instead of:
+
+- wondering why the latest version of a package is incompatible with earlier
+  simulations.
+
+- wondering how to maintain multiple versions of a package to support old
+  simulation software.
+
+- persuading your (high-performance-computing) system administrator to support
+  your old software.
+
+- setting up user accounts and packages for new students to run simulations.
+
+Get Started
+-----------
+
+In order to use the Virtual Micromagnetics environment, you will require a
+virtual machine provider. One such provider is [VirtualBox
+5.0](https://www.virtualbox.org/), which we recommend and support, but others
+are available.
+
+Get the [latest build zip
+file](https://www.dropbox.com/s/1wzqdh6j2iau50u/virtualmicromagnetics_full_9df447e4cc.zip),
+and unzip it to obtain the full Virtual Micromagnetics hard
+disk. [Create](https://www.virtualbox.org/manual/ch01.html#gui-createvm) your
+Virtual Micromagnetics VM from the hard disk using your provider (VirtualBox),
+and [run](https://www.virtualbox.org/manual/ch01.html#idp46730486114432) the
+VM. When prompted, log in as:
+
+- User: virtualmicromagnetics
+- Password: virtualmicromagnetics
+
+After login, follow the instructions in the welcome file on the desktop to run
+some simulations. Never worry about software dependencies again!
