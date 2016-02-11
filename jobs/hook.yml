@@ -59,7 +59,7 @@
     state=absent
 
 - name: Compress the virtual hard disk (VHD) into a zip file with a readme.
-  command zip {{ output_zip }} {{ output_name }}.vhd ../guest_resources/zip_readme.txt
+  command: zip {{ output_zip }} {{ output_name }}.vhd ../guest_resources/zip_readme.txt
     chdir={{ artefact_dir }}
     creates={{ artefact_dir }}/{{ output_zip }}
   when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_output)
