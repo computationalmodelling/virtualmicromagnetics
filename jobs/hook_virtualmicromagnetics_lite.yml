@@ -3,10 +3,10 @@
 # virtual machine after the virtual machine is provisioned. It is included in
 # the create_VM playbook.
 
-- name: Set the location to look for and place build artefacts, and whether or not to clobber the output virtual hard disk file.
+- name: Set the location to look for and place build artefacts, and whether or not to clobber the output files.
   set_fact:
     artefact_dir: "{{ vm_dir }}/../../artefacts/"
-    clobber_vhd: false
+    clobber_output: false
 
 - name: Ensure that a directory is created for build artefacts.
   file:
@@ -24,7 +24,7 @@
 # We can skip the creation of the zipped VHD if it already exists (for
 # idempotency). Hence we check for the ZIP here and, if it is found, other
 # creation tasks are not run. User can override this setting by setting
-# clobber_vhd to true.
+# clobber_output to true.
 
 - name: Define the name used for the ZIP output file, with extension.
   set_fact:
@@ -39,19 +39,19 @@
   command: vagrant package --output {{ artefact_dir }}/{{ output_name }}.box
     chdir={{ vm_dir }}
     creates={{ artefact_dir }}/{{ output_name }}.box
-  when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_vhd)
+  when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_output)
 
 - name: Extract the virtual machine disk (VMDK) file from the box.
   command: tar -xvf {{ output_name }}.box -C {{ artefact_dir }} ./box-disk1.vmdk
     chdir={{ artefact_dir }}
     creates={{ artefact_dir }}/box-disk1.vmdk
-  when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_vhd)
+  when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_output)
 
 - name: Convert the virtual machine disk (VMDK) to a virtual hard disk (VHD).
   command: VBoxManage clonehd --format VHD box-disk1.vmdk {{ output_name }}.vhd
     chdir={{ artefact_dir }}
     creates={{ artefact_dir }}/{{ output_name }}.vhd
-  when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_vhd)
+  when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_output)
 
 - name: Remove the virtual machine disk (VMDK).
   file:
@@ -62,7 +62,7 @@
   command zip {{ output_zip }} {{ output_name }}.vhd ../guest_resources/zip_readme.txt
     chdir={{ artefact_dir }}
     creates={{ artefact_dir }}/{{ output_zip }}
-  when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_vhd)
+  when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_output)
 
 - name: Remove the virtual hard disk (VHD).
   file:
