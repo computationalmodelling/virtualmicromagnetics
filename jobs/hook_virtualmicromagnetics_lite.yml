@@ -19,7 +19,7 @@
 
 - name: Define the name used for output files, sans extension.
   set_fact:
-    output_name: virtualmicromagnetics_lite_{{ current_revision.stdout }}
+    output_name: {{ vm_name }}-{{ current_revision.stdout }}
 
 # We can skip the creation of the zipped VHD if it already exists (for
 # idempotency). Hence we check for the ZIP here and, if it is found, other
@@ -28,7 +28,7 @@
 
 - name: Define the name used for the ZIP output file, with extension.
   set_fact:
-    output_zip: {{ output_name }}_vhd.zip
+    output_zip: {{ output_name }}-vhd.zip
 
 - name: Determine whether or not the ZIP is already built.
   stat:
