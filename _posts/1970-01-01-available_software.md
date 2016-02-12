@@ -35,7 +35,7 @@ There's a lot of software here I will never use...
 --------------------------------------------------
 
 A light version of Virtual micromagnetics is also available for
-[download](https://www.dropbox.com/s/1wzqdh6j2iau50u/virtualmicromagnetics_full_9df447e4cc.zip),
+[download](/download/),
 which includes only the micromagnetic simulation software and its
 dependencies. If you're looking for an even more streamlined Virtual
 Micromagnetics environment, consider building Virtual Micromagnetics projects

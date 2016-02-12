@@ -13,7 +13,7 @@ download and install a virtual machine provider. One such provider is
 and support, but others are available.
 
 Get the [latest build zip
-file](https://www.dropbox.com/s/1wzqdh6j2iau50u/virtualmicromagnetics_full_9df447e4cc.zip),
+file](/download/),
 and unzip it to obtain the full Virtual Micromagnetics hard
 disk. [Create](https://www.virtualbox.org/manual/ch01.html#gui-createvm) your
 Virtual Micromagnetics VM from the hard disk using your provider (VirtualBox),
