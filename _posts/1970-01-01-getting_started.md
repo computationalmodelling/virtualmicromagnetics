@@ -27,5 +27,3 @@ After login, follow the instructions in the welcome file on the desktop to run
 some simulations with the pre-installed packages. Some familiarity with [Ubuntu
 GNU/Linux](http://www.ubuntu.com/) is recommended. Never worry about software
 dependencies again!
-
-
