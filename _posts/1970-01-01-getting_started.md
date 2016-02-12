@@ -7,10 +7,10 @@ title:
 From Scratch
 ------------
 
-In order to use the Virtual Micromagnetics environment, you will require a
-virtual machine provider. One such provider is [VirtualBox
-5.0](https://www.virtualbox.org/), which we recommend and support, but others
-are available.
+In order to use the Virtual Micromagnetics environment, you will need to
+download and install a virtual machine provider. One such provider is
+[VirtualBox 5.0](https://www.virtualbox.org/wiki/Downloads), which we recommend
+and support, but others are available.
 
 Get the [latest build zip
 file](https://www.dropbox.com/s/1wzqdh6j2iau50u/virtualmicromagnetics_full_9df447e4cc.zip),
