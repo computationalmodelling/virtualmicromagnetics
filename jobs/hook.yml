@@ -23,26 +23,35 @@
 
 # We can skip the creation of the zipped VHD if it already exists (for
 # idempotency). Hence we check for the ZIP here and, if it is found, other
-# creation tasks are not run. User can override this setting by setting
-# clobber_output to true.
+# creation tasks are not run. Likewise for the box. User can override this
+# setting by setting clobber_output to true.
 
 - name: Define the name used for the ZIP output file, with extension.
   set_fact:
     output_zip: "{{ output_name }}-vhd.zip"
+
+- name: Define the name used for the box output file, with extension.
+  set_fact:
+    output_box: "{{ output_name }}.box"
 
 - name: Determine whether or not the ZIP is already built.
   stat:
     path={{ artefact_dir }}/{{ output_zip }}
   register: zip_status
 
+- name: Determine whether or not the box is already built.
+  stat:
+    path={{ artefact_dir }}/{{ output_box }}
+  register: box_status
+
 - name: Create box file using vagrant.
-  command: vagrant package --output {{ artefact_dir }}/{{ output_name }}.box
+  command: vagrant package --output {{ artefact_dir }}/{{ output_box }}
     chdir={{ vm_dir }}
-    creates={{ artefact_dir }}/{{ output_name }}.box
-  when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_output)
+    creates={{ artefact_dir }}/{{ output_box }}
+  when: not box_status.stat.exists or (box_status.stat.isreg and clobber_output)
 
 - name: Extract the virtual machine disk (VMDK) file from the box.
-  command: tar -xvf {{ output_name }}.box -C {{ artefact_dir }} ./box-disk1.vmdk
+  command: tar -xvf {{ output_box }} -C {{ artefact_dir }} ./box-disk1.vmdk
     chdir={{ artefact_dir }}
     creates={{ artefact_dir }}/box-disk1.vmdk
   when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_output)
