@@ -1,1 +1,25 @@
-Vagrantfile_virtualmicromagnetics-full_builtin
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# This vagrantfile is not to be used to create a virtual machine using this
+# repository. Instead, it is a vagrantfile that is to be embedded (built in) to
+# the box file created by 'make full'. For more information about built-in
+# vagrantfiles, see:
+#
+#   https://docs.vagrantup.com/v2/vagrantfile/index.html#load-order
+#
+# This particular vagrant file changes the user credentials that connects to
+# the Virtual Micromagnetics environment with, and enables a GUI by default.
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.provider :virtualbox do |vb|
+    vb.gui = true
+  end
+
+  config.ssh.username = virtualmicromagnetics
+  config.ssh.password = virtualmicromagnetics
+
+end
