@@ -4,10 +4,11 @@ category: 'Getting Started'
 title: From Scratch
 ---
 
-In order to use the Virtual Micromagnetics environment, you will need to
-download and install a virtual machine provider. One such provider is
-[VirtualBox 5.0](https://www.virtualbox.org/wiki/Downloads), which we recommend
-and support, but others are available.
+Alternatively, you can use the Virtual Micromagnetics environment from the
+virtual machines directly. To do this, you will need to download and install a
+virtual machine provider. One such provider is [VirtualBox
+5.0](https://www.virtualbox.org/wiki/Downloads), which we recommend and
+support, but others are available.
 
 Get the [latest build zip
 file](/download/),
@@ -15,7 +16,7 @@ and unzip it to obtain the full Virtual Micromagnetics hard
 disk. [Create](https://www.virtualbox.org/manual/ch01.html#gui-createvm) your
 Virtual Micromagnetics VM from the hard disk using your provider (VirtualBox),
 and [run](https://www.virtualbox.org/manual/ch01.html#idp46730486114432) the
-VM. When prompted, log in as:
+VM. You may need the following user credentials:
 
 - User: virtualmicromagnetics
 - Password: virtualmicromagnetics
