@@ -3,7 +3,7 @@
 # friendliness.
 
 # Important to install the packages in this order, otherwise icons will not
-# load correctly.
+# load correctly. Firefox is not strictly required, but we need a web browser.
 - name: Install Ubuntu packages needed to run X server.
   apt:
     pkg={{ item }}
@@ -14,6 +14,7 @@
    - dictionaries-common
    - xfce4
    - gnome-icon-theme-full
+   - firefox
   sudo: yes
 
 - name: Allow everyone to start X.
