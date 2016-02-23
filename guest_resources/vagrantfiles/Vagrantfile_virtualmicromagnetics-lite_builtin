@@ -19,7 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.gui = true
   end
 
-  config.ssh.username = virtualmicromagnetics
-  config.ssh.password = virtualmicromagnetics
+  config.ssh.username = "virtualmicromagnetics"
+  config.ssh.password = "virtualmicromagnetics"
 
 end
