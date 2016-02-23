@@ -1,6 +1,6 @@
 ---
-# This Ansible role adds a super user {{ USERNAME }}, and sets automatic login
-# if LXDM is installed.
+# This Ansible role adds a super user {{ USERNAME }}, sets automatic login
+# if LXDM is installed, and sets automatic login on boot if desired.
 - name: Add the user.
   user:
     name={{ USERNAME }}
@@ -8,6 +8,19 @@
     state=present
     groups=sudo,adm
   sudo: yes
+
+- name: Determine if a user has been configured to log in automatically.
+  command: grep "exec /sbin/getty -8 38400 tty1" /etc/init/tty1.conf -c
+  register: auto_log_set
+
+- name: Set automatic console login for this user if desired. Only works once.
+  lineinfile:
+    dest=/etc/init/tty1.conf
+    create=yes
+    regexp="exec /sbin/getty -8 38400 tty1"
+    line="exec /bin/login -f {{ USERNAME }} < /dev/tty1 > /dev/tty1 2>&1"
+  sudo: yes
+  when: (auto_log_set.stdout.find('0') != 1 and {{ AUTOLOGIN }} == "true")
 
 - name: Determine if LXDM is installed.
   command: dpkg-query -l lxdm

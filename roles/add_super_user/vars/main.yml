@@ -1,5 +1,6 @@
 # The username and password are identical. A hash is used because Ansible
 # insists.
 
+AUTOLOGIN: false
 USERNAME: virtualmicromagnetics
 PASSWORD: "$6$rounds=100000$dr/Vf0wbqMeouaUR$JUsil5KNXdoBJutbVI8r8utnhfUctGyMjEa2to3WZepK/Q//OY1F2DH8jVxLOoLt1BcWJKfYLhw8EHjOw4bE/0"
