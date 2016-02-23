@@ -16,5 +16,5 @@ environment:
 
 and for the lite environment:
 
-    vagrant init virtualmicromagnetics/lite;
+    vagrant init virtualmicromagnetics/lite
     vagrant up --provider virtualbox
