@@ -22,6 +22,7 @@ h6 {
 }
 
 .lead {
+    margin: 15px;
     font-size: 18px;
     font-weight: 400;
 }
@@ -100,7 +101,7 @@ h6 {
 }
 
 .section-heading {
-    margin-bottom: 30px;
+    margin: 15px;
 }
 
 .section-heading-spacer {
