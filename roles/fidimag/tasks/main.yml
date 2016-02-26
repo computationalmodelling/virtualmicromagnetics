@@ -1,6 +1,7 @@
 ---
 # This Ansible role installs Fidimag on the virtual machine.
 
+# Clone fidimag from the repository.
 - name: Ensure that Git and openssh-client are installed.
   apt:
     pkg: "{{ item }}"
@@ -18,6 +19,7 @@
     dest: "{{ FIDIMAG_INSTALL_PATH }}"
   sudo: yes
 
+# Install dependencies.
 - name: Install dependencies in Ubuntu packages.
   apt:
     pkg: "{{ item }}"
@@ -41,18 +43,21 @@
     extra_args: --upgrade
   sudo: yes
 
+# Install local dependencies.
 - name: Install FFTW and SUNDIALS from the Fidimag installation script.
   command: bash install.sh
   args:
     chdir: "{{ FIDIMAG_INSTALL_PATH }}/bin"
   sudo: yes
 
+# Build fidimag. Makefile module?
 - name: Build Fidimag.
   command: make
   args:
     chdir: "{{ FIDIMAG_INSTALL_PATH }}"
   sudo: yes
 
+# Organise paths.
 - name: Add fidimag to PYTHONPATH.
   lineinfile:
     dest: /etc/profile.d/fidimag.sh
