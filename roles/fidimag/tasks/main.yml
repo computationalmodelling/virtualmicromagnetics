@@ -70,6 +70,6 @@
   lineinfile:
     dest: /etc/profile.d/fidimag.sh
     regexp: "^export LD_LIBRARY_PATH="
-    line: "export PYTHONPATH=\"{{ FIDIMAG_INSTALL_PATH }}/local/lib:$PYTHONPATH\""
+    line: "export LD_LIBRARY_PATH=\"{{ FIDIMAG_INSTALL_PATH }}/local/lib:$LD_LIBRARY_PATH\""
     create: yes
   sudo: yes
