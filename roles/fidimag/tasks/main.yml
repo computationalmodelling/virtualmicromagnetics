@@ -55,15 +55,15 @@
 - name: Add fidimag to PYTHONPATH.
   lineinfile:
     dest: /etc/profile.d/fidimag.sh
-    regexp="^export PYTHONPATH="
-    line="export PYTHONPATH=\"{{ FIDIMAG_INSTALL_PATH }}/:$PYTHONPATH\""
-    create=yes
+    regexp: "^export PYTHONPATH="
+    line: "export PYTHONPATH=\"{{ FIDIMAG_INSTALL_PATH }}/:$PYTHONPATH\""
+    create: yes
   sudo: yes
 
 - name: Add fidimag library path to LD_LIBRARY_PATH.
   lineinfile:
     dest: /etc/profile.d/fidimag.sh
-    regexp="^export LD_LIBRARY_PATH="
-    line="export PYTHONPATH=\"{{ FIDIMAG_INSTALL_PATH }}/local/lib:$PYTHONPATH\""
-    create=yes
+    regexp: "^export LD_LIBRARY_PATH="
+    line: "export PYTHONPATH=\"{{ FIDIMAG_INSTALL_PATH }}/local/lib:$PYTHONPATH\""
+    create: yes
   sudo: yes
