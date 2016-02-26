@@ -28,6 +28,7 @@
     - gcc
     - ipython
     - mayavi2
+    - python-dev
     - python-matplotlib
     - python-numpy
     - python-pytest
