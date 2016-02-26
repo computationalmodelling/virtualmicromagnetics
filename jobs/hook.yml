@@ -44,15 +44,32 @@
     path={{ artefact_dir }}/{{ output_box }}
   register: box_status
 
+# Determine whether or not an inbuilt Vagrantfile is supplied. If it is, we
+# package the box with it. Otherwise, we package the box without an in-built
+# Vagrantfile.
+#
+# By the way, "isreg" means "is a regular file?".
+
 - name: Define the path for in-built Vagrantfiles.
   set_fact:
     inbuilt_vagrantfile_path = ../../guest_resources/vagrantfiles
 
-- name: Create box file using vagrant, and include a built-in Vagrant file.
+- name: Determine whether or not a builtin Vagrantfile exists for this target.
+  stat:
+    path: "{{ inbuilt_vagrantfile_path }}/Vagrantfile_{{ vm_name }}_builtin"
+  register: vagrantfile
+
+- name: Create box file using vagrant, and include a built-in Vagrant file if it exists.
   command: vagrant package --output {{ artefact_dir }}/{{ output_box }} --vagrantfile {{ inbuilt_vagrantfile_path }}/Vagrantfile_{{ vm_name }}_builtin
     chdir={{ vm_dir }}
     creates={{ artefact_dir }}/{{ output_box }}
-  when: not box_status.stat.exists or (box_status.stat.isreg and clobber_output)
+  when: vagrantfile.stat.isreg and (not box_status.stat.exists or (box_status.stat.isreg and clobber_output))
+
+- name: Create box file using vagrant without a built-in Vagrant file if it is absent.
+  command: vagrant package --output {{ artefact_dir }}/{{ output_box }}
+    chdir={{ vm_dir }}
+    creates={{ artefact_dir }}/{{ output_box }}
+  when: (not vagrantfile.stat.isreg) and (not box_status.stat.exists or (box_status.stat.isreg and clobber_output))
 
 - name: Extract the virtual machine disk (VMDK) file from the box.
   command: tar -xvf {{ output_box }} -C {{ artefact_dir }} ./box-disk1.vmdk
