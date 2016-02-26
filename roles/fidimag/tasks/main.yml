@@ -41,10 +41,12 @@
 
 - name: Install FFTW and SUNDIALS from the Fidimag installation script.
   command: bash install.sh
-    chdir: "{{ FIDIMAG_INSTALL_PATH }}"/bin
+  args:
+    chdir: "{{ FIDIMAG_INSTALL_PATH }}/bin"
 
 - name: Build Fidimag.
   command: make
+  args:
     chdir: "{{ FIDIMAG_INSTALL_PATH }}"
 
 - name: Add fidimag to PYTHONPATH.
