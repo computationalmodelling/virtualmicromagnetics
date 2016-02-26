@@ -16,6 +16,7 @@
   git:
     repo: "{{ FIDIMAG_REPO_URL }}"
     dest: "{{ FIDIMAG_INSTALL_PATH }}"
+  sudo: yes
 
 - name: Install dependencies in Ubuntu packages.
   apt:
@@ -43,11 +44,13 @@
   command: bash install.sh
   args:
     chdir: "{{ FIDIMAG_INSTALL_PATH }}/bin"
+  sudo: yes
 
 - name: Build Fidimag.
   command: make
   args:
     chdir: "{{ FIDIMAG_INSTALL_PATH }}"
+  sudo: yes
 
 - name: Add fidimag to PYTHONPATH.
   lineinfile:
