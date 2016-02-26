@@ -52,7 +52,7 @@
 
 - name: Define the path for in-built Vagrantfiles.
   set_fact:
-    inbuilt_vagrantfile_path = ../../guest_resources/vagrantfiles
+    inbuilt_vagrantfile_path: "{{ vm_dir }}/../../guest_resources/vagrantfiles"
 
 - name: Determine whether or not a builtin Vagrantfile exists for this target.
   stat:
