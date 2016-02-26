@@ -35,6 +35,7 @@
     - python-numpy
     - python-pytest
     - python-pyvtk
+    - python-scipy
   sudo: yes
 
 - name: Install dependencies with Pip.
