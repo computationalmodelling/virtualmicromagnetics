@@ -44,8 +44,12 @@
     path={{ artefact_dir }}/{{ output_box }}
   register: box_status
 
-- name: Create box file using vagrant, and include a specific Vagrant file.
-  command: vagrant package --output {{ artefact_dir }}/{{ output_box }} --vagrantfile ../../guest_resources/vagrantfiles/Vagrantfile_{{ vm_name }}_builtin
+- name: Define the path for in-built Vagrantfiles.
+  set_fact:
+    inbuilt_vagrantfile_path = ../../guest_resources/vagrantfiles
+
+- name: Create box file using vagrant, and include a built-in Vagrant file.
+  command: vagrant package --output {{ artefact_dir }}/{{ output_box }} --vagrantfile {{ inbuilt_vagrantfile_path }}/Vagrantfile_{{ vm_name }}_builtin
     chdir={{ vm_dir }}
     creates={{ artefact_dir }}/{{ output_box }}
   when: not box_status.stat.exists or (box_status.stat.isreg and clobber_output)
