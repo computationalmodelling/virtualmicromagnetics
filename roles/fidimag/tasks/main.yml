@@ -1,0 +1,64 @@
+---
+# This Ansible role installs Fidimag on the virtual machine.
+
+- name: Ensure that Git and openssh-client are installed.
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 86400
+  with_items:
+    - git
+    - openssh-client
+  sudo: yes
+
+- name: Clone the Fidimag source.
+  git:
+    repo: "{{ FIDIMAG_REPO_URL }}"
+    dest: "{{ FIDIMAG_INSTALL_PATH }}"
+
+- name: Install dependencies in Ubuntu packages.
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 86400
+  with_items:
+    - gcc
+    - ipython
+    - mayavi2
+    - python-matplotlib
+    - python-numpy
+    - python-pytest
+    - python-pyvtk
+  sudo: yes
+
+- name: Install dependencies with Pip.
+  pip:
+    name: cython
+    extra_args: --upgrade
+  sudo: yes
+
+- name: Install FFTW and SUNDIALS from the Fidimag installation script.
+  command: bash install.sh
+    chdir: "{{ FIDIMAG_INSTALL_PATH }}"/bin
+
+- name: Build Fidimag.
+  command: make
+    chdir: "{{ FIDIMAG_INSTALL_PATH }}"
+
+- name: Add fidimag to PYTHONPATH.
+  lineinfile:
+    dest: /etc/profile.d/fidimag.sh
+    regexp="^export PYTHONPATH="
+    line="export PYTHONPATH=\"{{ FIDIMAG_INSTALL_PATH }}/:$PYTHONPATH\""
+    create=yes
+  sudo: yes
+
+- name: Add fidimag library path to LD_LIBRARY_PATH.
+  lineinfile:
+    dest: /etc/profile.d/fidimag.sh
+    regexp="^export LD_LIBRARY_PATH="
+    line="export PYTHONPATH=\"{{ FIDIMAG_INSTALL_PATH }}/local/lib:$PYTHONPATH\""
+    create=yes
+  sudo: yes

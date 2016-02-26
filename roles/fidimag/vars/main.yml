@@ -1,0 +1,3 @@
+---
+FIDIMAG_REPO_URL: ssh://git@github.com:computationalmodelling/fidimag.git
+FIDIMAG_INSTALL_PATH: /opt/fidimag
