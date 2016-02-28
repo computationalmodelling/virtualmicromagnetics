@@ -1,0 +1,9 @@
+# Examples location
+EXAMPLES_FOLDER: /etc/skel
+OOMMF_EXAMPLES_FOLDER: "{{ EXAMPLES_FOLDER }}/oommf-oxs-examples"
+
+# Name of the RST template to generate HTML examples from.
+EXAMPLES_RST_FILE: oommf_examples.rst
+
+# Location to place the HTML documentation.
+EXAMPLES_DOC_FOLDER: "{{ EXAMPLES_FOLDER }}/Desktop"

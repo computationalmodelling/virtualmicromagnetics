@@ -1,0 +1,23 @@
+- name: Create examples documentation directory.
+  file:
+    name={{ EXAMPLES_DOC_FOLDER }}
+    state=directory
+  sudo: yes
+
+- name: Copy RST examples to examples folder.
+  template:
+    src={{ EXAMPLES_RST_FILE }}
+    dest={{ EXAMPLES_DOC_FOLDER }}/{{ EXAMPLES_RST_FILE }}
+  sudo: yes
+
+- name: Convert documentation to HTML.
+  shell: rst2html.py {{ EXAMPLES_RST_FILE }} Examples.html
+    chdir={{ EXAMPLES_DOC_FOLDER }}
+    creates={{ EXAMPLES_DOC_FOLDER }}/Examples.html
+  sudo: yes
+
+- name: Remove the RST examples file from the examples folder.
+  file:
+    path={{ EXAMPLES_DOC_FOLDER }}/{{ EXAMPLES_RST_FILE }}
+    state=absent
+  sudo: yes
