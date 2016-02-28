@@ -1,0 +1,6 @@
+---
+# This Ansible role prepares Nmag examples and places some documentation on the
+# Desktop.
+
+- include: nmag_examples.yml
+- include: build_documentation.yml

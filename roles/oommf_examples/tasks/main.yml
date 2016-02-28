@@ -1,0 +1,6 @@
+---
+# This Ansible role prepares OOMMF examples and places some documentation on
+# the Desktop.
+
+- include: oommf_examples.yml
+- include: build_documentation.yml

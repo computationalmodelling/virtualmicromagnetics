@@ -1,6 +1,4 @@
 ---
 dependencies:
   - { role: docutils }
-  - { role: oommf }
-  - { role: magpar }
   - { role: nmag }

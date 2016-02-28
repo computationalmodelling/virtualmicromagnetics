@@ -40,10 +40,12 @@
 
   roles:
     - oommf
+    - oommf_examples
     - magpar
+    - magpar_examples
     - nmag
+    - nmag_examples
     - fidimag
-    - magpar_oommf_nmag_examples
     - xserver
     - { role: add_super_user, AUTOLOGIN: true }
     - { role: set_hostname, HOSTNAME: virtualmicromagnetics-lite }
