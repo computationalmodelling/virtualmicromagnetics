@@ -10,3 +10,8 @@ full:
 # micromagnetics simulation technologies.
 lite:
 	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="vm_name=virtualmicromagnetics-lite playbook=provision_virtualmicromagnetics_lite.yml hookbook=hook.yml extra_resources_dir=guest_resources/"
+
+# This target builds a virtual hard disk file containing a fidimag
+# installation.
+fidimag:
+	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="vm_name=virtualmicromagnetics-fidimag playbook=provision_virtualmicromagnetics_fidimag.yml hookbook=hook.yml extra_resources_dir=guest_resources/"

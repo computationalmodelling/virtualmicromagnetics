@@ -1,0 +1,27 @@
+---
+# This Ansible include-playbook installs Fidimag dependencies from packages.
+
+- name: Install dependencies in Ubuntu packages.
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 86400
+  with_items:
+    - gcc
+    - ipython
+    - mayavi2
+    - python-dev
+    - python-matplotlib
+    - python-numpy
+    - python-pip
+    - python-pytest
+    - python-pyvtk
+    - python-scipy
+  sudo: yes
+
+- name: Install dependencies with Pip.
+  pip:
+    name: cython
+    extra_args: --upgrade
+  sudo: yes
