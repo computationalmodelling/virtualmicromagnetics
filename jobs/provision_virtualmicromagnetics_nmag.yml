@@ -1,0 +1,46 @@
+---
+# This Ansible playbook is a provision playbook designed to be used with
+# vagrant. This playbook provisions a machine suitable for micromagnetic
+# simulation with nmag. It is executed by the virtual machine.
+
+- hosts: all
+
+# We install docutils here instead of using the role directly, so that the
+# welcome file can be created before the superuser is added.
+  pre_tasks:
+
+    - name: Install pip.
+      apt:
+        pkg=python-pip
+        state=latest
+        update_cache=yes
+        cache_valid_time=86400
+      sudo: yes
+
+    - name: Install docutils for Python to build documentation.
+      pip:
+        name=docutils
+      sudo: yes
+
+    - name: Define directory in which to place welcome file.
+      set_fact:
+        WELCOME_DIR: /etc/skel/Desktop
+
+    - name: Create welcome directory.
+      file:
+        name={{ WELCOME_DIR }}
+        state=directory
+      sudo: yes
+
+    - name: Convert documentation to HTML and place in welcome directory.
+      shell: rst2html.py /vagrant/extra_resources/welcome.rst Welcome.html
+        chdir={{ WELCOME_DIR }}
+        creates={{ WELCOME_DIR }}/Welcome.html
+      sudo: yes
+
+  roles:
+    - nmag
+    - nmag_examples
+    - xserver
+    - { role: add_super_user, AUTOLOGIN: true }
+    - { role: set_hostname, HOSTNAME: virtualmicromagnetics-nmag }
