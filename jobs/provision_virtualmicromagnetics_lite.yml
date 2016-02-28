@@ -42,6 +42,7 @@
     - oommf
     - magpar
     - nmag
+    - fidimag
     - magpar_oommf_nmag_examples
     - xserver
     - { role: add_super_user, AUTOLOGIN: true }
