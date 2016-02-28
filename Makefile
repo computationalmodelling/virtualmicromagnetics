@@ -11,6 +11,21 @@ full:
 lite:
 	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="vm_name=virtualmicromagnetics-lite playbook=provision_virtualmicromagnetics_lite.yml hookbook=hook.yml extra_resources_dir=guest_resources/"
 
+# This target builds a virtual hard disk file containing an OOMMF
+# installation.
+oommf:
+	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="vm_name=virtualmicromagnetics-oommf playbook=provision_virtualmicromagnetics_oommf.yml hookbook=hook.yml extra_resources_dir=guest_resources/"
+
+# This target builds a virtual hard disk file containing a Magpar
+# installation.
+magpar:
+	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="vm_name=virtualmicromagnetics-magpar playbook=provision_virtualmicromagnetics_magpar.yml hookbook=hook.yml extra_resources_dir=guest_resources/"
+
+# This target builds a virtual hard disk file containing a Nmag
+# installation.
+nmag:
+	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="vm_name=virtualmicromagnetics-nmag playbook=provision_virtualmicromagnetics_nmag.yml hookbook=hook.yml extra_resources_dir=guest_resources/"
+
 # This target builds a virtual hard disk file containing a fidimag
 # installation.
 fidimag:
