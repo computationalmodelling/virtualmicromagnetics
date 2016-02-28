@@ -1,0 +1,6 @@
+---
+# This Ansible role prepares Magpar examples and places some documentation on
+# the Desktop.
+
+- include: magpar_examples.yml
+- include: build_documentation.yml

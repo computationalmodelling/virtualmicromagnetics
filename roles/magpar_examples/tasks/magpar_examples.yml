@@ -1,0 +1,37 @@
+- name: Download magpar examples tarball.
+  get_url:
+    url={{ MAGPAR_EXAMPLES_URL }}
+    dest={{ EXAMPLES_FOLDER }}/{{ MAGPAR_EXAMPLES_TARBALL }}
+  sudo: yes
+
+- name: Extract magpar examples.
+  unarchive:
+    copy=no
+    src={{ EXAMPLES_FOLDER }}/{{ MAGPAR_EXAMPLES_TARBALL }}
+    dest={{ EXAMPLES_FOLDER }}
+    creates={{ MAGPAR_EXAMPLES_FOLDER }}/sphere_demag/run  # Does this work?
+  sudo: yes
+
+- name: Get the path for each magpar example.
+  shell: ls {{ MAGPAR_EXAMPLES_FOLDER }}/* -d
+  register: magpar_example_directories
+
+- name: Alter the magpar examples to fit this environment.
+  replace:
+    dest={{ item }}/run
+    regexp="prg=\$PWD/"
+    replace="prg="
+  with_items: magpar_example_directories.stdout_lines
+  sudo: yes
+
+- name: Move magpar-examples to the directory of extraction for clarity.
+  command: mv {{ MAGPAR_EXAMPLES_FOLDER }} {{ EXAMPLES_FOLDER }}
+    creates={{ EXAMPLES_FOLDER }}/magpar-examples
+    removes={{ MAGPAR_EXAMPLES_FOLDER }}
+  sudo: yes
+
+- name: Remove the directory produced by extraction.
+  file:
+    path="{{ EXAMPLES_FOLDER }}/magpar-0.9"
+    state=absent
+  sudo: yes
