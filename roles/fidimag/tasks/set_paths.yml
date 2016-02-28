@@ -1,0 +1,19 @@
+---
+# This Ansible include-playbook sets envionment variables which denote
+# essential paths for Fidimag.
+
+- name: Add Fidimag to PYTHONPATH.
+  lineinfile:
+    dest: /etc/profile.d/fidimag.sh
+    regexp: "^export PYTHONPATH="
+    line: "export PYTHONPATH=\"{{ FIDIMAG_INSTALL_PATH }}/:$PYTHONPATH\""
+    create: yes
+  sudo: yes
+
+- name: Add Fidimag library path to LD_LIBRARY_PATH.
+  lineinfile:
+    dest: /etc/profile.d/fidimag.sh
+    regexp: "^export LD_LIBRARY_PATH="
+    line: "export LD_LIBRARY_PATH=\"{{ FIDIMAG_INSTALL_PATH }}/local/lib:$LD_LIBRARY_PATH\""
+    create: yes
+  sudo: yes

@@ -1,0 +1,7 @@
+---
+# This Ansible role installs Fidimag on the virtual machine.
+
+- include: clone_fidimag_version.yml
+- include: install_dependencies_from_packages.yml
+- include: make_fidimag.yml
+- include: set_paths.yml

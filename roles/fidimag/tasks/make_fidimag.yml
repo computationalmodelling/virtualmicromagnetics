@@ -1,0 +1,18 @@
+---
+# This Ansible playbook build Fidimag from scripts in the Fidimag
+# repository. This include installing local dependencies including FFTW and
+# SUNDIALS.
+
+# Install local dependencies.
+- name: Install FFTW and SUNDIALS from the Fidimag installation script.
+  command: bash install.sh
+  args:
+    chdir: "{{ FIDIMAG_INSTALL_PATH }}/bin"
+  sudo: yes
+
+# Build Fidimag. Makefile module?
+- name: Build Fidimag.
+  command: make
+  args:
+    chdir: "{{ FIDIMAG_INSTALL_PATH }}"
+  sudo: yes

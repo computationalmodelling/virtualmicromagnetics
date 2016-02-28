@@ -1,7 +1,8 @@
 ---
 # This Ansible playbook is a provision playbook designed to be used with
 # vagrant. This playbook provisions a machine suitable for micromagnetic
-# simulation. It is executed by the virtual machine.
+# simulation, and includes other convenient softwares for such an
+# environment. It is executed by the virtual machine.
 
 - hosts: all
 
@@ -39,11 +40,7 @@
       sudo: yes
 
   roles:
-    - oommf
-    - magpar
-    - nmag
     - fidimag
-    - magpar_oommf_nmag_examples
     - xserver
     - { role: add_super_user, AUTOLOGIN: true }
-    - { role: set_hostname, HOSTNAME: virtualmicromagnetics-lite }
+    - { role: set_hostname, HOSTNAME: virtualmicromagnetics-fidimag }
