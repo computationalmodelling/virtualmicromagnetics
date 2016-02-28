@@ -17,6 +17,7 @@
   git:
     repo: "{{ FIDIMAG_REPO_URL }}"
     dest: "{{ FIDIMAG_INSTALL_PATH }}"
+    version: "{{ FIDIMAG_VERSION }}"
   sudo: yes
 
 # Install dependencies.
