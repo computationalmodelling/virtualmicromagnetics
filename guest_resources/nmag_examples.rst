@@ -1,5 +1,5 @@
 Nmag Examples
---------
+-------------
 
 Nmag examples can also be run, and can be found in section 2 (Guided Tour) of
 the manual found here:
