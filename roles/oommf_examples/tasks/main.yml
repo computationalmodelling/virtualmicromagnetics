@@ -2,5 +2,9 @@
 # This Ansible role prepares OOMMF examples and places some documentation on
 # the Desktop.
 
-- include: oommf_examples.yml
-- include: build_documentation.yml
+# This task is not very robust, but I can't think of a better way of doing
+# this.
+- name: Copy oommf examples to a more accessible location.
+  command: cp -r /opt/oommf/oommf-1.2a5bis/app/oxs/examples {{ OOMMF_EXAMPLES_FOLDER }}
+    creates={{ OOMMF_EXAMPLES_FOLDER }}
+  sudo: yes
