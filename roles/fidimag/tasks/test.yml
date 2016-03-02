@@ -36,6 +36,8 @@
     chdir: "{{ FIDIMAG_INSTALL_PATH }}"
   environment:
     DISPLAY: ":{{ successful_display.stdout }}"
+    PYTHONPATH: "{{ FIDIMAG_INSTALL_PATH }}"
+    LD_LIBRARY_PATH: "{{ FIDIMAG_INSTALL_PATH }}/local/lib"
   sudo: yes
 
 # Cleanup.
