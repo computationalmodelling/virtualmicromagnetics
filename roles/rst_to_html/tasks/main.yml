@@ -28,6 +28,6 @@
 
 - name: Convert to HTML and place in the build directory.
   shell: rst2html.py {{ SOURCE_PATH }} {{ BUILD_NAME }}
-    chdir={{ WELCOME_DIR }}
-    creates={{ WELCOME_DIR }}/{{ BUILD_NAME }}
+    chdir={{ BUILD_DIR }}
+    creates={{ BUILD_DIR }}/{{ BUILD_NAME }}
   sudo: yes
