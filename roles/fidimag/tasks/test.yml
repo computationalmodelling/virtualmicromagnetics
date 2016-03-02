@@ -21,10 +21,12 @@
   shell: xpra start :{{ item }} && xpra list
   with_items: XPRA_DISPLAYS
   ignore_errors: yes
+  sudo: yes
 
 - name: Obtain the display ID of one successful live display.
   shell: xpra list | grep -m 1 "LIVE.*" | grep -Go [0-9]*$
   register: successful_display
+  sudo: yes
 
 # Finally, run some tests.
 
@@ -42,3 +44,4 @@
   command: xpra stop :{{ item }}
   with_items: XPRA_DISPLAYS
   ignore_errors: yes
+  sudo: yes
