@@ -11,6 +11,6 @@
   roles:
     - fidimag
     - xserver
-    - rst_to_html
+    - { role: rst_to_html, SOURCE_PATH: /vagrant/extra_resources/welcome/welcome_{{ vm_name }}.rst }
     - add_super_user
     - { role: set_hostname, HOSTNAME: {{ vm_name }} }
