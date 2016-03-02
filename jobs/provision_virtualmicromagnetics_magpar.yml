@@ -9,6 +9,6 @@
     - magpar
     - magpar_examples
     - xserver
-    - { role: rst_to_html, BUILD_DIR: /etc/skel/Desktop, SOURCE_PATH: /vagrant/extra_resources/welcome.rst, BUILD_NAME: Welcome.html }
+    - rst_to_html
     - { role: add_super_user, AUTOLOGIN: true }
     - { role: set_hostname, HOSTNAME: virtualmicromagnetics-magpar }
