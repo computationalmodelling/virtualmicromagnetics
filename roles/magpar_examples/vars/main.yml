@@ -9,7 +9,7 @@ EXAMPLES_FOLDER: /etc/skel
 MAGPAR_EXAMPLES_FOLDER: "{{ EXAMPLES_FOLDER }}/magpar-0.9/magpar-examples"
 
 # Name of the RST template to generate HTML examples from.
-EXAMPLES_RST_FILE: /vagrant/extra_resources/magpar/magpar_examples.rst
+EXAMPLES_RST_FILE: /vagrant/extra_resources/magpar_examples.rst
 EXAMPLES_OUTPUT_NAME: Magpar_examples.html
 
 # Location to place the HTML documentation.

@@ -3,7 +3,7 @@ EXAMPLES_FOLDER: /etc/skel
 OOMMF_EXAMPLES_FOLDER: "{{ EXAMPLES_FOLDER }}/oommf-oxs-examples"
 
 # Path of the RST template to generate HTML examples from.
-EXAMPLES_RST_FILE: /vagrant/extra_resources/oommf/oommf_examples.rst
+EXAMPLES_RST_FILE: /vagrant/extra_resources/oommf_examples.rst
 EXAMPLES_OUTPUT_NAME: OOMMF_examples.html
 
 # Location to place the HTML documentation.

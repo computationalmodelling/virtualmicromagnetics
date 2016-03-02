@@ -3,7 +3,7 @@ EXAMPLES_FOLDER: /etc/skel
 NMAG_EXAMPLES_FOLDER: "{{ EXAMPLES_FOLDER }}/nmag-examples"
 
 # Name of the RST template to generate HTML examples from.
-EXAMPLES_RST_FILE: nmag_examples.rst
+EXAMPLES_RST_FILE: /vagrant/extra_resources/nmag_examples.rst
 EXAMPLES_OUTPUT_NAME: Nmag_examples.html
 
 # Location to place the HTML documentation.
