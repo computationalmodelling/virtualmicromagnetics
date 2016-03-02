@@ -5,6 +5,9 @@
 
 - hosts: all
 
+  vars:
+    vm_name: virtualmicromagnetics-lite
+
   roles:
     - oommf
     - oommf_examples
@@ -16,4 +19,4 @@
     - xserver
     - rst_to_html
     - add_super_user
-    - { role: set_hostname, HOSTNAME: virtualmicromagnetics-lite }
+    - { role: set_hostname, HOSTNAME: {{ vm_name }} }

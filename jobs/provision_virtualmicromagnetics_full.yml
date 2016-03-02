@@ -6,6 +6,9 @@
 
 - hosts: all
 
+  vars:
+    vm_name: virtualmicromagnetics-full
+
   roles:
     - other_dependencies
     - oommf
@@ -18,4 +21,4 @@
     - xserver
     - rst_to_html
     - add_super_user
-    - { role: set_hostname, HOSTNAME: virtualmicromagnetics-full }
+    - { role: set_hostname, HOSTNAME: {{ vm_name }} }

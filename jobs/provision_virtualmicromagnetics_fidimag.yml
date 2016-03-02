@@ -5,9 +5,12 @@
 
 - hosts: all
 
+  vars:
+    vm_name: virtualmicromagnetics-fidimag
+
   roles:
     - fidimag
     - xserver
     - rst_to_html
     - add_super_user
-    - { role: set_hostname, HOSTNAME: virtualmicromagnetics-fidimag }
+    - { role: set_hostname, HOSTNAME: {{ vm_name }} }
