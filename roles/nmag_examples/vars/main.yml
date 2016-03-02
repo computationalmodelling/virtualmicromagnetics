@@ -4,6 +4,7 @@ NMAG_EXAMPLES_FOLDER: "{{ EXAMPLES_FOLDER }}/nmag-examples"
 
 # Name of the RST template to generate HTML examples from.
 EXAMPLES_RST_FILE: nmag_examples.rst
+EXAMPLES_OUTPUT_NAME: Nmag_examples.html
 
 # Location to place the HTML documentation.
 EXAMPLES_DOC_FOLDER: "{{ EXAMPLES_FOLDER }}/Desktop"

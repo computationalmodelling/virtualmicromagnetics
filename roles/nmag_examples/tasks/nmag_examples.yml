@@ -1,6 +1,0 @@
-# This following task is not very robust, but I can't think of a better way of
-# doing this.
-- name: Copy nmag examples to a more accessible location.
-  command: cp -r /opt/nmag/nmag-0.2.1/doc/html/_downloads {{ NMAG_EXAMPLES_FOLDER }}
-    creates={{ NMAG_EXAMPLES_FOLDER }}
-  sudo: yes
