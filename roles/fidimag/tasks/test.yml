@@ -1,0 +1,44 @@
+---
+# This Ansible playbook runs Fidimag tests. This works because pytest has a
+# non-zero exit status if a test fails, and Make returns a non-zero exit status
+# if a command returns a non-zero exit status.
+
+# The following task construction exists because XPRA sometimes fails silently,
+# apparently stochastically. Hence we attempt to create a number of virtual
+# displays using xpra, and test each one. If one of them exists, we continue
+# with it. If they all fail, we exit. This is all done to ensure that the
+# finmag tests pass, since some of them require a display.
+
+- name: Ensure that xpra is installed
+  apt:
+    pkg=xpra
+    state=latest
+    update_cache=yes
+    cache_valid_time=86400
+  sudo: yes
+
+- name: Create multiple virtual displays and re-probe them.
+  shell: xpra start :{{ item }} && xpra list
+  with_items: XPRA_DISPLAYS
+  ignore_errors: yes
+
+- name: Obtain the display ID of one successful live display.
+  shell: xpra list | grep -m 1 "LIVE.*" | grep -Go [0-9]*$
+  register: successful_display
+
+# Finally, run some tests.
+
+- name: Run tests.
+  command: make test
+  args:
+    chdir: "{{ FIDIMAG_INSTALL_PATH }}"
+  environment:
+    DISPLAY: ":{{ successful_display.stdout }}"
+  sudo: yes
+
+# Cleanup.
+
+- name: Stop xpra sessions
+  command: xpra stop :{{ item }}
+  with_items: XPRA_DISPLAYS
+  ignore_errors: yes
