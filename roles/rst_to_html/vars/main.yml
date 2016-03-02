@@ -1,6 +1,9 @@
 # By default, these vars will build the welcoming documentation for the user's
 # desktop. They should be overwritten when specific files are to be built.
 
+# User must define SOURCE_PATH, which is the path to the RST file on the
+# virtual machine.
+
 BUILD_DIR: /etc/skel/Desktop
-SOURCE_PATH: /vagrant/extra_resources/welcome.rst
 BUILD_NAME: Welcome.html
+

@@ -1,5 +1,5 @@
-Welcome to the Virtual Micromagnetics Simulation Environment!
--------------------------------------------------------------
+Welcome to the Full Virtual Micromagnetics Simulation Environment!
+------------------------------------------------------------------
 
 This virtual machine contains a number of distributable software packages that
 are often used by the micromagnetic community to simulate relevant
@@ -13,13 +13,16 @@ particular order):
   | Nmag 0.2: http://nmag.soton.ac.uk/nmag/
   | Documentation: http://nmag.soton.ac.uk/nmag/current/manual/singlehtml/manual.html
 
-  | magpar 0.9 (Parallel Finite Element Micromagnetics Package): http://www.magpar.net/
+  | Magpar 0.9 (Parallel Finite Element Micromagnetics Package): http://www.magpar.net/
   | Documentation: http://www.magpar.net/static/magpar-0.9/doc/html/
 
+  | Fidimag 1.0 (Finite-difference Micromagnetic and Atomistic Package): http://computationalmodelling.github.io/fidimag/
+  | Documentation: http://fidimag.readthedocs.org/en/latest/
+
 For more information about these packages, see their respective websites and
-`Examples.html <Examples.html>`_, which walks the prospective user through some
-examples and tests where applicable. Users are also encouraged to install their
-own simulation packages for use on this machine. To that end, a number of other
+examples available on the desktop, which walk the user through some examples
+and tests where applicable. Users are also encouraged to install their own
+simulation packages for use on this machine. To that end, a number of other
 software packages have been provided:
 
   | FEniCS 1.5.0: http://fenicsproject.org/
