@@ -1,8 +1,7 @@
 ---
 # This Ansible playbook is a provision playbook designed to be used with
 # vagrant. This playbook provisions a machine suitable for micromagnetic
-# simulation, and includes other convenient softwares for such an
-# environment. It is executed by the virtual machine.
+# simulation with fidimag. It is executed by the virtual machine.
 
 - hosts: all
 
