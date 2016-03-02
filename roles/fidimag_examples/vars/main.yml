@@ -1,0 +1,10 @@
+# Examples location
+EXAMPLES_FOLDER: /etc/skel
+FIDIMAG_EXAMPLES_FOLDER: "{{ EXAMPLES_FOLDER }}/fidimag-examples"
+
+# Path of the RST template to generate HTML examples from.
+EXAMPLES_RST_FILE: /vagrant/extra_resources/fidimag_examples.rst
+EXAMPLES_OUTPUT_NAME: Fidimag_examples.html
+
+# Location to place the HTML documentation.
+EXAMPLES_DOC_FOLDER: "{{ EXAMPLES_FOLDER }}/Desktop"

@@ -1,0 +1,11 @@
+---
+# This Ansible role prepares Fidimag examples and places some documentation on
+# the Desktop.
+
+# This task is not very robust, but I can't think of a better way of doing
+# this.
+
+- name: Copy fidimag examples to a more accessible location.
+  command: cp -r /opt/fidimag/examples {{ FIDIMAG_EXAMPLES_FOLDER }}
+    creates={{ FIDIMAG_EXAMPLES_FOLDER }}
+  sudo: yes
