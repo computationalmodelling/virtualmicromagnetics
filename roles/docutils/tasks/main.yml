@@ -1,3 +1,12 @@
+# This role builds an HTML file from a RST file, and places it on the virtual
+# machine.
+#
+# Required variables:
+#
+# BUILD_DIR: Directory path to build the target RST to.
+# SOURCE_PATH: Path of the source RST file on the virtual machine.
+# BUILD_NAME: Name of the file to create.
+
 - name: Install pip.
   apt:
     pkg=python-pip
@@ -9,4 +18,16 @@
 - name: Install docutils for Python to build documentation.
   pip:
     name=docutils
+  sudo: yes
+
+- name: Create build directory.
+  file:
+    name={{ BUILD_DIR }}
+    state=directory
+  sudo: yes
+
+- name: Convert to HTML and place in the build directory.
+  shell: rst2html.py {{ SOURCE_PATH }} {{ BUILD_NAME }}
+    chdir={{ WELCOME_DIR }}
+    creates={{ WELCOME_DIR }}/{{ BUILD_NAME }}
   sudo: yes
