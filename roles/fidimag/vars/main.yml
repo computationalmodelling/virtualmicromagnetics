@@ -3,7 +3,7 @@ FIDIMAG_REPO_URL: https://github.com/computationalmodelling/fidimag.git
 FIDIMAG_INSTALL_PATH: /opt/fidimag
 FIDIMAG_VERSION: HEAD
 
-xpra_displays:
+XPRA_DISPLAYS:
   - 25
   - 30
   - 36
