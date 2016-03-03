@@ -1,12 +1,10 @@
 ---
 # This Ansible playbook runs Nmag tests.
 
-- name: Run Nmag configuration script.
-  command: bash find_nsim.sh
+- name: Configure Nmag to run tests.
+  command: "{{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/nsim/bin/nsim {{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/nsim/tests/config/setup.py"
   args:
     chdir: "{{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/nsim/tests/config"
-  environment:
-    PATH: "$PATH:{{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/nsim/bin"
   sudo: yes
 
 - name: Run tests.
