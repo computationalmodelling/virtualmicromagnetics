@@ -21,8 +21,6 @@
   shell: make
     chdir={{ NMAG_INSTALL_PREFIX }}/{{ NMAG_EXTRACTED_DIR.stdout }}
     creates={{ NMAG_INSTALL_PREFIX }}/{{ NMAG_EXTRACTED_DIR.stdout }}/nsim/bin/nsim
-  #environment:
-  #  NMAG_INSTALL_PREFIX: /usr/lib/{{ ARCH.stdout }}/tcl{{ TCLTKVERSION }}/tclConfig.sh
   sudo: yes
 
 - name: Set executable permissions for everyone on files which are executable for user
