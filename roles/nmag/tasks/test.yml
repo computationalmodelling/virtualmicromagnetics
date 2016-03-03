@@ -7,10 +7,26 @@
     chdir: "{{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/nsim/tests/config"
   sudo: yes
 
-- name: Run tests.
-  command: make test
+- name: Run fast tests.
+  command: make check
   args:
-    chdir: "{{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/tests"
-  environment:
-    PATH: "$PATH:{{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/nsim/bin"
+    chdir: "{{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/nsim/tests"
+  sudo: yes
+
+- name: Run slow tests.
+  command: make checkslow
+  args:
+    chdir: "{{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/nsim/tests"
+  sudo: yes
+
+- name: Run MPI tests.
+  command: make checkmpi
+  args:
+    chdir: "{{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/nsim/tests"
+  sudo: yes
+
+- name: Run HLib tests.
+  command: make checkhlib
+  args:
+    chdir: "{{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/nsim/tests"
   sudo: yes
