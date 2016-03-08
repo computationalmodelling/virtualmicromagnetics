@@ -12,6 +12,7 @@ Micromagnetic Simulation Software:
 - [OOMMF](http://math.nist.gov/oommf/)
 - [MagPar](http://www.magpar.net/)
 - [NMag](http://nmag.soton.ac.uk/nmag/)
+- [Fidimag](http://computationalmodelling.github.io/fidimag/)
 
 Infrastructure:
 
