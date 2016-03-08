@@ -14,7 +14,5 @@ Virtual Micromagnetics environment:
     vagrant init virtualmicromagnetics/full
     vagrant up --provider virtualbox
 
-and for the lite environment:
-
-    vagrant init virtualmicromagnetics/lite
-    vagrant up --provider virtualbox
+The complete list of virtualmicromagnetics environments can be found
+[here](https://atlas.hashicorp.com/virtualmicromagnetics).
