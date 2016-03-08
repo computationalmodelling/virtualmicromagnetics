@@ -14,19 +14,11 @@ Example files can be found in::
 
     ~/nmag-examples/
 
-A test suite is also available for the discerning user. To use the test suite,
-configuration must first be performed::
-
-    sudo su  # We need to run this as root for permissions purposes.
-    cd /opt/nmag/nmag-0.2.1/nsim/tests/config
-    PATH=$PATH:/opt/nmag/nmag-0.2.1/nsim/bin
-    bash find_nsim.sh
-    exit
-
-The tests are wrapped in a Makefile, and hence can only be run after the
-configuration by commanding::
+The tests are wrapped in a Makefile, and can be run as root by commanding::
 
     sudo su
     cd /opt/nmag/nmag-0.2.1/nsim/tests
     make
     exit
+
+Note that HLib is not installed, and so tests requiring HLib will fail.
