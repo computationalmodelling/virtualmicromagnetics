@@ -1,0 +1,26 @@
+---
+# This Ansible playbook runs Nmag tests.
+
+- name: Configure Nmag to run tests.
+  command: "{{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/nsim/bin/nsim {{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/nsim/tests/config/setup.py"
+  args:
+    chdir: "{{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/nsim/tests/config"
+  sudo: yes
+
+- name: Run fast tests.
+  command: make check
+  args:
+    chdir: "{{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/nsim/tests"
+  sudo: yes
+
+- name: Run slow tests.
+  command: make checkslow
+  args:
+    chdir: "{{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/nsim/tests"
+  sudo: yes
+
+- name: Run MPI tests.
+  command: make checkmpi
+  args:
+    chdir: "{{ NMAG_INSTALL_PREFIX }}/{{ NMAG_VERSION }}/nsim/tests"
+  sudo: yes

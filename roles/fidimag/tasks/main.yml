@@ -5,3 +5,4 @@
 - include: install_dependencies_from_packages.yml
 - include: make_fidimag.yml
 - include: set_paths.yml
+- include: test.yml

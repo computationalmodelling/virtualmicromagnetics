@@ -21,10 +21,26 @@
   shell: make
     chdir={{ NMAG_INSTALL_PREFIX }}/{{ NMAG_EXTRACTED_DIR.stdout }}
     creates={{ NMAG_INSTALL_PREFIX }}/{{ NMAG_EXTRACTED_DIR.stdout }}/nsim/bin/nsim
-  #environment:
-  #  NMAG_INSTALL_PREFIX: /usr/lib/{{ ARCH.stdout }}/tcl{{ TCLTKVERSION }}/tclConfig.sh
   sudo: yes
 
 - name: Set executable permissions for everyone on files which are executable for user
   command: find {{ NMAG_INSTALL_PREFIX }}/{{ NMAG_EXTRACTED_DIR.stdout }} -perm /u+x -exec chmod go+x {} \;
   sudo: yes
+
+# In order to use Nmag with MPI, a file must be present in all users' home
+# directories.
+
+- name: Create mpd files for MPI execution.
+  lineinfile:
+    create: yes
+    dest: "{{ item.dest }}"
+    line: "MPD_SECRETWORD=generic-secr3t"
+    mode: 0600
+    regexp: "MPD_SECRETWORD=generic-secr3t"
+    owner: "{{ item.owner }}"
+    state: present
+  sudo: yes
+  with_items:
+    - { dest: /etc/mpd.conf, owner: root }
+    - { dest: /home/vagrant/.mpd.conf, owner: vagrant }
+    - { dest: /etc/skel/.mpd.conf, owner: root }

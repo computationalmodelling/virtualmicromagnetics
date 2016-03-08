@@ -7,12 +7,13 @@
   with_items:
     - dpkg-dev
     - g++
-    - libblas-dev
-    - libreadline-dev
-    - make
-    - m4
     - gawk
-    - zlib1g-dev
-    - readline-common
+    - libblas-dev
     - liblapack-dev
+    - libreadline-dev
+    - m4
+    - make
+    - mpich
+    - readline-common
+    - zlib1g-dev
   sudo: yes
