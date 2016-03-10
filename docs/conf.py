@@ -52,8 +52,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Virtual Micromagnetics'
-copyright = u'2016, Mark Vousden'
-author = u'Mark Vousden'
+copyright = u'2016, Mark Vousden and others, University of Southampton'
+author = u'Mark Vousden and others'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
