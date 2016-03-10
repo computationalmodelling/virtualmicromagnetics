@@ -3,4 +3,4 @@ artefacts/
 machines/
 roles/thydel.patch/
 roles/yaegashi.blockinfile/
-build/
+docs/build/
