@@ -45,7 +45,10 @@ the host system they run on. These machines themselves can be described by
 single files representing the equivalent of a hard disk of the machine, as well
 as a description of the hardware that the virtual machine emulates.
 
-Virtual machines
+Virtual machines must be supported by software in order to function. Only
+provider software is necessary to run a virtual machine, but managers and
+provisioners are useful for creating virtual machines and virtual environments
+respectively.
 
 .. _introduction-providers:
 
@@ -66,7 +69,18 @@ existing provider software.
 Managers
 ~~~~~~~~
 
+While not essential for starting :term:`virtual machine`\s, specialist software
+is useful for managing :term:`virtual environment`\s. Vagrant
+(www.vagrantup.com) is an example of a virtual machine manager. It provides a
+command-line interface to the creation and provision of virtual machines from
+virtual environments. HashiCorp, the company behind Vagrant, also provides a
+framework for sharing virtual environments. Most importantly for our purpose,
+Vagrant can be automated to generate virtual machines containing an environment
+without user intervention. This environment can then be used to complete our
+objectives. To specify this environment however, provisioning software is
+required.
+
 .. _introduction-provisioners:
 
 Provisioners
-~~~~~~~~~~~~
+------------
