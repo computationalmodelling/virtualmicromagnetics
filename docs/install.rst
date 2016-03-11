@@ -1,11 +1,17 @@
 Installation
 ============
 
+Run
+---
+
 To start virtual environments created with Virtual Micromagnetics, the
 following software is recommended:
     VirtualBox >= 5.0 (https://www.virtualbox.org/wiki/downloads)
 
     Vagrant >= 1.7.4 (https://www.vagrantup.com/downloads)
+
+Build
+-----
 
 To build virtual environments using this repository, the following software is
 required in addition to the above:
