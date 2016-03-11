@@ -4,17 +4,31 @@ Glossary
 .. glossary::
 
    Box File
+      A file used by :term:`Vagrant` to create :term:`Vagrant environment`\s. A
+      box file represents a template from which :term:`Virtual machine`\s can
+      be created.
 
+   Manager
    Vagrant
+       See :ref:`introduction-managers`.
 
    Vagrant Environment
+       The directory structure (including ``Vagrantfile``) created by Vagrant
+       when ``vagrant init`` is called. A single virtual machine can be managed
+       in a given environment.
 
    Virtual Environment
-       See :term:`box file`, not to be confused with :term:`Vagrant
-       environment`.
+       Virtual environments produce the same :term:`virtual machine` on all
+       virtualisation-capable computers. Virtual environments are also
+       :term:`box file`\s, but are not :term:`Vagrant environment`\s.
 
    Provider
-   Virtual Machine Provider
+   VirtualBox
+       See :ref:`introduction-providers`.
+
+   Provisioner
+   Ansible
+       See :ref:`introduction-provisioners`.
 
    System Virtual Machine
    Virtual Machine
@@ -32,7 +46,7 @@ Glossary
        machines. Once :term:`Vagrant` creates a :term:`Vagrant environment`
        from a :term:`box file` and ``vagrant up`` is commanded, a corresponding
        virtual machine is created. Virtual machines created on a host are
-       managed by :term:`virtual machine provider`\s, which typically list the
+       managed by virtual machine :term:`provider`\s, which typically list the
        machines they are maintaining.
 
    Virtual Micromagnetics

@@ -45,6 +45,10 @@ the host system they run on. These machines themselves can be described by
 single files representing the equivalent of a hard disk of the machine, as well
 as a description of the hardware that the virtual machine emulates.
 
+Virtual machines
+
+.. _introduction-providers:
+
 Providers
 ~~~~~~~~~
 
@@ -57,3 +61,5 @@ supported by this project. Other popular provider software includes VMWare,
 KVM, and Docker.  Many cloud computing organisations use virtual machines, so
 they typically use existing provider software.
 
+Provisioners
+~~~~~~~~~~~~
