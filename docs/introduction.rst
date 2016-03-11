@@ -52,14 +52,21 @@ Virtual machines
 Providers
 ~~~~~~~~~
 
-:term:`Virtual machine provider`\s are virtualiser software that supports
-creating, running, destroying, and other interaction with :term:`virtual
-machine`\s on your computer. VirtualBox (https://www.virtualbox.org) is an
-example of a virtual machine provider that is open source and freely available
-under the GNU GPL (https://www.gnu.org/copyleft/gpl.html), and is the provider
-supported by this project. Other popular provider software includes VMWare,
-KVM, and Docker.  Many cloud computing organisations use virtual machines, so
-they typically use existing provider software.
+Virtual machine providers are virtualiser software that supports creating,
+running, destroying, and other interaction with :term:`virtual machine`\s on
+your computer. VirtualBox (https://www.virtualbox.org) is an example of a
+virtual machine provider that is open source and freely available under the GNU
+GPL (https://www.gnu.org/copyleft/gpl.html), and is the provider supported by
+this project. Other popular provider software includes VMWare, KVM, and Docker.
+Many cloud computing organisations use virtual machines, so they typically use
+existing provider software.
+
+.. _introduction-managers:
+
+Managers
+~~~~~~~~
+
+.. _introduction-provisioners:
 
 Provisioners
 ~~~~~~~~~~~~
