@@ -14,8 +14,8 @@ Glossary
 
    Vagrant Environment
        The directory structure (including ``Vagrantfile``) created by Vagrant
-       when ``vagrant init`` is called. A single virtual machine can be managed
-       in a given environment.
+       when ``vagrant init`` is commanded. A single virtual machine can be
+       managed in a given environment.
 
    Virtual Environment
        Virtual environments produce the same :term:`virtual machine` on all

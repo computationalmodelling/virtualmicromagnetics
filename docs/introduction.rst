@@ -13,12 +13,13 @@ Overview
 
 The :term:`Virtual Micromagnetics` project creates :term:`virtual
 environment`\s that run micromagnetic (and in some cases, atomistic)
-simulations. These environments produce :term:`system virtual machine`\s which
-emulate a configured set of software on your computer. This means you as a user
-only need to manage the software to support the virtual machine, as opposed to
-the complicated set of dependencies most simulation packages require. As a
-result, these virtual environments are far simpler to maintain, meaning you
-have more time to solve the mysteries of the universe instead of:
+simulations of magnetic behaviour. These environments produce :term:`system
+virtual machine`\s which emulate a configured set of software on your
+computer. This means you as a user only need to manage the software to support
+the virtual machine, as opposed to the complicated set of dependencies most
+simulation packages require. As a result, these virtual environments are far
+simpler to maintain, meaning you have more time to solve the mysteries of the
+universe instead of:
 
  - wondering why the latest version of a package is incompatible with earlier
    simulations.
@@ -61,8 +62,8 @@ your computer. VirtualBox (https://www.virtualbox.org) is an example of a
 virtual machine provider that is open source and freely available under the GNU
 GPL (https://www.gnu.org/copyleft/gpl.html), and is the provider supported by
 this project. Other popular provider software includes VMWare, KVM, and Docker.
-Many cloud computing organisations use virtual machines, so they typically use
-existing provider software.
+While many cloud computing organisations use virtual machines, they typically
+use existing provider software.
 
 .. _introduction-managers:
 
