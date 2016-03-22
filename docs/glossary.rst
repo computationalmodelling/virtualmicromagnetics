@@ -18,7 +18,11 @@ Glossary
 
    Idempotent
    Idempotency
-       <!>
+       Idempotent :term:`provisioning` runs only the commands required to
+       achieve the desired state of the system. Commands that do not change the
+       state are not run. This can save considerable build time when handling
+       dependencies, because a dependency should not be downloaded and
+       reinstalled if it is already in the state it should be in.
 
    Manager
    Vagrant
