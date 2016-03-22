@@ -4,13 +4,29 @@ Glossary
 .. glossary::
 
    Box File
-      A file used by :term:`Vagrant` to create :term:`Vagrant environment`\s. A
-      box file represents a template from which :term:`Virtual machine`\s can
-      be created.
+       A file used by :term:`Vagrant` to create :term:`Vagrant
+       environment`\s. A box file represents a template from which
+       :term:`Virtual machine`\s can be created.
+
+   Host
+   Host Machine
+       A machine that uses virtualisation software to host :term:`virtual
+       machine`\s. Host machines allocate resources, including memory and disk
+       space, to support the running of a virtual machine. Note that a virtual
+       machine can host other virtual machines, making it both a host and
+       virtual machine.
+
+   Idempotent
+   Idempotency
+       <!>
 
    Manager
    Vagrant
-       See :ref:`introduction-managers`.
+       Manager software provides an interface for managing :term:`Virtual
+       machine`\s from :term:`Virtual environment`\s. Vagrant is an example of
+       manager software, which provides a command-line interface to virtual
+       machine management which can be automated. See
+       :ref:`introduction-managers`.
 
    Vagrant Environment
        The directory structure (including ``Vagrantfile``) created by Vagrant
@@ -23,12 +39,20 @@ Glossary
        :term:`box file`\s, but are not :term:`Vagrant environment`\s.
 
    Provider
+   Virtualiser
    VirtualBox
-       See :ref:`introduction-providers`.
+       Provider (or virtualiser) software supports the creation of, and
+       interaction with, :term:`virtual machine`\s from a host
+       machine. VirtualBox is an example of a free provider software. See
+       :ref:`introduction-providers`.
 
    Provisioner
+   Provisioning
    Ansible
-       See :ref:`introduction-provisioners`.
+       Provisioner software runs a set of commands on a machine, virtual or
+       otherwise, to ensure it is in a particular state. Ansible is an example
+       of provisioner software that enables :term:`idempotent`
+       provisioning. See :ref:`introduction-provisioners`.
 
    System Virtual Machine
    Virtual Machine
@@ -45,9 +69,9 @@ Glossary
        we are creating :term:`virtual environment`\s, not virtual
        machines. Once :term:`Vagrant` creates a :term:`Vagrant environment`
        from a :term:`box file` and ``vagrant up`` is commanded, a corresponding
-       virtual machine is created. Virtual machines created on a host are
-       managed by virtual machine :term:`provider`\s, which typically list the
-       machines they are maintaining.
+       virtual machine is created. Virtual machines created on a :term:`host`
+       are managed by virtual machine :term:`provider`\s, which typically list
+       the machines they are maintaining.
 
    Virtual Micromagnetics
        "Enabling accessible and reproducible micromagnetic simulation."
