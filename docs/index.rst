@@ -7,5 +7,6 @@ Contents:
    introduction
    getting-started
    virtual-machine-software
-   install
+   user-information
+   developer-information
    glossary
