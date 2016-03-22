@@ -31,3 +31,6 @@ universe instead of:
    your long list of software dependencies.
 
  - setting up user accounts and packages for new students to run simulations.
+
+Where to Start
+--------------
