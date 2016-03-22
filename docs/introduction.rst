@@ -85,3 +85,14 @@ required.
 
 Provisioners
 ------------
+
+Machines, virtual or otherwise, are created to serve a purpose. Machines must
+be provisioned with software and settings if they are to satisfy their
+purpose. For simple cases one could run a script on the machine to install
+software and configure it for use, but for larger projects it is prudent to use
+a provisioner. Provisioner software runs a set of commands on a machine to
+ensure it is in a particular state. Ansible (<!>) is a Python-based provisioner
+software that uses Yet Another Markup Language (YAML) to ensure the state of a
+system in an :term:`idempotent` manner. Other popular provisioner software
+inclues Puppet, Salt, and Chef, but any scriptable language can ultimately be
+used as a provisioner
