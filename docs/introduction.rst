@@ -96,3 +96,8 @@ software that uses Yet Another Markup Language (YAML) to ensure the state of a
 system in an :term:`idempotent` manner. Other popular provisioner software
 inclues Puppet, Salt, and Chef, but any scriptable language can ultimately be
 used as a provisioner
+
+.. _summary:
+
+Summary
+-------
