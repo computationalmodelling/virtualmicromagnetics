@@ -5,5 +5,6 @@ Contents:
 
 .. toctree::
    introduction
+   virtual-machine-software
    install
    glossary
