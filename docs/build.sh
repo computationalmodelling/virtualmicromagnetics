@@ -19,10 +19,9 @@ if [ "$1" == "-w" ]; then
         exit
     fi
 
-    sphinx-autobuild -b html -d _build/doctrees . _build/html -i ".*"
+    sphinx-autobuild -a -b html -d _build/doctrees . _build/html -i ".*"
 
 # Build logic.
 else
-    sphinx-build -b html -d _build/doctrees . _build/html
+    sphinx-build -a -b html -d _build/doctrees . _build/html
 fi
-
