@@ -3,8 +3,8 @@
 Virtual Machines and Other Software
 ===================================
 
-A :term:`virtual machine` is a software that imitates a certain other software
-(usually an operating system or environment) on a certain hardware. For our
+A :term:`virtual machine` is a software that imitates a certain other software,
+usually an operating system or environment, on a certain hardware. For our
 purposes however, it can be thought of as an operating system running in an
 operating system. Virtual machines are useful because they allow software tasks
 to be undertaken in precisely defined environments with little repercussion on
