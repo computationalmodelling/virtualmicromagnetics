@@ -62,7 +62,7 @@ is placed on the instructions needed to obtain the desired state, as opposed to
 the state itself. Provisioning software, such as Ansible (www.ansible.com)
 alleviates this problem. Ansible uses Yet Another Markup Language (YAML) to
 describe plays to run on a machine to enact the desired end state. Since the
-focus is on the end state of the system, :term:`idempotence` is essential.
+focus is on the end state of the system, :term:`idempotency` is essential.
 
 .. _software-summary:
 
