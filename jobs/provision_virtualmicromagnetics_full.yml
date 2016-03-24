@@ -11,6 +11,7 @@
 
   roles:
     - other_dependencies
+    - { role: rst_to_html, SOURCE_PATH: "/vagrant/extra_resources/welcome/welcome_{{ vm_name }}.rst" }
     - oommf
     - oommf_examples
     - magpar
@@ -20,6 +21,6 @@
     - fidimag
     - fidimag_examples
     - xserver
-    - { role: rst_to_html, SOURCE_PATH: "/vagrant/extra_resources/welcome/welcome_{{ vm_name }}.rst" }
     - add_super_user
-    - { role: set_hostname, HOSTNAME: "{{ vm_name}}" }
+    - { role: set_hostname, HOSTNAME: "{{ vm_name }}" }
+
