@@ -1,15 +1,10 @@
 .. _introduction:
 
-Introduction
-============
+Overview
+========
 
 Welcome to the :term:`Virtual Micromagnetics` project, where we aim to enable
 accessible and reproducible micromagnetics simulation, without compromise.
-
-.. _introduction-overview:
-
-Overview
---------
 
 The :term:`Virtual Micromagnetics` project creates :term:`virtual
 environment`\s that run micromagnetic (and in some cases, atomistic)
@@ -31,6 +26,3 @@ universe instead of:
    your long list of software dependencies.
 
  - setting up user accounts and packages for new students to run simulations.
-
-Where to Start
---------------
