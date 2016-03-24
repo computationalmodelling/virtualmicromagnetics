@@ -11,7 +11,7 @@ if [ "$(which sphinx-build > /dev/null 2>&1; echo $?)" -eq 1 ]; then
 fi
 
 # Watch logic.
-if [ "$1" == "-w" ]; then
+if [ "$1" == "-w" -o "$1" == "--watch" ]; then
 
     # Sphinx-autobuild installation check.
     if [ "$(which sphinx-autobuild > /dev/null 2>&1; echo $?)" -eq 1 ]; then
