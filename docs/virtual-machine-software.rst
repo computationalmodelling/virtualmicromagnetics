@@ -1,7 +1,7 @@
 .. _software:
 
-Virtual Machines and Other Software
-===================================
+Virtual Machines and Related Software
+=====================================
 
 A :term:`virtual machine` is a software that imitates a certain other software,
 usually an operating system or environment, on a certain hardware. For our

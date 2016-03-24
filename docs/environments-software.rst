@@ -1,7 +1,7 @@
 .. _environments:
 
-Virtual Micromagnetics Environments and Software
-================================================
+Virtual Micromagnetics Environments and Simulation Software
+===========================================================
 
 In :ref:`getting-started-user`, we created a :term:`virtual machine` based on
 the Full :term:`Virtual Micromagnetics` environment. Here, we detail the
