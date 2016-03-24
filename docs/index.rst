@@ -29,9 +29,10 @@ Contents
 --------
 
 .. toctree::
-   getting-started
+   getting-started-user
+   environments-software
    virtual-machine-software
-   user-information
-   developer-information
-   environments
+   getting-started-poweruser
+   developer-notes
+
    glossary
