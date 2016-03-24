@@ -1,3 +1,5 @@
+.. _getting-started-user:
+
 Getting Started: As a User
 ==========================
 
