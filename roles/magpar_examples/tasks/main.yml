@@ -2,6 +2,20 @@
 # This Ansible role prepares Magpar examples and places some documentation on
 # the Desktop.
 
+# Create examples documentation.
+- name: Create documentation build directory.
+  file:
+    name={{ EXAMPLES_DOC_FOLDER }}
+    state=directory
+  sudo: yes
+
+- name: Convert to HTML and place in the build directory.
+  shell: rst2html.py {{ EXAMPLES_RST_FILE }} {{ EXAMPLES_OUTPUT_NAME }}
+    chdir={{ EXAMPLES_DOC_FOLDER }}
+    creates={{ EXAMPLES_DOC_FOLDER }}/{{ EXAMPLES_OUTPUT_NAME }}
+  sudo: yes
+
+# Install examples
 - name: Download magpar examples tarball.
   get_url:
     url={{ MAGPAR_EXAMPLES_URL }}

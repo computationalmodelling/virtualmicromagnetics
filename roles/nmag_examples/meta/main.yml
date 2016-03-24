@@ -1,4 +1,4 @@
 ---
 dependencies:
   - { role: nmag }
-  - { role: rst_to_html, BUILD_DIR: "{{ EXAMPLES_DOC_FOLDER }}", SOURCE_PATH: "{{ EXAMPLES_RST_FILE }}", BUILD_NAME: "{{ EXAMPLES_OUTPUT_NAME }}" }
+  - { role: rst_to_html }
