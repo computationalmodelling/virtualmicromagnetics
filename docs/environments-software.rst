@@ -57,8 +57,9 @@ packages, such as "virtualmicromagnetics/oommf". The following table shows the
 list of environments available under Virtual Micromagnetics, and the software
 they contain:
 
+
 +--------------------------+----+----+-----+------+----+-------+
-| Software \\ Environment  |Full|Lite|OOMMF|Magpar|NMag|Fidimag|
+| Software vs. Environment |Full|Lite|OOMMF|Magpar|NMag|Fidimag|
 +=================+========+====+====+=====+======+====+=======+
 |Micromagnetic    | OOMMF  | ✔  | ✔  |  ✔  |      |    |       |
 |                 +--------+----+----+-----+------+----+-------+
@@ -91,6 +92,6 @@ they contain:
 
 See :ref:`getting-started-poweruser` if more fine-grained control over your
 software interests you. However, we firstly recommend reading :ref:`software`
-to understand more about :term:`virtual machines`, :term:`virtual
-environments`, and the software used to create them in the Virtual
+to understand more about :term:`virtual machine`\s, :term:`virtual
+environment`\s, and the software used to create them in the Virtual
 Micromagnetics project.
