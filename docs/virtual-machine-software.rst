@@ -20,7 +20,8 @@ operating system. Virtual machines are useful because they allow software tasks
 to be undertaken in precisely defined environments with little repercussion on
 the host system they run on. These machines themselves can be described by
 single files representing the equivalent of a hard disk of the machine, as well
-as a description of the hardware that the virtual machine emulates.
+as a description of the hardware that the virtual machine emulates. This makes
+them simple to distribute.
 
 Virtual Machine Software
 ------------------------
@@ -81,3 +82,15 @@ focus is on the end state of the system, :term:`idempotency` is essential.
 
 Summary
 ~~~~~~~
+
+:term:`Virtual machine`\s imitate hardware and software, but must be hosted on
+a :term:`host machine`. Virtual machines are provided by :term:`provider`
+software running on the host machine, and can be provisioned for use by a
+:term:`provisioner` software. :term:`Manager` software links these two
+concepts, allows the virtual machine to be preserved and distributed as a
+:term:`virtual environment`, and simplifies the creation of virtual machines.
+
+You are now ready to :ref:`get started as a
+poweruser<getting-started-poweruser>`, which explains how to create custom
+environments containing software you choose, as well as instructions for adding
+new software or configuring your own virtual environment.
