@@ -24,3 +24,7 @@ machines produced in this way run Ubuntu GNU/Linux (https://www.ubuntu.com)
 with the XFCE window manager. From here, follow instructions in the welcome
 file on the desktop to run simulations with the pre-installed packages. Never
 worry about software dependencies again!
+
+Next, see :ref:`environments` for the environments that are available besides the
+Full Virtual Micromagnetics environment, and the software on these
+environments.
