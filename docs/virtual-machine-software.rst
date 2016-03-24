@@ -81,7 +81,7 @@ focus is on the end state of the system, :term:`idempotency` is essential.
 .. _software-summary:
 
 Summary
-~~~~~~~
+-------
 
 :term:`Virtual machine`\s imitate hardware and software, but must be hosted on
 a :term:`host machine`. Virtual machines are provided by :term:`provider`
