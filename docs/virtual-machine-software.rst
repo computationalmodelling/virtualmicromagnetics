@@ -3,6 +3,16 @@
 Virtual Machines and Related Software
 =====================================
 
+In :ref:`getting-started-user`, we created a :term:`virtual machine` based on
+the Full :term:`Virtual Micromagnetics` environment using a virtual machine
+:term:`provider` and :term:`manager`. Here, we detail some of the underlying
+mechanisms of :term:`virtual machine` creation, what providers, managers, and
+:term:`provisioner`\s are, and how virtual machines and :term:`virtual
+environments` are related through these virtual machine software.
+
+Virtual Machines
+----------------
+
 A :term:`virtual machine` is a software that imitates a certain other software,
 usually an operating system or environment, on a certain hardware. For our
 purposes however, it can be thought of as an operating system running in an
@@ -12,6 +22,9 @@ the host system they run on. These machines themselves can be described by
 single files representing the equivalent of a hard disk of the machine, as well
 as a description of the hardware that the virtual machine emulates.
 
+Virtual Machine Software
+------------------------
+
 Virtual machines must be supported by software in order to function. Only
 provider software is necessary to run a virtual machine, but managers and
 provisioners are useful for creating virtual machines and virtual environments
@@ -20,7 +33,7 @@ respectively.
 .. _software-providers:
 
 Providers
----------
+~~~~~~~~~
 
 Virtual machine providers are virtualiser software that supports creating,
 running, destroying, and other interaction with :term:`virtual machine`\s on
@@ -34,7 +47,7 @@ use existing provider software.
 .. _software-managers:
 
 Managers
---------
+~~~~~~~~
 
 While not essential for starting :term:`virtual machine`\s, specialist software
 is useful for managing :term:`virtual environment`\s. Vagrant
@@ -50,7 +63,7 @@ required.
 .. _software-provisioners:
 
 Provisioners
-------------
+~~~~~~~~~~~~
 
 Provisioning is the action of running select commands on a machine, virtual or
 otherwise, to reach a desired end state. By "state", here we mean how storage
@@ -67,4 +80,4 @@ focus is on the end state of the system, :term:`idempotency` is essential.
 .. _software-summary:
 
 Summary
--------
+~~~~~~~
