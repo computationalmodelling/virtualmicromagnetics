@@ -33,4 +33,5 @@ Contents
    virtual-machine-software
    user-information
    developer-information
+   environments
    glossary
