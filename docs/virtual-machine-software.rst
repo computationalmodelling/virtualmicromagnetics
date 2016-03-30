@@ -8,7 +8,7 @@ the Full :term:`Virtual Micromagnetics` environment using a virtual machine
 :term:`provider` and :term:`manager`. Here, we detail some of the underlying
 mechanisms of :term:`virtual machine` creation, what providers, managers, and
 :term:`provisioner`\s are, and how virtual machines and :term:`virtual
-environments` are related through these virtual machine software.
+environment`\s are related through these virtual machine software.
 
 Virtual Machines
 ----------------
