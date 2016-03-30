@@ -6,14 +6,13 @@ Getting Started: As a User
 To start a :term:`Virtual Micromagnetics` environment, you will need the
 following software:
 
- - VirtualBox >= 5.0 (https://www.virtualbox.org/wiki/downloads)
-
- - Vagrant >= 1.7.4 (https://www.vagrantup.com/downloads)
+- VirtualBox >= 5.0 (https://www.virtualbox.org/wiki/downloads)
+- Vagrant >= 1.7.4 (https://www.vagrantup.com/downloads)
 
 After restarting your machine, command the following in an empty directory::
 
-  vagrant init virtualmicromagnetics/full
-  vagrant up --provider virtualbox
+ vagrant init virtualmicromagnetics/full
+ vagrant up --provider virtualbox
 
 These commands will download the Full Virtual Micromagnetics environment from
 the Internet to your computer, and load the environment automatically. When
