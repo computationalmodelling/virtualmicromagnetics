@@ -10,7 +10,7 @@ following software:
 
  - Vagrant >= 1.7.4 (https://www.vagrantup.com/downloads)
 
-Then command the following in an empty directory::
+After restarting your machine, command the following in an empty directory::
 
   vagrant init virtualmicromagnetics/full
   vagrant up --provider virtualbox
