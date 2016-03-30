@@ -5,12 +5,9 @@ Getting Started: As a Poweruser
 
 In :ref:`environments`, we learned about the different :term:`Virtual
 Micromagnetics` environments available to users, which bundle sets of
-preconfigured software. Here we outline how you can customise and add new
-software in a virtual environment, and how this environment can be distributed
-to others. We recommend reading :ref:`software`, if you have not already.
-
-The Build Process
------------------
+preconfigured software. Here we outline how you can create virtual environments
+yourself, which you can distribute to others. We recommend reading
+:ref:`software`, if you have not already.
 
 To create a new, custom :term:`virtual environment`, you will need the
 following software in addition to the software list in
@@ -48,7 +45,6 @@ yourself by commanding the following in an empty directory::
  vagrant init $PATH_TO_BOX_FILE
  vagrant up --provider virtualbox
 
-where ``$PATH_TO_BOX_FILE`` is the aforementioned artefact file.
-
-Customisation with Ansible
---------------------------
+where ``$PATH_TO_BOX_FILE`` is the aforementioned artefact file. Now that you
+can create :term:`virtual environments`, see :ref:`dev-notes` to learn how to
+customise the software you place on them.
