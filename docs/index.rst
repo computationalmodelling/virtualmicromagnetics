@@ -34,5 +34,5 @@ Contents
    virtual-machine-software
    getting-started-poweruser
    developer-notes
-
+   troubleshooting
    glossary
