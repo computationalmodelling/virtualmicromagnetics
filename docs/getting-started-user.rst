@@ -22,9 +22,9 @@ complete, you should be greeted with this window:
 
 This is output from a :term:`virtual machine` running on your computer! Virtual
 machines produced in this way run Ubuntu GNU/Linux (https://www.ubuntu.com)
-with the XFCE window manager. From here, follow instructions in the welcome
-file on the desktop to run simulations with the pre-installed packages. Never
-worry about software dependencies again!
+with the XFCE window manager. From here, you can follow instructions in the
+welcome file on the desktop to run simulations with the pre-installed
+packages. Never worry about software dependencies again!
 
 Next, see :ref:`environments` for the environments that are available besides
 the Full Virtual Micromagnetics environment, and the software on these
