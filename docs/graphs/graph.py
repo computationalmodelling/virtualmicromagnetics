@@ -13,6 +13,11 @@ envNodeProps = {"shape": "egg", "fontname": font, "fillcolor": "forestgreen",
 machNodeProps = {"fontname": font, "fillcolor": "skyblue", "style": "filled"}
 graphProps = {"fontname": font}
 
+# Edge properties
+vagrant = "purple"
+vboxVagrant = "blue"
+ansible = "red"
+
 # Create user graph.
 userGraphName = "User"
 userGraphColour = "lightpink1"
@@ -26,7 +31,7 @@ outputEnv = "Output Environment\n(at atlas.hashicorp.com)"
 userMach = "User's Virtual\nMachine"
 userGraph.node(outputEnv, **envNodeProps)
 userGraph.node(userMach, **machNodeProps)
-userGraph.edge(outputEnv, userMach, "Manager and\nProvider Creates",
+userGraph.edge(outputEnv, userMach, "Vagrant and\nVirtualBox Creates",
                {"color": "blue", "fontname": font})
 
 # Create developer graph.
@@ -39,12 +44,12 @@ devMach = "Developer's\nVirtual Machine"
 devGraph.node(outputEnv, **envNodeProps)
 devGraph.node(inputEnv, **envNodeProps)
 devGraph.node(devMach, **machNodeProps)
-devGraph.edge(inputEnv, devMach, "Manager and\nProvider Creates",
-              {"color": "blue", "fontname": font, "rank": "same"})
-devGraph.edge(devMach, devMach, "Provisioner\nProvisions",
-              {"color": "red", "fontname": font})
-devGraph.edge(devMach, outputEnv, "Manager\nPackages",
-              {"color": "purple", "fontname": font})
+devGraph.edge(inputEnv, devMach, "Vagrant and\nVirtualBox Creates",
+              {"color": vboxVagrant, "fontname": font, "rank": "same"})
+devGraph.edge(devMach, devMach, "Ansible\nProvisions",
+              {"color": ansible, "fontname": font})
+devGraph.edge(devMach, outputEnv, "Vagrant\nPackages",
+              {"color": vagrant, "fontname": font})
 
 # Combine and print graphs.
 masterGraph = Digraph(name="user-dev-graph", graph_attr=graphProps)
