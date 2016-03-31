@@ -102,24 +102,25 @@ would need to know where things are, hence the purpose of this section. The
   - ``artefacts/``: This directory is created by ``Makefile``, and houses build
     artefacts.
 
-An Example
-----------
+Examples
+--------
 
-Lets create a custom machine that contains Fidimag, but no X server called
-doc-example. Firstly, we add a target to ``Makefile`` (run from the repository
-root directory)::
+.. _dev-create-machine:
 
-  printf "
+Create New Machine with Existing Software
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Lets create a custom machine called doc-example, that contains Fidimag but no X
+server. Firstly, we add a target to ``Makefile`` (append the following to the ``Makefile``)::
+
   # This target builds a virtual hard disk file containing an OOMMF and Fidimag
   # installation.
   doc-example:
-      ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars=\"vm_name=virtualmicromagnetics-doc-example playbook=provision_virtualmicromagnetics_doc-example.yml hookbook=hook.yml extra_resources_dir=guest_resources/\"
-  " >> Makefile
+      ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="vm_name=virtualmicromagnetics-doc-example playbook=provision_virtualmicromagnetics_doc-example.yml hookbook=hook.yml extra_resources_dir=guest_resources/"
 
-Now we need to describe what the state of the machine should be, by modifying
-playbook `provision_virtualmicromagnetics_doc-examples.yml`::
+Now we need to describe what the state of the machine should be, by writing the
+playbook `jobs/provision_virtualmicromagnetics_doc-examples.yml`::
 
-  printf "
   ---
   # This Ansible playbook is a provision playbook designed to be used with
   # vagrant. This playbook provisions a machine suitable for micromagnetic
