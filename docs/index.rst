@@ -36,3 +36,7 @@ Contents
    developer-notes
    troubleshooting
    glossary
+
+.. figure:: images/oommf-simulation-1.png
+
+   OOMMF running in :term:`Virtual Micromagnetics`.
