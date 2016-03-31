@@ -46,11 +46,11 @@
     value={{ lookup('pipe','pwd') }}/../..
 
 - name: Start the virtual machine. Vagrant may attempt to install VirtualBox Guest Additions here.
-  command: vagrant up --no-provision
+  shell: vagrant up --no-provision > {{ vm_name }}.log
     chdir={{ vm_dir }}
 
 - name: Provision the virtual machine. A log exists in machines/.
-  shell: vagrant provision > {{ vm_name }}.log
+  shell: vagrant provision >> {{ vm_name }}.log
     chdir={{ vm_dir }}
 
 - name: Install VirtualBox Guest Additions.
