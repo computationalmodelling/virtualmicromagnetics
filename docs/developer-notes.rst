@@ -21,15 +21,16 @@ The Build Process
 
 The build (make) process in step 3 in :ref:`getting-started-poweruser` allowed
 us to create a virtual environment. The Makefile in the software repository can
-build multiple targets. Each target runs Ansible on the `master.yml` playbook,
-which in turn runs the `create_vm` role in the roles directory. This creates a
-virtual machine and provisions it with the playbook passed as a command-line
-argument in the Makefile, which lives in the jobs directory. It will also do
-some post-provisioning tasks using the hookbook, again passed as a command-line
-argument. The fundamental difference between the playbook and the hookbook is
-that the playbook is run on the guest virtual machine by vagrant, and the
-hookbook is run on the host machine. Different Makefile targets may place
-different build artefacts in the artefacts directory.
+build multiple targets. Each target runs Ansible on the ``master.yml``
+playbook, which in turn runs the ``create_vm`` role in the roles
+directory. This creates a virtual machine and provisions it with the playbook
+passed as a command-line argument in ``Makefile``, which lives in the jobs
+directory. It will also do some post-provisioning tasks using the hookbook,
+again passed as a command-line argument. The fundamental difference between the
+playbook and the hookbook is that the playbook is run on the guest virtual
+machine by vagrant, and the hookbook is run on the host machine. Different
+Makefile targets may place different build artefacts in the artefacts
+directory.
 
 Roles add or configure software, playbooks describe the roles that must be
 enacted to provision the machine, hookbooks describe what to do with that
@@ -42,43 +43,43 @@ existing jobs.
 Where Things Are
 ----------------
 
-In order to add jobs, one should edit the Makefile. In order to do that, one
+In order to add jobs, one should edit ``Makefile``. In order to do that, one
 would need to know where things are, hence the purpose of this section. The
 :term:`virtual micromagnetics` repository is structured as follows:
 
-  - Makefile: This is the Makefile through which all jobs are conducted.
+  - ``Makefile``: This is the Makefile through which all jobs are conducted.
 
-  - ansible.cfg and inventory.txt: These files are used by Ansible when the
-    master.yml playbook is run. They contain configuration information.
+  - ``ansible.cfg`` and ``inventory.txt``: These files are used by Ansible when
+    the master.yml playbook is run. They contain configuration information.
 
-  - roles/: This directory contains roles (obviously). Each role is given a
-    subdirectory, and should not overlap. Each role directory contains
-    tasks, and may also contain the subdirectories:
+  - ``roles/``: This directory contains roles (obviously). Each role is given a
+    subdirectory, and should not overlap. Each role directory contains tasks,
+    and may also contain the subdirectories:
 
-    - vars/ (variable definitions),
-    - templates/ (files to duplicate to the guest virtual machine),
-    - meta/ (metadata, such as role dependencies),
-    - files/ (files used by tasks that aren't covered by the usecases of
+    - ``vars/`` (variable definitions),
+    - ``templates/`` (files to duplicate to the guest virtual machine),
+    - ``meta/`` (metadata, such as role dependencies),
+    - ``files/`` (files used by tasks that aren't covered by the usecases of
       templates)
 
-  - jobs/: This directory contains playbooks and directories that can be
-    thought of as jobs in the Makefile. They are either provisioning playbooks,
+  - ``jobs/``: This directory contains playbooks and directories that can be
+    thought of as jobs in ``Makefile``. They are either provisioning playbooks,
     or post-provisioning hookbooks.
 
-  - machines/: This directory is created by the Makefile, and houses the
+  - ``machines/``: This directory is created by ``Makefile``, and houses the
     vagrant environment for each individual virtual machine. The provision
     process is recorded to a log file in the machine's directory (for example,
     the provision log for the lite build job exists in
     machines/virtualmicromagnetics-lite/virtualmicromagnetics-lite.log)
 
-  - artefacts/: This directory is created by the Makefile, and houses build
+  - ``artefacts/``: This directory is created by ``Makefile``, and houses build
     artefacts.
 
 An Example
 ----------
 
 Lets create a custom machine that contains Fidimag, but no X server called
-doc-example. Firstly, we add a target to the Makefile (run from the repository
+doc-example. Firstly, we add a target to ``Makefile`` (run from the repository
 root directory)::
 
   printf "
