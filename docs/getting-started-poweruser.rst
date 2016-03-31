@@ -46,5 +46,5 @@ yourself by commanding the following in an empty directory::
  vagrant up --provider virtualbox
 
 where ``$PATH_TO_BOX_FILE`` is the aforementioned artefact file. Now that you
-can create :term:`virtual environments`, see :ref:`dev-notes` to learn how to
+can create :term:`virtual environment`\s, see :ref:`dev-notes` to learn how to
 customise the software you place on them.
