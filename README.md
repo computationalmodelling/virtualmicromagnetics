@@ -1,6 +1,6 @@
 # Virtualmicromagnetics
 
-[![Documentation Status](https://readthedocs.org/projects/virtual-micromagnetics/badge/?version=latest)](http://virtual-micromagnetics.readthedocs.org/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/virtual-micromagnetics/badge/?version=development)](http://virtual-micromagnetics.readthedocs.org/en/development)
 
 ## For users who want to run micromagnetic simulations
 
