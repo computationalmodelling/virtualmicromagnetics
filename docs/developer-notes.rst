@@ -135,10 +135,10 @@ playbook `jobs/provision_virtualmicromagnetics_doc-examples.yml`::
       - fidimag
       - fidimag_examples
       - add_super_user
-      - { role: set_hostname, HOSTNAME: \"{{ vm_name }}\" }
-  " > jobs/provision_virtualmicromagnetics_doc-example.yml
+      - { role: set_hostname, HOSTNAME: {{ vm_name }} }
 
-Now we are ready to build the environment by commanding (again, from the repository root directory)::
+Now we are ready to build the environment by commanding (again, from the
+repository root directory)::
 
   make doc-example
 
