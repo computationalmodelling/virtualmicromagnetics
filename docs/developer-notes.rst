@@ -145,4 +145,107 @@ repository root directory)::
 This creates another :term:`virtual environment` in the artefacts directory.
 
 Adding Software
----------------
+~~~~~~~~~~~~~~~
+
+In :ref:`dev-build-process`, we introduce roles. Roles can add new software to
+a :term:`virtual environment`. By way of example, we can create a role to
+install emacs (https://www.gnu.org/software/emacs/) from the Ubuntu software
+repository. We firstly create a directory structure::
+
+  # Create a role for Emacs.
+  mkdir --parents roles/emacs/tasks
+
+Now we introduce some content using information from the Ansible documentation
+(http://docs.ansible.com/ansible/, and
+http://docs.ansible.com/ansible/apt_module.html). Write the following to
+``roles/emacs/tasks/main.yml``::
+
+  ---
+  # This Ansible playbook installs Emacs.
+
+  - name: Install Emacs.
+    apt:
+      pkg=emacs
+      state=latest
+      update_cache=yes
+      cache_valid_time=86400
+    sudo: yes
+
+This role, when run, will ensure that the latest version of Emacs and its
+dependencies are installed on the virtual machine, and updates the apt
+cache. Roles can be parameterised and have dependencies, which can cause them
+to become complicated. By way of example, installing Emacs on the new
+doc-example environment requires us to append the line::
+
+      - emacs
+
+To clarify, playbook ``jobs/provision_virtualmicromagnetics_doc-examples.yml``
+now looks like::
+
+  ---
+  # This Ansible playbook is a provision playbook designed to be used with
+  # vagrant. This playbook provisions a machine suitable for micromagnetic
+  # simulation with fidimag. It is executed by the virtual machine.
+
+  - hosts: all
+
+    vars:
+      vm_name: virtualmicromagnetics-doc-example
+
+    roles:
+      - fidimag
+      - fidimag_examples
+      - add_super_user
+      - { role: set_hostname, HOSTNAME: {{ vm_name }} }
+      - emacs
+
+Further Tinkering
+~~~~~~~~~~~~~~~~~
+
+We have explored how a new :term:`virtual environment` can be created, and how
+new software can be added. In this section, we describe how the virtual machine
+itself can be configured using Vagrant's parameters. Vagrantfiles are files
+used by Vagrant written using Ruby syntax. These files specify parameters of
+the :term:`virtual machine` created from a virtual environment. When running
+the commands in :ref:`getting-started-user`, we create a Vagrantfile in the
+working directory that describes the virtual machine to Vagrant. Vagrantfiles
+can also be built into a virtual environment. Built-in Vagrantfiles can be
+found in ``guest_resources/vagrantfiles``.
+
+For example, if you wish to specify that 2048MB of memory must be used in the
+virtual machine created in :ref:`dev-create-machine` [#]_, we can add a builtin
+Vagrantfile at
+``guest_resources/vagrantfiles/Vagrantfile_virtualmicromagnetics-doc-example_builtin``
+with the following content::
+
+  VAGRANTFILE_API_VERSION = "2"
+
+  Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+    config.vm.provider :virtualbox do |vb|
+      vb.memory = 2048
+    end
+
+This Vagrantfile will be detected by the hookbook and included automatically
+when the environment is packaged. For more information on Vagrantfiles, see the
+Vagrant documentation (https://www.vagrantup.com/docs/vagrantfile/).
+
+.. [#] Note that this is not such a good idea if you want to distribute your
+   environment to different users, since they may have a different amount of
+   available memory to you.
+
+Summary and Final Words
+-----------------------
+
+To summarise, :term:`virtual environment`\s are created from an empty Ubuntu
+virtual machine after being provisioned and packaged. This build process allows
+the user to create a Virtual Micromagnetics :term:`virtual machine` using
+Vagrant and VirtualBox. We have also presented how a new environment can be
+created, how the software of that environment can be controlled, and how the
+virtual machines can be parameterised.
+
+Thank you for using Virtual Micromagnetics! If you create roles for your
+favorite software, consider sharing them with the community. You can create a
+pull request at our GitHub repository at
+(https://github.com/fangohr/virtualmicromagnetics), or contacting Mark at
+mark[dot]vousden[at]soton[dot]ac[dot]uk.
