@@ -1,9 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 
 # The purpose of this script is to create a graph that shows the processes
 # involved for the user.
 
 from graphviz import Digraph
+import subprocess
 
 # Node properties
 font = "verdana"
@@ -55,4 +56,8 @@ devGraph.edge(devMach, outputEnv, "Vagrant\nPackages",
 masterGraph = Digraph(name="user-dev-graph", graph_attr=graphProps)
 masterGraph.subgraph(userGraph)
 masterGraph.subgraph(devGraph)
-masterGraph.render(cleanup=True)
+masterGraph.render("../images/graph", cleanup=True)
+
+# Convert to PNG using ImageMagick.
+subprocess.call(["convert", "-density", "400", "../images/graph.pdf",
+                 "../images/graph.png"])

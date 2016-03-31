@@ -9,6 +9,13 @@ completely specify your own environment. Knowledge of Ansible is needed, which
 can be gleaned from their excellent documentation at
 http://docs.ansible.com/ansible/.
 
+.. _dev-build-process:
+
+Overview
+--------
+
+.. image:: images/graph.png
+
 The Build Process
 -----------------
 
