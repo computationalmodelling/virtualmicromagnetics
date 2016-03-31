@@ -9,7 +9,7 @@ import subprocess
 # Node properties
 font = "verdana"
 
-envNodeProps = {"shape": "egg", "fontname": font, "fillcolor": "forestgreen",
+envNodeProps = {"shape": "egg", "fontname": font, "fillcolor": "lavender",
                 "margin": "0.1, 0.1", "style": "filled"}
 machNodeProps = {"fontname": font, "fillcolor": "skyblue", "style": "filled"}
 graphProps = {"fontname": font}
