@@ -25,12 +25,13 @@ With this software:
    release version at https://github.com/fangohr/virtualmicromagnetics/releases
 
 2. Install some subpackages:
- - Ansible role "blockinfile"; command ``ansible-galaxy install
-   yaegashi.blockinfile -proles/`` from the Virtual Micromagnetics software
-   directory
 
- - Vagrant plugin "vagrant-vbguest"; command ``vagrant plugin install
-   vagrant-vbguest``
+   - Ansible role "blockinfile"; command ``ansible-galaxy install
+     yaegashi.blockinfile -proles/`` from the Virtual Micromagnetics software
+     directory
+
+   - Vagrant plugin "vagrant-vbguest"; command ``vagrant plugin install
+     vagrant-vbguest``
 
 3. Make, with ``make`` from the Virtual Micromagnetics software directory, with
    an Internet connection.
