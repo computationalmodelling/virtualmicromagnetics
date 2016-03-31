@@ -1,6 +1,11 @@
 Virtual Micromagnetics Documentation
 ====================================
 
+.. image:: images/virtual_micromagnetics_logo.png
+   :scale: 50%
+   :align: right
+   :target: http://fangohr.github.io/virtualmicromagnetics/
+
 Welcome to the :term:`Virtual Micromagnetics` project, where we aim to enable
 accessible and reproducible micromagnetics simulation, without compromise.
 
