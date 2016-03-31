@@ -9,9 +9,9 @@
     vm_name: virtualmicromagnetics-magpar
 
   roles:
+    - { role: rst_to_html, SOURCE_PATH: "/vagrant/extra_resources/welcome/welcome_{{ vm_name }}.rst" }
     - magpar
     - magpar_examples
     - xserver
-    - { role: rst_to_html, SOURCE_PATH: "/vagrant/extra_resources/welcome/welcome_{{ vm_name }}.rst" }
     - add_super_user
-    - { role: set_hostname, HOSTNAME: "{{ vm_name}}" }
+    - { role: set_hostname, HOSTNAME: "{{ vm_name }}" }
