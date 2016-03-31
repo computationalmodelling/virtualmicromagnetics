@@ -1,5 +1,7 @@
 # Virtualmicromagnetics
 
+[![Documentation Status](https://readthedocs.org/projects/virtual-micromagnetics/badge/?version=latest)](http://virtual-micromagnetics.readthedocs.org/en/latest/?badge=latest)
+
 ## For users who want to run micromagnetic simulations
 
 This project provides a ready-built virtual machine to run micromagnetic simulations. The following open source software packages are provided
@@ -26,7 +28,7 @@ If you need to use one of these packages, and you prefer not to install them dir
 3. Start the virtual machine, switch to full screen (if you like) and run your micromagnetic simulations in OOMMF, Magpar or Nmag in this virtual environment.
 
 
-## For those who want to update/extend the automatic creation of this virtualbox 
+## For those who want to update/extend the automatic creation of this virtualbox
 
 Please read [docs/creating-virtual-machines.md](https://github.com/fangohr/virtualmicromagnetics/blob/master/creating-virtual-machines.md)
 

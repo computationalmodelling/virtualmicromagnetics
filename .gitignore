@@ -1,6 +1,7 @@
 *~
-
 artefacts/
 machines/
 roles/thydel.patch/
 roles/yaegashi.blockinfile/
+docs/_build/
+docs/graphs/*.pdf
