@@ -124,7 +124,7 @@ playbook `jobs/provision_virtualmicromagnetics_doc-examples.yml`::
   ---
   # This Ansible playbook is a provision playbook designed to be used with
   # vagrant. This playbook provisions a machine suitable for micromagnetic
-  # simulation with fidimag. It is executed by the virtual machine.
+  # simulation with Fidimag. It is executed by the virtual machine.
 
   - hosts: all
 
@@ -149,7 +149,7 @@ Adding Software
 
 In :ref:`dev-build-process`, we introduce roles. Roles can add new software to
 a :term:`virtual environment`. By way of example, we can create a role to
-install emacs (https://www.gnu.org/software/emacs/) from the Ubuntu software
+install Emacs (https://www.gnu.org/software/emacs/) from the Ubuntu software
 repository. We firstly create a directory structure::
 
   # Create a role for Emacs.
@@ -245,7 +245,7 @@ created, how the software of that environment can be controlled, and how the
 virtual machines can be parameterised.
 
 Thank you for using Virtual Micromagnetics! If you create roles for your
-favorite software, consider sharing them with the community. You can create a
+favourite software, consider sharing them with the community. You can create a
 pull request at our GitHub repository at
 (https://github.com/fangohr/virtualmicromagnetics), or contacting Mark at
 mark[dot]vousden[at]soton[dot]ac[dot]uk.

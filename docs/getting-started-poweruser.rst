@@ -5,7 +5,7 @@ Getting Started: As a Poweruser
 
 In :ref:`environments`, we learned about the different :term:`Virtual
 Micromagnetics` environments available to users, which bundle sets of
-preconfigured software. Here we outline how you can create virtual environments
+configured software. Here we outline how you can create virtual environments
 yourself, which you can distribute to others. We recommend reading
 :ref:`software`, if you have not already.
 
@@ -24,7 +24,7 @@ With this software:
    https://github.com/fangohr/virtualmicromagnetics.git``, or by grabbing a
    release version at https://github.com/fangohr/virtualmicromagnetics/releases
 
-2. Install some subpackages:
+2. Install some sub-packages:
 
    - Ansible role "blockinfile"; command ``ansible-galaxy install
      yaegashi.blockinfile -proles/`` from the Virtual Micromagnetics software

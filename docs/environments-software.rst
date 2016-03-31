@@ -5,7 +5,7 @@ Virtual Micromagnetics Environments and Simulation Software
 
 In :ref:`getting-started-user`, we created a :term:`virtual machine` based on
 the Full :term:`Virtual Micromagnetics` environment. Here, we detail the
-micromagnetic simulation packges and other software supported and used by
+micromagnetic simulation packages and other software supported and used by
 Virtual Micromagnetics, and we describe the list of available Virtual
 Micromagnetics environments.
 
