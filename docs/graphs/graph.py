@@ -61,3 +61,4 @@ masterGraph.render("../images/graph", cleanup=True)
 # Convert to PNG using ImageMagick.
 subprocess.call(["convert", "-density", "400", "../images/graph.pdf",
                  "../images/graph.png"])
+subprocess.call(["rm", "../images/graph.pdf"])
