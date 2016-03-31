@@ -1,6 +1,6 @@
 ---
 layout: default
-img: ../intro-bg.jpg
+img: ../oommf-simulation-1.png
 category: 'Virtual Micromagnetics'
 title: Simulation Ready
 description: A test description.
