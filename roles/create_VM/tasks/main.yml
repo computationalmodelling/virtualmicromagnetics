@@ -46,8 +46,16 @@
     value={{ lookup('pipe','pwd') }}/../..
 
 - name: Obtain the current tag, (or version if untagged) of this repository.
-  shell: TAG=$(git name-rev HEAD --tags --name-only); if [ "$TAG" == "undefined" ]; then git rev-parse --short HEAD; else echo $TAG; fi
-    chdir={{ vm_dir }}
+  shell: |
+    TAG=$(git name-rev --tags --name-only HEAD)
+    if [ "$(echo $TAG | tr -d [:space:])" == "undefined" ]; then
+        git rev-parse --short HEAD
+    else
+        echo $TAG
+    fi
+  args:
+    chdir: "{{ vm_dir }}"
+    executable: /bin/bash
   register: current_version
 
 - name: Store this version or tag in a file so that the virtual machine can access it.
