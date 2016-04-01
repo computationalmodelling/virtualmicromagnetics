@@ -66,4 +66,3 @@
     pkg=imagemagick
     state=absent
   sudo: yes
-  when: not marked.stat.exists
