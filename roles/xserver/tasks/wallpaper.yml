@@ -1,0 +1,16 @@
+# Replace existing XFCE4 wallpaper. Setting the wallpaper seems to require an
+# X-display, which seems overcomplicated.
+- name: Download and set wallpaper.
+  get_url:
+    url={{ WALLPAPER_URL }}
+    force=yes
+    dest=/usr/share/backgrounds/xfce/xfce-blue.jpg
+  sudo: yes
+
+- name: Set permissions of wallpaper.
+  file:
+    path=/usr/share/backgrounds/xfce/xfce-blue.jpg
+    owner=root
+    group=root
+    mode=644
+  sudo: yes

@@ -1,0 +1,43 @@
+---
+# Important to install the packages in this order, otherwise icons will not
+# load correctly. Firefox is not strictly required, but we need a web browser.
+- name: Install Ubuntu packages needed to run X server.
+  apt:
+    pkg={{ item }}
+    state=latest
+    update_cache=yes
+    cache_valid_time=86400
+  with_items:
+   - dictionaries-common
+   - xfce4
+   - gnome-icon-theme-full
+   - firefox
+  sudo: yes
+
+- name: Allow everyone to start X.
+  lineinfile:
+    dest=/etc/X11/Xwrapper.config
+    create=yes
+    state=present
+    regexp="^allowed_users="
+    line="allowed_users=anybody"
+  sudo: yes
+
+- name: Configure X to start at login.
+  lineinfile:
+    dest=/etc/skel/.bashrc
+    create=yes
+    state=present
+    regexp="^[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx"
+    line="[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx"
+  sudo: yes
+
+- name: Configure XFCE to start when startx is called.
+  lineinfile:
+    dest=/etc/skel/.xinitrc
+    create=yes
+    state=present
+    regexp="^exec startxfce4"
+    line="exec startxfce4"
+  sudo: yes
+
