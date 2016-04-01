@@ -14,3 +14,60 @@
     group=root
     mode=644
   sudo: yes
+
+# Now we mark it, if it needs marking.
+- name: Define background location.
+  set_fact:
+    background_dir: /usr/share/backgrounds/xfce
+
+- name: Determine whether or not the image is already marked.
+  stat:
+    path: "{{ background_dir }}/marked "
+  register: marked
+
+- name: Install ImageMagick (temporarily)
+  apt:
+    pkg=imagemagick
+    state=latest
+    update_cache=yes
+    cache_valid_time=86400
+  sudo: yes
+  when: not marked.stat.exists
+
+- name: Obtain watermark text.
+  set_fact:
+    text: "{{ lookup('file', user_data_file) }}"
+  when: not marked.stat.exists
+
+# I am so sorry.
+#
+# First two converts create the stamp in two parts. The following composite
+# combines the stamp, and the mogrify effectively crops it. The final composite
+# applies the stamp to the wallpaper.
+#
+# At the end of this, a 'marked' placeholder file is added for idempotency.
+- name: Add version watermark.
+  shell: |
+    convert -size 150x100 xc:grey30 -pointsize 60 -gravity center \
+    -draw "fill grey70  text 0,0  '{{ text }}'" stamp_fore.png
+    convert -size 150x100 xc:black -pointsize 60 -gravity center \
+    -draw "fill white text  2,2  '{{ text }}' text  0,0  '{{ text }}' \
+    fill white text -4,-4 '{{ text }}' fill black text -1,-1 '{{ text }}'" \
+    +matte stamp_mask.png
+    composite -compose CopyOpacity  stamp_mask.png  stamp_fore.png  stamp.png
+    mogrify -trim +repage stamp.png
+    composite -gravity south-east -geometry +0+10 stamp.png \
+    xfce-blue.jpg marked.jpg
+    rm -rf stamp_fore.png stamp_mask.png stamp.png
+    mv marked.jpg xfce-blue.jpg
+    touch marked
+  chdir: "{{ background_dir }}"
+  sudo: yes
+  when: not marked.stat.exists
+
+- name: Remove ImageMagick
+  apt:
+    pkg=imagemagick
+    state=absent
+  sudo: yes
+  when: not marked.stat.exists
