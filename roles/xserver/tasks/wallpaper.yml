@@ -48,16 +48,11 @@
 # At the end of this, a 'marked' placeholder file is added for idempotency.
 - name: Add version watermark.
   shell: |
-    convert -size 150x100 xc:grey30 -pointsize 60 -gravity center \
-    -draw "fill grey70  text 0,0  '{{ text }}'" stamp_fore.png
-    convert -size 150x100 xc:black -pointsize 60 -gravity center \
-    -draw "fill white text  2,2  '{{ text }}' text  0,0  '{{ text }}' \
-    fill white text -4,-4 '{{ text }}' fill black text -1,-1 '{{ text }}'" \
-    +matte stamp_mask.png
+    convert -size 450x150 xc:grey30 -pointsize 60 -gravity center -draw "fill grey70  text 0,0  '{{ text.stdout }}'" stamp_fore.png
+    convert -size 450x150 xc:black -pointsize 60 -gravity center -draw "fill white text  2,2  '{{ text.stdout }}' text  0,0  '{{ text.stdout }}' fill white text -4,-4 '{{ text.stdout }}' fill black text -1,-1 '{{ text.stdout }}'" +matte stamp_mask.png
     composite -compose CopyOpacity  stamp_mask.png  stamp_fore.png  stamp.png
     mogrify -trim +repage stamp.png
-    composite -gravity south-east -geometry +0+10 stamp.png \
-    xfce-blue.jpg marked.jpg
+    composite -gravity south-east -geometry +0+10 stamp.png xfce-blue.jpg marked.jpg
     rm -rf stamp_fore.png stamp_mask.png stamp.png
     mv marked.jpg xfce-blue.jpg
     touch marked
