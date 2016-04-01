@@ -61,9 +61,10 @@
     rm -rf stamp_fore.png stamp_mask.png stamp.png
     mv marked.jpg xfce-blue.jpg
     touch marked
-  chdir: "{{ background_dir }}"
+  args:
+    chdir: "{{ background_dir }}"
+    creates: marked
   sudo: yes
-  when: not marked.stat.exists
 
 - name: Remove ImageMagick
   apt:
