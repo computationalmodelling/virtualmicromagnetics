@@ -13,13 +13,10 @@
     name={{ artefact_dir }}
     state=directory
 
-- name: Get current repository version.
-  command: git rev-parse HEAD
-  register: current_revision
-
+# current_version is defined in the create_VM playbook.
 - name: Define the name used for output files, sans extension.
   set_fact:
-    output_name: "{{ vm_name }}-{{ current_revision.stdout }}"
+    output_name: "{{ vm_name }}-{{ current_version.stdout }}"
 
 # We can skip the creation of the zipped VHD if it already exists (for
 # idempotency). Hence we check for the ZIP here and, if it is found, other

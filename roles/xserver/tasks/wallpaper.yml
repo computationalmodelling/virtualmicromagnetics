@@ -1,0 +1,68 @@
+# Replace existing XFCE4 wallpaper. Setting the wallpaper seems to require an
+# X-display, which seems overcomplicated.
+- name: Download and set wallpaper.
+  get_url:
+    url={{ WALLPAPER_URL }}
+    force=yes
+    dest=/usr/share/backgrounds/xfce/xfce-blue.jpg
+  sudo: yes
+
+- name: Set permissions of wallpaper.
+  file:
+    path=/usr/share/backgrounds/xfce/xfce-blue.jpg
+    owner=root
+    group=root
+    mode=644
+  sudo: yes
+
+# Now we mark it, if it needs marking.
+- name: Define background location.
+  set_fact:
+    background_dir: /usr/share/backgrounds/xfce
+
+- name: Determine whether or not the image is already marked.
+  stat:
+    path: "{{ background_dir }}/marked "
+  register: marked
+
+- name: Install ImageMagick (temporarily)
+  apt:
+    pkg=imagemagick
+    state=latest
+    update_cache=yes
+    cache_valid_time=86400
+  sudo: yes
+  when: not marked.stat.exists
+
+- name: Obtain watermark text.
+  command: cat /vagrant/repository_version
+  register: text
+  when: not marked.stat.exists
+
+# I am so sorry.
+#
+# First two converts create the stamp in two parts. The following composite
+# combines the stamp, and the mogrify effectively crops it. The final composite
+# applies the stamp to the wallpaper.
+#
+# At the end of this, a 'marked' placeholder file is added for idempotency.
+- name: Add version watermark.
+  shell: |
+    convert -size 450x150 xc:grey30 -pointsize 60 -gravity center -draw "fill grey70  text 0,0  '{{ text.stdout }}'" stamp_fore.png
+    convert -size 450x150 xc:black -pointsize 60 -gravity center -draw "fill white text  2,2  '{{ text.stdout }}' text  0,0  '{{ text.stdout }}' fill white text -4,-4 '{{ text.stdout }}' fill black text -1,-1 '{{ text.stdout }}'" +matte stamp_mask.png
+    composite -compose CopyOpacity  stamp_mask.png  stamp_fore.png  stamp.png
+    mogrify -trim +repage stamp.png
+    composite -gravity south-east -geometry +0+10 stamp.png xfce-blue.jpg marked.jpg
+    rm -rf stamp_fore.png stamp_mask.png stamp.png
+    mv marked.jpg xfce-blue.jpg
+    touch marked
+  args:
+    chdir: "{{ background_dir }}"
+    creates: marked
+  sudo: yes
+
+- name: Remove ImageMagick
+  apt:
+    pkg=imagemagick
+    state=absent
+  sudo: yes
