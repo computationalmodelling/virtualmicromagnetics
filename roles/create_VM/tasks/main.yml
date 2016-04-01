@@ -45,6 +45,19 @@
     option=roles_path
     value={{ lookup('pipe','pwd') }}/../..
 
+- name: Obtain the current tag, (or version if untagged) of this repository.
+  shell: TAG=$(git name-rev HEAD --tags --name-only); if [ "$TAG" == "undefined" ]; then git rev-parse --short HEAD; else echo $TAG; fi
+    chdir={{ vm_dir }}
+  register: current_version
+
+- name: Store this version or tag in a file so that the virtual machine can access it.
+  lineinfile:
+    dest={{ vm_dir }}/repository_version
+    create=yes
+    state=present
+    regexp="^[0-9a-zA-Z]*"
+    line={{ current_version.stdout }}
+
 - name: Start the virtual machine. Vagrant may attempt to install VirtualBox Guest Additions here.
   shell: vagrant up --no-provision > {{ vm_name }}.log
     chdir={{ vm_dir }}
