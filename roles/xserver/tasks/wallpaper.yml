@@ -35,8 +35,8 @@
   when: not marked.stat.exists
 
 - name: Obtain watermark text.
-  set_fact:
-    text: "{{ lookup('file', user_data_file) }}"
+  command: cat /vagrant/repository_version
+  register: text
   when: not marked.stat.exists
 
 # I am so sorry.
