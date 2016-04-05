@@ -19,5 +19,5 @@
     dest=/virtualmicromagnetics_machine_characteristics
     create=yes
     marker="# --- {mark} ADDED BY ANSIBLE ---"
-    content="\nBuild virtualmicromagnetics version: {{ text.stdout }}\nBuild date: {{ date.stdout }}\n{{ build_info.stdout }}"
+    content="Build virtualmicromagnetics version{{':'}} {{ text.stdout }}\nBuild date{{':'}} {{ date.stdout }}\n{{ build_info.stdout }}"
   sudo: yes

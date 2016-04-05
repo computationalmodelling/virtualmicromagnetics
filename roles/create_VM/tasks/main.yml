@@ -72,7 +72,7 @@
     echo "Build Vagrant version: $(vagrant --version)" >> {{ vm_dir }}/build_information
     echo "Build hostname: $HOSTNAME" >> {{ vm_dir }}/build_information
     echo "Uname output: $(uname -a)" >> {{ vm_dir }}/build_information
-    echo "lsb_release output: $(lsb_release -a) >> {{ vm_dir }}/build_information
+    echo "lsb_release output: $(lsb_release -a)" >> {{ vm_dir }}/build_information
   args:
     chdir: "{{ vm_dir }}"
     executable: /bin/bash
