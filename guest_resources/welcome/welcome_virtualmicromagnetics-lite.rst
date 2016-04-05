@@ -27,7 +27,7 @@ For more information on Virtual Micromagnetics, visit
 http://virtualmicromagnetics.org. Information about the environment that
 created this machine, including the version number, can be found in the file::
 
-    /virtualmicromagnetics_version
+    /virtualmicromagnetics_machine_characteristics
 
 Please include this information when reporting a suspected bug.
 
