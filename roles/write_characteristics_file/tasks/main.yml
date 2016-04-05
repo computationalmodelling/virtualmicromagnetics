@@ -16,7 +16,7 @@
 
 - name: Write characteristics file.
   blockinfile:
-    dest=/virtualmicromagnetics_machine_characteristics
+    dest=/virtualmicromagnetics_machine_characteristics.txt
     create=yes
     marker="# --- {mark} ADDED BY ANSIBLE ---"
     content="Build virtualmicromagnetics version{{':'}} {{ text.stdout }}\nBuild date{{':'}} {{ date.stdout }}\n{{ build_info.stdout }}"

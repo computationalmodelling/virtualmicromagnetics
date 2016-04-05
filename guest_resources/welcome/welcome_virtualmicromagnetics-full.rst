@@ -39,11 +39,9 @@ Ubuntu with Xfce as a desktop environment.
 For more information on Virtual Micromagnetics, visit
 http://virtualmicromagnetics.org. Information about the environment that
 created the base box that this machine is built with, such as the version
-number, can be found in the file::
-
-    /virtualmicromagnetics_machine_characteristics
-
-Please include this information when reporting a suspected bug.
+number, can be found in this
+[file](/virtualmicromagnetics_machine_characteristics.txt). Please include this
+information when reporting a suspected bug.
 
 These tools are provided by the University of Southampton (Mark Vousden, Max
 Albert, Hans Fangohr and others). Neither the University of Southampton nor the
