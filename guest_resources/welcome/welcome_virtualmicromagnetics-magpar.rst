@@ -11,7 +11,8 @@ Documented examples are also available on the desktop.
 
 For more information on Virtual Micromagnetics, visit
 http://virtualmicromagnetics.org. Information about the environment that
-created this machine, including the version number, can be found in the file::
+created the base box that this machine is built with, such as the version
+number, can be found in the file::
 
     /virtualmicromagnetics_machine_characteristics
 
