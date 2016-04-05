@@ -66,6 +66,17 @@
     regexp="^[0-9a-zA-Z]*"
     line={{ current_version.stdout }}
 
+- name: Obtain build machine information.
+  shell: |
+    echo "Build VirtualBox version: $(VBoxManage --version)" > {{ vm_dir }}/build_information
+    echo "Build Vagrant version: $(vagrant --version)" >> {{ vm_dir }}/build_information
+    echo "Build hostname: $HOSTNAME" >> {{ vm_dir }}/build_information
+    echo "Uname output: $(uname -a)" >> {{ vm_dir }}/build_information
+    echo "lsb_release output: $(lsb_release -a) >> {{ vm_dir }}/build_information
+  args:
+    chdir: "{{ vm_dir }}"
+    executable: /bin/bash
+
 - name: Start the virtual machine. Vagrant may attempt to install VirtualBox Guest Additions here.
   shell: vagrant up --no-provision > {{ vm_name }}.log
     chdir={{ vm_dir }}
