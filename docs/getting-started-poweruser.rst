@@ -21,8 +21,9 @@ With this software:
 
 1. Grab a copy of Virtual Micromagnetics. You can do this via Git by cloning
    our repository with ``git clone -b release
-   https://github.com/fangohr/virtualmicromagnetics.git``, or by grabbing a
-   release version at https://github.com/fangohr/virtualmicromagnetics/releases
+   https://github.com/computationalmodelling/virtualmicromagnetics.git``, or by
+   grabbing a release version at
+   https://github.com/computationalmodelling/virtualmicromagnetics/releases
 
 2. Install some sub-packages:
 
