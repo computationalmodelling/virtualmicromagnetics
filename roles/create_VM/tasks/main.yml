@@ -47,7 +47,7 @@
 
 - name: Obtain the current tag, (or version if untagged) of this repository.
   shell: |
-    TAG=$(git name-rev --tags --name-only HEAD)
+    TAG=$(git name-rev --tags --name-only HEAD | cut -f1 -d^)
     if [ "$(echo $TAG | tr -d [:space:])" == "undefined" ]; then
         git rev-parse --short HEAD
     else
