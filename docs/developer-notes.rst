@@ -247,5 +247,5 @@ virtual machines can be parameterised.
 Thank you for using Virtual Micromagnetics! If you create roles for your
 favourite software, consider sharing them with the community. You can create a
 pull request at our GitHub repository at
-(https://github.com/fangohr/virtualmicromagnetics), or contacting Mark at
-mark[dot]vousden[at]soton[dot]ac[dot]uk.
+https://github.com/computationalmodelling/virtualmicromagnetics, or
+contacting Mark at mark[dot]vousden[at]soton[dot]ac[dot]uk.

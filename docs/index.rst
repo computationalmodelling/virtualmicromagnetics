@@ -4,10 +4,15 @@ Virtual Micromagnetics Documentation
 .. image:: images/virtual_micromagnetics_logo.png
    :scale: 50%
    :align: right
-   :target: http://fangohr.github.io/virtualmicromagnetics/
+   :target: http://virtualmicromagnetics.org
 
 Welcome to the :term:`Virtual Micromagnetics` project, where we aim to enable
 accessible and reproducible micromagnetics simulation, without compromise.
+
+Provided by Mark Vousden, Hans Fangohr, and others at the University of
+Southampton. Funded by EPSRC's DTC grant EP/G03690X/1. The license for this
+software is available `here
+<https://github.com/computationalmodelling/virtualmicromagnetics/blob/development/LICENSE.md>`_.
 
 The :term:`Virtual Micromagnetics` project creates :term:`virtual
 environment`\s that run micromagnetic (and in some cases, atomistic)

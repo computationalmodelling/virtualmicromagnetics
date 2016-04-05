@@ -32,7 +32,7 @@ outputEnv = "Output Environment\n(at atlas.hashicorp.com)"
 userMach = "User's Virtual\nMachine"
 userGraph.node(outputEnv, **envNodeProps)
 userGraph.node(userMach, **machNodeProps)
-userGraph.edge(outputEnv, userMach, "Vagrant and\nVirtualBox Creates",
+userGraph.edge(outputEnv, userMach, "Vagrant and\nVirtualBox creates",
                {"color": "blue", "fontname": font})
 
 # Create developer graph.
@@ -45,11 +45,11 @@ devMach = "Developer's\nVirtual Machine"
 devGraph.node(outputEnv, **envNodeProps)
 devGraph.node(inputEnv, **envNodeProps)
 devGraph.node(devMach, **machNodeProps)
-devGraph.edge(inputEnv, devMach, "Vagrant and\nVirtualBox Creates",
+devGraph.edge(inputEnv, devMach, "Vagrant and\nVirtualBox creates",
               {"color": vboxVagrant, "fontname": font, "rank": "same"})
-devGraph.edge(devMach, devMach, "Ansible\nProvisions",
+devGraph.edge(devMach, devMach, "Ansible\nprovisions",
               {"color": ansible, "fontname": font})
-devGraph.edge(devMach, outputEnv, "Vagrant\nPackages",
+devGraph.edge(devMach, outputEnv, "Vagrant\npackages",
               {"color": vagrant, "fontname": font})
 
 # Combine and print graphs.

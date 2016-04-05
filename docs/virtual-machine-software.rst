@@ -23,8 +23,8 @@ single files representing the equivalent of a hard disk of the machine, as well
 as a description of the hardware that the virtual machine emulates. This makes
 them simple to distribute.
 
-Virtual Machine Software
-------------------------
+Software Related to Virtual Machines
+------------------------------------
 
 Virtual machines must be supported by software in order to function. Only
 provider software is necessary to run a virtual machine, but managers and
@@ -52,14 +52,14 @@ Managers
 
 While not essential for starting :term:`virtual machine`\s, specialist software
 is useful for managing :term:`virtual environment`\s. Vagrant
-(www.vagrantup.com) is an example of a virtual machine manager. It provides a
-command-line interface to the creation and provision of virtual machines from
-virtual environments. HashiCorp, the company behind Vagrant, also provides a
-framework for sharing virtual environments. Most importantly for our purpose,
-Vagrant can be automated to generate virtual machines containing an environment
-without user intervention. This environment can then be used to complete our
-objectives. To specify this environment however, provisioning software is
-required.
+(https://www.vagrantup.com) is an example of a virtual machine manager. It
+provides a command-line interface to the creation and provision of virtual
+machines from virtual environments. HashiCorp, the company behind Vagrant, also
+provides a framework for sharing virtual environments. Most importantly for our
+purpose, Vagrant can be automated to generate virtual machines containing an
+environment without user intervention. This environment can then be used to
+complete our objectives. To specify this environment however, provisioning
+software is required.
 
 .. _software-provisioners:
 
@@ -73,10 +73,11 @@ provisioner describes the desired state of the system, and the provisioner
 makes it so. In the absence of a provisioner, shell commands can be executed to
 specify the state, but this becomes unwieldy for large projects because focus
 is placed on the instructions needed to obtain the desired state, as opposed to
-the state itself. Provisioning software, such as Ansible (www.ansible.com)
-alleviates this problem. Ansible uses Yet Another Markup Language (YAML) to
-describe plays to run on a machine to enact the desired end state. Since the
-focus is on the end state of the system, :term:`idempotency` is essential.
+the state itself. Provisioning software, such as Ansible
+(https://www.ansible.com) alleviates this problem. Ansible uses Yet Another
+Markup Language (YAML) to describe plays to run on a machine to enact the
+desired end state. Since the focus is on the end state of the system,
+:term:`idempotency` is essential.
 
 .. _software-summary:
 
