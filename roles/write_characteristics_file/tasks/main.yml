@@ -1,0 +1,23 @@
+---
+# This Ansible playbook creates a characteristics file to help with bug
+# reporting.
+
+- name: Obtain version information.
+  command: cat /vagrant/repository_version
+  register: text
+
+- name: Obtain date.
+  command: date
+  register: date
+
+- name: Obtain other information.
+  command: cat /vagrant/build_information
+  register: build_info
+
+- name: Write characteristics file.
+  blockinfile:
+    dest=/virtualmicromagnetics_machine_characteristics.txt
+    create=yes
+    marker="# --- {mark} ADDED BY ANSIBLE ---"
+    content="Build virtualmicromagnetics version{{':'}} {{ text.stdout }}\nBuild date{{':'}} {{ date.stdout }}\n{{ build_info.stdout }}"
+  sudo: yes

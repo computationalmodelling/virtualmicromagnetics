@@ -23,6 +23,13 @@ For more information about these packages, see their respective websites and
 examples available on the desktop, which walk the user through some examples
 and tests where applicable.
 
+For more information on Virtual Micromagnetics, visit
+http://virtualmicromagnetics.org. Information about the environment that
+created the base box that this machine is built with, such as the version
+number, can be found in this `file
+</virtualmicromagnetics_machine_characteristics.txt>`_. Please include this
+information when reporting a suspected bug.
+
 These tools are provided by the University of Southampton (Mark Vousden, Max
 Albert, Hans Fangohr and others). Neither the University of Southampton nor the
 authors assume any responsibility whatsoever for its use by other parties, and
