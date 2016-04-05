@@ -36,6 +36,14 @@ Other lower-level tools are installed for convenience, such as paraview, grace,
 gnuplot, the IPython (Jupyter) Notebook and more. This machine runs on 64-bit
 Ubuntu with Xfce as a desktop environment.
 
+For more information on Virtual Micromagnetics, visit
+http://virtualmicromagnetics.org. Information about the environment that
+created this machine, including the version number, can be found in the file::
+
+    /virtualmicromagnetics_version
+
+Please include this information when reporting a suspected bug.
+
 These tools are provided by the University of Southampton (Mark Vousden, Max
 Albert, Hans Fangohr and others). Neither the University of Southampton nor the
 authors assume any responsibility whatsoever for its use by other parties, and
