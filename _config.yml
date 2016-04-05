@@ -3,7 +3,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: "http://yoursite.com"
+url: "http://virtualmicromagnetics.org"
 title: Virtual Micromagnetics
 email: mark.vousden@soton.ac.uk
 author: Mark Vousden
@@ -27,4 +27,4 @@ permalink: pretty
 #   - title: Get started
 #     url:
 #   - title: github
-#     url: https://github.com/fangohr/virtualmicromagnetics
+#     url: https://github.com/computationalmodelling/virtualmicromagnetics

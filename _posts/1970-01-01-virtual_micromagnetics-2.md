@@ -8,4 +8,4 @@ description: A test description.
 
 Run simulations with your private software, and distribute your own open-source
 software with us via
-[GitHub](https://www.github.com/fangohr/virtualmicromagnetics).
+[GitHub](https://www.github.com/computationalmodelling/virtualmicromagnetics).
