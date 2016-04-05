@@ -15,4 +15,8 @@ environment:
     vagrant up --provider virtualbox
 
 The complete list of virtualmicromagnetics environments can be found
-[here](https://atlas.hashicorp.com/virtualmicromagnetics).
+[here](https://atlas.hashicorp.com/virtualmicromagnetics). For example, to
+download and run the OOMMF Virtual Micromagnetics environment:
+
+    vagrant init virtualmicromagnetics/oommf
+    vagrant up --provider virtualbox
