@@ -10,6 +10,7 @@
     vm_name: virtualmicromagnetics-full
 
   roles:
+    - write_characteristics_file
     - other_dependencies
     - { role: rst_to_html, SOURCE_PATH: "/vagrant/extra_resources/welcome/welcome_{{ vm_name }}.rst" }
     - oommf

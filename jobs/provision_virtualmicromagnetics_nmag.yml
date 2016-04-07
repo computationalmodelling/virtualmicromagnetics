@@ -9,6 +9,7 @@
     vm_name: virtualmicromagnetics-nmag
 
   roles:
+    - write_characteristics_file
     - { role: rst_to_html, SOURCE_PATH: "/vagrant/extra_resources/welcome/welcome_{{ vm_name }}.rst" }
     - nmag
     - nmag_examples
