@@ -8,4 +8,4 @@ description: A test description.
 
 Virtual Micromagnetics environments are high-performance virtual machines for
 laptop sessions and massive simulations in the
-[cloud](https://www.digitalocean.com/) alike.
+[cloud](https://www.digitalocean.com/) alike (coming soon).
