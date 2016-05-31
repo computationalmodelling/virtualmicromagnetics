@@ -1,4 +1,4 @@
-Welcome to the Virtual Micromagnetics project repository!
+Welcome to the Virtual Micromagnetics project repository! [![DOI](https://zenodo.org/badge/19288/computationalmodelling/virtualmicromagnetics.svg)](https://zenodo.org/badge/latestdoi/19288/computationalmodelling/virtualmicromagnetics)
 
 Provided by Mark Vousden, Hans Fangohr, and others at the University of Southampton. Funded by EPSRC's DTC grant EP/G03690X/1.
 
