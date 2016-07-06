@@ -12,6 +12,7 @@
    - xfce4
    - gnome-icon-theme-full
    - firefox
+   - xfce4-terminal
   sudo: yes
 
 - name: Allow everyone to start X.
