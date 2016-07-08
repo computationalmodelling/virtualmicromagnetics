@@ -1,0 +1,41 @@
+---
+# This Ansible playbook outlines actions taken on the host machine on the
+# container after the container is provisioned. It is included in the
+# create_container playbook.
+
+- name: Set the location to look for and place build artefacts, and whether or not to clobber the output files.
+  set_fact:
+    artefact_dir: "{{ container_dir }}/../../artefacts/"
+    clobber_output: false
+
+- name: Ensure that a directory is created for build artefacts.
+  file:
+    name={{ artefact_dir }}
+    state=directory
+
+- name: Obtain the current tag (or branch if untagged) of this repository.
+  shell: |
+    TAG=$(git name-rev --tags --name-only HEAD | cut -f1 -d^)
+    if [ "$(echo $TAG | tr -d [:space:])" == "undefined" ]; then
+        git rev-parse --abbrev-ref HEAD
+    else
+        echo $TAG
+    fi
+  args:
+    chdir: "{{ container_dir }}"
+    executable: /bin/bash
+  register: current_branch
+
+- name: Define the name used for the output Docker image
+  set_fact:
+    output_image_name: virtualmicromagnetics/{{ container_name }}:{{ current_branch.stdout }}
+
+- name: Create a Docker image from our provisioned container.
+  command: docker commit {{ container_name }} {{ output_image_name }}
+
+- name: Push the Docker image.
+  command: docker push {{ output_image_name }}
+
+- name: Destroy the container.
+  command: vagrant destroy --force
+    chdir={{ container_dir }}
