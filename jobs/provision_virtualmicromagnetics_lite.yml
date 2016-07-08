@@ -1,16 +1,16 @@
 ---
 # This Ansible playbook is a provision playbook designed to be used with
-# vagrant. This playbook provisions a machine suitable for micromagnetic
-# simulation. It is executed by the virtual machine.
+# vagrant. This playbook provisions a virtual object suitable for micromagnetic
+# simulation. It is executed by the virtual object.
 
 - hosts: all
 
   vars:
-    vm_name: virtualmicromagnetics-lite
+    name: virtualmicromagnetics-lite
 
   roles:
     - write_characteristics_file
-    - { role: rst_to_html, SOURCE_PATH: "/vagrant/extra_resources/welcome/welcome_{{ vm_name }}.rst" }
+    - { role: rst_to_html, SOURCE_PATH: "/vagrant/extra_resources/welcome/welcome_{{ name }}.rst" }
     - oommf
     - oommf_examples
     - magpar
@@ -19,6 +19,6 @@
     - nmag_examples
     - fidimag
     - fidimag_examples
-    - xserver
-    - add_super_user
-    - { role: set_hostname, HOSTNAME: "{{ vm_name }}" }
+    - { role: xserver, when: type == "vm" }
+    - { role: add_super_user, when: type == "vm" }
+    - { role: set_hostname, HOSTNAME: "{{ name }}", when: type == "vm" }
