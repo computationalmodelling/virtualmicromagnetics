@@ -1,0 +1,2 @@
+destroy_existing_vm: False
+ubuntu_version: "14.04"
