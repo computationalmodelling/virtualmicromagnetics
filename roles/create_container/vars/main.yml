@@ -1,2 +1,2 @@
-destroy_existing_vm: False
+destroy_existing_container: False
 ubuntu_version: "14.04"

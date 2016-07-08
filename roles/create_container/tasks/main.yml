@@ -30,7 +30,7 @@
 - name: Destroy the container if its status suggests it exists and it is desired to do so.
   command: vagrant destroy --force
     chdir={{ container_dir }}
-  when: (not "not created" in status.stdout) and destroy_existing_vm
+  when: (not "not created" in status.stdout) and destroy_existing_container
 
 - name: Copy the provisioning playbook to the container directory.
   copy:
