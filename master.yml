@@ -1,5 +1,6 @@
 ---
-- name: Create a virtual machine
+- name: Create a virtual object.
   hosts: localhost
   roles:
-    - create_VM
+    - { role: create_VM, when: type == "vm" }
+    - { role: create_container, when: type == "container" }
