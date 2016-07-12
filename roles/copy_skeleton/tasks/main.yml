@@ -22,7 +22,7 @@
   file:
     group: vagrant
     owner: vagrant
-    path: {{ temp_creation.stdout }}
+    path: "{{ temp_creation.stdout }}"
     recurse: yes
     state: directory
   when: TYPE == "vm"
