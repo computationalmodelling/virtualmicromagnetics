@@ -42,5 +42,4 @@
   sudo: yes
   with_items:
     - { dest: /etc/mpd.conf, owner: root }
-    - { dest: /home/vagrant/.mpd.conf, owner: vagrant }
     - { dest: /etc/skel/.mpd.conf, owner: root }
