@@ -4,7 +4,7 @@
 
 - name: Define a directory for the vagrant environment for this machine to inhabit. It will be the directory of the Makefile concatenated with the name of the machine.
   set_fact:
-    vm_dir: "{{ lookup('pipe','pwd') }}/../../../machines/{{ vm_name }}"
+    vm_dir: "{{ lookup('pipe','pwd') }}/../../../machines/{{ vm_name }}-vm"
 
 - name: Ensure that a directory is created for the virtual machine.
   file:
