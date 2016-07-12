@@ -15,6 +15,7 @@
     - grace
     - git
     - libsundials-serial-dev
+    - libzmq3
     - mercurial
     - netgen
     - netgen-doc
