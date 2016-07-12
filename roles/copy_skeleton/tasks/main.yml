@@ -30,3 +30,10 @@
 - name: Copy temporary skeleton files to the vagrant home directory.
   command: cp --preserve --recursive {{ temp_creation.stdout }}/. /home/vagrant/
   when: TYPE == "vm"
+
+- name: Remove temporary directory.
+  file:
+    path: "{{ temp_creation.stdout }}"
+    recurse: yes
+    state: absent
+  when: TYPE == "vm"
