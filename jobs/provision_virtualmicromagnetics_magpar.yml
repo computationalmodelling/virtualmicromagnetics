@@ -6,7 +6,7 @@
 - hosts: all
 
   vars:
-    vm_name: virtualmicromagnetics-magpar
+    name: virtualmicromagnetics-magpar
 
   roles:
     - write_characteristics_file

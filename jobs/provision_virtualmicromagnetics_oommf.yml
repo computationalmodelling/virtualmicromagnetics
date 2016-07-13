@@ -6,7 +6,7 @@
 - hosts: all
 
   vars:
-    vm_name: virtualmicromagnetics-oommf
+    name: virtualmicromagnetics-oommf
 
   roles:
     - write_characteristics_file
