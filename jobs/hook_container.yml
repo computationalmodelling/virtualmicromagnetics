@@ -22,7 +22,7 @@
         echo $TAG
     fi
   args:
-    chdir: "{{ vm_dir }}"
+    chdir: "{{ container_dir }}"
     executable: /bin/bash
   register: current_version
 
@@ -32,6 +32,8 @@
 
 - name: Export the container filesystem as an artefact.
   command: docker export --output={{ artefact_dir }}{{ artefact_name }} {{ container_name }}
+  args:
+    creates: "{{ artefact_dir }}{{ artefact_name }}"
 
 - name: Obtain the current tag (or branch if untagged) of this repository.
   shell: |
@@ -59,3 +61,4 @@
 - name: Destroy the container.
   command: vagrant destroy --force
     chdir={{ container_dir }}
+  ignore_errors: yes
