@@ -16,7 +16,7 @@ particular order):
   | Magpar 0.9 (Parallel Finite Element Micromagnetics Package): http://www.magpar.net/
   | Documentation: http://www.magpar.net/static/magpar-0.9/doc/html/
 
-  | Fidimag 1.0 (Finite-difference Micromagnetic and Atomistic Package): http://computationalmodelling.github.io/fidimag/
+  | Fidimag 0.0.1 (Finite-difference Micromagnetic and Atomistic Package): http://computationalmodelling.github.io/fidimag/
   | Documentation: http://fidimag.readthedocs.org/en/latest/
 
 For more information about these packages, see their respective websites and
