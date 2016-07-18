@@ -1,4 +1,5 @@
-# This Ansible playbook of variables contains the following deriving parameters:
+# This Ansible playbook of variables contains the following deriving
+# parameters:
 #
 #   - destroy_existing_vm: A boolean variable which results in the destruction
 #         of a virtual machine if it exists. This ensures a clean build, but
