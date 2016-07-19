@@ -17,7 +17,7 @@ Overview: The Build and Run Processes for Virtual Machines
 This graph shows the operations involved in the build and run processes for
 :term:`virtual machine`\s.
 
-.. image:: images/graph.png
+.. image:: images/vm_graph.png
 
 The run process is simple: the user follows the instructions in
 :ref:`getting-started-user` to create a virtual machine for themselves. Lets
