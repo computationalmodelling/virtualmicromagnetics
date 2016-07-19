@@ -51,9 +51,9 @@ passed as a command-line argument in ``Makefile``, which lives in the jobs
 directory. It will also do some post-provisioning tasks using the hookbook,
 again passed as a command-line argument. The fundamental difference between the
 playbook and the hookbook is that the playbook is run on the guest virtual
-machine by vagrant, and the hookbook is run on the host machine. Different
-Makefile targets may place different build artefacts in the artefacts
-directory.
+machine by :term:`Vagrant`, and the hookbook is run on the host
+machine. Different Makefile targets may place different build artefacts in the
+artefacts directory.
 
 Roles add or configure software, playbooks describe the roles that must be
 enacted to provision the machine, hookbooks describe what to do with that
@@ -195,8 +195,25 @@ now looks like::
       - { role: set_hostname, HOSTNAME: {{ vm_name }} }
       - emacs
 
-Further Tinkering
-~~~~~~~~~~~~~~~~~
+Can I have a Container Too?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You certainly can, with minimal changes too. Add this target to your Makefile::
+
+  # This target builds a container image containing an OOMMF and Fidimag
+  # installation.
+  doc-example-container:
+      ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="type=container container_name=doc-example playbook=provision_virtualmicromagnetics_doc-example.yml hookbook=hook_container.yml extra_resources_dir=guest_resources/"
+
+The only differences between this target and the one added previously are:
+
+ - The value of "type" is now "container", not "vm".
+ - The value of "hookbook" is now "hook_container.yml", not "hook_vm.yml".
+ - "vm_name=virtualmicromagnetics-doc-example" is now
+   "container_name=doc-example".
+
+Further Tinkering with the Virtual Machine
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We have explored how a new :term:`virtual environment` can be created, and how
 new software can be added. In this section, we describe how the virtual machine
