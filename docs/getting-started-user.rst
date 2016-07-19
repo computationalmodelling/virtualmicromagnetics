@@ -42,7 +42,7 @@ Containers
 :term:`Container`\s are an alternative virtualization technology to virtual
 machines. To start :term:`Virtual Micromagnetics` containers, you will need:
 
-- Docker >= 1.6.2
+- Docker >= 1.6.2 (https://docs.docker.com/engine/installation/)
 
 Your user will need to be in the docker group on the machine you are running on
 [#]_. After restarting your machine, command the following in an empty
