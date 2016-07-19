@@ -48,7 +48,7 @@ Your user will need to be in the docker group on the machine you are running on
 [#]_. After restarting your machine, command the following in an empty
 directory::
 
- docker run -ti virtualmicromagnetics/full:HEAD /bin/bash
+ docker run -ti virtualmicromagnetics/full:release /bin/bash
 
 This command will download the Full Virtual Micromagnetics container image from
 the Internet to your computer, and start bash in your shell.
