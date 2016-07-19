@@ -9,42 +9,38 @@ completely specify your own environment. Knowledge of Ansible is needed, which
 can be gleaned from their excellent documentation at
 http://docs.ansible.com/ansible/.
 
-Overview: The Build and Run Processes
--------------------------------------
+Overview: The Build and Run Processes for Virtual Machines
+----------------------------------------------------------
 
-This graph shows the operations involved in the build and run processes.
+This graph shows the operations involved in the build and run processes for
+:term:`virtual machine`\s.
 
 .. image:: images/graph.png
 
-Lets break this down:
-
-- Input Environment -> Developer's Virtual Machine: The input environment is a
-  :term:`virtual environment` containing only the operating system and few
-  convenience tools. In development, Vagrant and VirtualBox create a
-  :term:`virtual machine` from this environment in the ``create_vm`` role (see
-  :ref:`dev-build-process`).
-
-- Ansible Provisions: Vagrant commands Ansible to provision this machine using
-  an Ansible playbook.
-
-- Developer's Virtual Machine -> Output Environment: Vagrant then packages the
-  virtual machine into a new virtual environment, which can be distributed to
-  others. Tagged releases are uploaded by administrators to
-  atlas.hashicorp.com, where they become available to all Vagrant users.
-
-- Output Environment -> User's Virtual Machine: The previous steps are run in
-  the build phase by a developer as the build process. This step represents the
-  user following the instructions in :ref:`getting-started-user` to create a
-  virtual machine for themselves, which is referred to as the run process.
-
-The run process performed by the user has been documented in
-:ref:`getting-started-user`. Here we introduce the build process, which
-represents the other section of this diagram.
+The run process is simple: the user follows the instructions in
+:ref:`getting-started-user` to create a virtual machine for themselves.
 
 .. _dev-build-process:
 
 The Build Process
 ~~~~~~~~~~~~~~~~~
+
+Lets break down the build process:
+
+- Input Environment Box File -> Initial Virtual Machine: The input environment
+  is a :term:`virtual environment` containing only the operating system and few
+  convenience tools. In development, Vagrant and VirtualBox create a
+  :term:`virtual machine` from this environment in the ``create_vm`` role (see
+  :ref:`dev-build-process`).
+
+- Initial Virtual Machine -> Virtual Machine with Simulation Packages: Vagrant
+  commands Ansible to provision this machine using an Ansible playbook.
+
+- Virtual Machine with Simulation Packages -> Output Environment Box File:
+  Vagrant then packages the virtual machine into a new virtual environment,
+  which can be distributed to others. Tagged releases are uploaded by
+  administrators to atlas.hashicorp.com, where they become available to all
+  Vagrant users.
 
 The build (make) process in step 3 in :ref:`getting-started-poweruser` allowed
 us to create a virtual environment. The Makefile in the software repository can
