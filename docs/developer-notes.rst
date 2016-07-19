@@ -9,6 +9,8 @@ completely specify your own environment. Knowledge of Ansible is needed, which
 can be gleaned from their excellent documentation at
 http://docs.ansible.com/ansible/.
 
+.. _dev-build-process:
+
 Overview: The Build and Run Processes for Virtual Machines
 ----------------------------------------------------------
 
@@ -18,14 +20,8 @@ This graph shows the operations involved in the build and run processes for
 .. image:: images/graph.png
 
 The run process is simple: the user follows the instructions in
-:ref:`getting-started-user` to create a virtual machine for themselves.
-
-.. _dev-build-process:
-
-The Build Process
-~~~~~~~~~~~~~~~~~
-
-Lets break down the build process:
+:ref:`getting-started-user` to create a virtual machine for themselves. Lets
+break down the build process:
 
 - Input Environment Box File -> Initial Virtual Machine: The input environment
   is a :term:`virtual environment` containing only the operating system and few
