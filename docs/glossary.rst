@@ -34,6 +34,11 @@ Glossary
        dependencies, because a dependency should not be downloaded and
        reinstalled if it is already in the state it should be in.
 
+   Image
+       A :term:`container` image acts as a template from which containers can
+       be created. Images are to containers and :term:`box file`\s are to
+       :term:`virtual machine`\s.
+
    Manager
    Vagrant
        Manager software provides an interface for managing :term:`virtual

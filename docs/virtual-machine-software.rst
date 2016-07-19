@@ -91,7 +91,8 @@ software running on the host machine, and can be provisioned for use by a
 concepts, allows the virtual machine to be preserved and distributed as a
 :term:`virtual environment`, and simplifies the creation of virtual machines.
 
-You are now ready to :ref:`get started as a
-poweruser<getting-started-poweruser>`, which explains how to create custom
-environments containing software you choose, as well as instructions for adding
-new software or configuring your own virtual environment.
+You can learn more about :ref:`container-software`, or you can :ref:`get
+started as a poweruser<getting-started-poweruser>`, which explains how to
+create custom environments containing software you choose, as well as
+instructions for adding new software or configuring your own virtual
+environment.
