@@ -1,0 +1,24 @@
+digraph "build-process" {
+    margin=0
+
+    // Add title
+    fontname="verdana bold"
+    labelloc = "t"
+    label = "Build Process"
+
+    // Define nodes and style
+    node [fillcolor=black, fontcolor=white, fontname="verdana",
+          margin="0.1, 0.1", rankdir="UD", shape=rect, style=filled]
+    a [label="Input Environment\nBox File"]
+    b [label="Initial\nVirtual Machine",
+       fillcolor=white fontcolor=black]
+    c [label="Virtual Machine\nwith Simulation\nPackages",
+       fillcolor=white fontcolor=black]
+    d [label="Output Environment\nBox File (at\natlas.hashicorp.com)"]
+
+    // Define edges and style
+    edge [fontname="verdana"]
+    a -> b [label="Vagrant and\nVirtualbox creates"]
+    b -> c [label="Ansible\nprovisions"]
+    c -> d [label="Vagrant\npackages"]
+}

@@ -3,6 +3,9 @@
 Getting Started: As a User
 ==========================
 
+Virtual Machines
+----------------
+
 To start a :term:`Virtual Micromagnetics` environment, you will need the
 following software:
 
@@ -30,4 +33,30 @@ packages. Never worry about software dependencies again!
 
 Next, see :ref:`environments` for the environments that are available besides
 the Full Virtual Micromagnetics environment, and the software on these
-environments.
+environments, or you can read on to learn about :term:`container`
+virtualisation.
+
+Containers
+----------
+
+:term:`Container`\s are an alternative virtualization technology to virtual
+machines. To start :term:`Virtual Micromagnetics` containers, you will need:
+
+- Docker >= 1.6.2 (https://docs.docker.com/engine/installation/)
+
+Your user will need to be in the docker group on the machine you are running on
+[#]_. After restarting your machine, command the following in an empty
+directory::
+
+ docker run -ti virtualmicromagnetics/full:release /bin/bash
+
+This command will download the Full Virtual Micromagnetics container image from
+the Internet to your computer, and start bash in your shell.
+
+Now take a look at :ref:`environments` for the environments that are available
+besides the Full Virtual Micromagnetics environment.
+
+.. [#] Note that the docker group is root-equivalent, so you will likely need
+   to own the machine to use Virtual Micromagnetics containers. To avoid this,
+   consider using a different provider that does not require root priveleges,
+   but beware, as Docker is the only container provider supported at present.
