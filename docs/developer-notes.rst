@@ -111,8 +111,8 @@ server. Firstly, we add a target to ``Makefile`` (append the following to the ``
 
   # This target builds a virtual hard disk file containing an OOMMF and Fidimag
   # installation.
-  doc-example:
-      ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="vm_name=virtualmicromagnetics-doc-example playbook=provision_virtualmicromagnetics_doc-example.yml hookbook=hook.yml extra_resources_dir=guest_resources/"
+  doc-example-vm:
+      ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="type=vm vm_name=virtualmicromagnetics-doc-example playbook=provision_virtualmicromagnetics_doc-example.yml hookbook=hook_vm.yml extra_resources_dir=guest_resources/"
 
 Now we need to describe what the state of the machine should be, by writing the
 playbook `jobs/provision_virtualmicromagnetics_doc-examples.yml`::
