@@ -11,8 +11,8 @@ http://docs.ansible.com/ansible/.
 
 .. _dev-build-process:
 
-Overview: The Build and Run Processes for Virtual Machines
-----------------------------------------------------------
+The Build and Run Processes for Virtual Machines
+------------------------------------------------
 
 This graph shows the operations involved in the build and run processes for
 :term:`virtual machine`\s.
