@@ -14,7 +14,7 @@ digraph "build-process" {
        fillcolor=white fontcolor=black]
     c [label="Virtual Machine\nwith Simulation\nPackages",
        fillcolor=white fontcolor=black]
-    d [label="Output Environment\nBox File\n(at atlas.hashicorp.com)"]
+    d [label="Output Environment\nBox File (at\natlas.hashicorp.com)"]
 
     // Define edges and style
     edge [fontname="verdana"]
