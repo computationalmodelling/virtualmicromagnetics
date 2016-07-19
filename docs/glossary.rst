@@ -6,15 +6,25 @@ Glossary
    Box File
        A file used by :term:`Vagrant` to create :term:`Vagrant
        environment`\s. A box file represents a template from which
-       :term:`Virtual machine`\s can be created.
+       :term:`virtual machine`\s can be created.
+
+   Container
+       "Containers are a lightweight virtualization method for running multiple
+       isolated Linux systems under a common host operating system"
+       [#jacobsen15]_
+
+       As with :term:`virtual machine`\s, containers are a virtualisation
+       medium. Unlike virtual machines however, they use components of the host
+       operating system. This reduces their size at the cost of reduced
+       isolation from the host machine.
 
    Host
    Host Machine
        A machine that uses virtualisation software to host :term:`virtual
-       machine`\s. Host machines allocate resources, including memory and disk
-       space, to support the running of a virtual machine. Note that a virtual
-       machine can host other virtual machines, making it both a host and
-       virtual machine.
+       machine`\s and/or :term:`container`\s. Host machines allocate resources,
+       including memory and disk space, to support the running of a virtual
+       machine or container. Note that a virtual machine can host other virtual
+       machines, making it both a host and a virtual machine.
 
    Idempotent
    Idempotency
@@ -26,28 +36,31 @@ Glossary
 
    Manager
    Vagrant
-       Manager software provides an interface for managing :term:`Virtual
-       machine`\s from :term:`Virtual environment`\s. Vagrant is an example of
-       manager software, which provides a command-line interface to virtual
-       machine management which can be automated. See
+       Manager software provides an interface for managing :term:`virtual
+       machine`\s and :term:`container`\s. Vagrant is an example of manager
+       software, which provides a command-line interface to virtual machine and
+       container management which can be automated. See
        :ref:`software-managers`.
 
    Vagrant Environment
        The directory structure (including ``Vagrantfile``) created by Vagrant
-       when ``vagrant init`` is commanded. A single virtual machine can be
-       managed in a given environment.
+       when ``vagrant init`` is commanded. A single :term:`virtual machine` or
+       :term:`container` can be managed in a given environment.
 
    Virtual Environment
-       Virtual environments produce the same :term:`virtual machine` on all
-       virtualisation-capable computers. Virtual environments are also
-       :term:`box file`\s, but are not :term:`Vagrant environment`\s.
+       Virtual environments produce the same :term:`virtual machine` or
+       :term:`container` on all virtualisation-capable computers. Virtual
+       environments are also :term:`box file`\s, but are not
+       :term:`Vagrant environment`\s.
 
    Provider
+   Docker
    Virtualiser
    VirtualBox
        Provider (or virtualiser) software supports the creation of, and
-       interaction with, :term:`virtual machine`\s from a host
-       machine. VirtualBox is an example of a free provider software. See
+       interaction with, :term:`virtual machine`\s or :term:`container`\s from
+       a host machine. VirtualBox and Docker are examples of free provider
+       software for virtual machines and containers respectively. See
        :ref:`software-providers`.
 
    Provisioner
@@ -88,3 +101,6 @@ Glossary
 .. [#smith05] Smith, J., Nair, R. (2005). "The Architecture of Virtual
    Machines". Computer (IEEE Computer Society) 38 (5): 32–38.
    doi:10.1109/MC.2005.173
+
+.. [#jacobsen15] Jacobsen, D.M., Canon, R.S. (2015). "Contain This, Unleashing
+   Docker for HPC". Proceedings of the Cray User Group.
