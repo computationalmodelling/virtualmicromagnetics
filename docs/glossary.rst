@@ -40,7 +40,7 @@ Glossary
        machine`\s and :term:`container`\s. Vagrant is an example of manager
        software, which provides a command-line interface to virtual machine and
        container management which can be automated. See
-       :ref:`software-managers`.
+       :ref:`vm-software-managers`.
 
    Vagrant Environment
        The directory structure (including ``Vagrantfile``) created by Vagrant
@@ -61,7 +61,7 @@ Glossary
        interaction with, :term:`virtual machine`\s or :term:`container`\s from
        a host machine. VirtualBox and Docker are examples of free provider
        software for virtual machines and containers respectively. See
-       :ref:`software-providers`.
+       :ref:`vm-software-providers`.
 
    Provisioner
    Provisioning
@@ -69,7 +69,7 @@ Glossary
        Provisioner software runs a set of commands on a machine, virtual or
        otherwise, to ensure it is in a particular state. Ansible is an example
        of provisioner software that enables :term:`idempotent`
-       provisioning. See :ref:`software-provisioners`.
+       provisioning. See :ref:`vm-software-provisioners`.
 
    System Virtual Machine
    Virtual Machine
@@ -79,7 +79,7 @@ Glossary
        this project, this includes a complete operating system, and a
        combination of one or many simulation packages and dependencies. General
        system virtual machines are described in brief at
-       :ref:`software`.
+       :ref:`vm-software`.
 
        More strictly, a virtual machine is a specific instance of a
        :term:`virtual environment`. When we build :term:`box file` artefacts,

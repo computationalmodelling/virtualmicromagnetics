@@ -1,4 +1,4 @@
-.. _software:
+.. _vm-software:
 
 Virtual Machines and Related Software
 =====================================
@@ -31,7 +31,7 @@ provider software is necessary to run a virtual machine, but managers and
 provisioners are useful for creating virtual machines and virtual environments
 respectively.
 
-.. _software-providers:
+.. _vm-software-providers:
 
 Providers
 ~~~~~~~~~
@@ -45,7 +45,7 @@ this project. Other popular provider software includes VMWare, KVM, and Docker.
 While many cloud computing organisations use virtual machines, they typically
 use existing provider software.
 
-.. _software-managers:
+.. _vm-software-managers:
 
 Managers
 ~~~~~~~~
@@ -61,7 +61,7 @@ environment without user intervention. This environment can then be used to
 complete our objectives. To specify this environment however, provisioning
 software is required.
 
-.. _software-provisioners:
+.. _vm-software-provisioners:
 
 Provisioners
 ~~~~~~~~~~~~
@@ -79,7 +79,7 @@ Markup Language (YAML) to describe plays to run on a machine to enact the
 desired end state. Since the focus is on the end state of the system,
 :term:`idempotency` is essential.
 
-.. _software-summary:
+.. _vm-software-summary:
 
 Summary
 -------
