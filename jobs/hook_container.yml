@@ -39,7 +39,7 @@
   shell: |
     TAG=$(git name-rev --tags --name-only HEAD | cut -f1 -d^)
     if [ "$(echo $TAG | tr -d [:space:])" == "undefined" ]; then
-        git rev-parse --abbrev-ref HEAD
+        git describe --all | cut -f2 -d/
     else
         echo $TAG
     fi
