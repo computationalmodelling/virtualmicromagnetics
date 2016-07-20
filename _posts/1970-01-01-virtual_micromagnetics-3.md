@@ -1,6 +1,6 @@
 ---
 layout: default
-img: ../intro-bg.jpg
+img: ../hpc.png
 imglink: https://github.com/computationalmodelling/virtualmicromagnetics/issues/40
 category: 'Virtual Micromagnetics'
 title: From Laptop to Cloud
