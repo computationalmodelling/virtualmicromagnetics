@@ -1,6 +1,6 @@
 ---
 layout: default
-img: ../github.png
+img: [../github.png](https://www.github.com/computationalmodelling/virtualmicromagnetics)
 category: 'Virtual Micromagnetics'
 title: Contribute and Personalise
 description: A test description.
