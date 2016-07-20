@@ -1,6 +1,7 @@
 ---
 layout: default
 img: ../intro-bg.jpg
+imglink: https://github.com/computationalmodelling/virtualmicromagnetics/issues/40
 category: 'Virtual Micromagnetics'
 title: From Laptop to Cloud
 description: A test description.
