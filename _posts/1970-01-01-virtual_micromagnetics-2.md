@@ -1,6 +1,6 @@
 ---
 layout: default
-img: ../intro-bg.jpg
+img: ../github.png
 category: 'Virtual Micromagnetics'
 title: Contribute and Personalise
 description: A test description.
