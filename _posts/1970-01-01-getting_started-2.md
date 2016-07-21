@@ -9,4 +9,4 @@ Virtual Micromagnetics container environments also exist through
 full Virtual Micromagnetics container environment in a terminal on your
 machine:
 
-    docker run -ti virtualmicromagnetics/full:release /bin/bash
+    docker run -ti virtualmicromagnetics/full:release /bin/bash -l
