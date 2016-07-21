@@ -42,6 +42,7 @@ Contents
    getting-started-user
    environments-software
    virtual-machine-software
+   container-software
    getting-started-poweruser
    developer-notes
    troubleshooting

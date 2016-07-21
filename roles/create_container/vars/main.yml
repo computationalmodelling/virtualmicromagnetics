@@ -1,0 +1,3 @@
+destroy_existing_container: False
+playbook_root_dir: "jobs"
+ubuntu_version: "14.04"

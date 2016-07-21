@@ -1,0 +1,39 @@
+---
+# This Ansible role copies the contents of the skeleton directory /etc/skel to
+# the home directory of vagrant on a virtual machine, or to /root/ on a
+# container.
+#
+# TYPE must either be "vm" or "container".
+
+- name: Copy skeleton contents (/etc/skel/*) to root on containers.
+  command: cp --recursive /etc/skel/. /root/
+  when: TYPE == "container"
+
+- name: Create temporary directory for skeleton transfer on vms.
+  command: mktemp
+  register: temp_creation
+  when: TYPE == "vm"
+
+- name: Copy skeleton contents (/etc/skel/*) to the temporary directory on vms.
+  command: cp --recursive /etc/skel/. {{ temp_creation.stdout }}/
+  when: TYPE == "vm"
+
+- name: Set mode of transferred skeleton files.
+  file:
+    group: vagrant
+    owner: vagrant
+    path: "{{ temp_creation.stdout }}"
+    recurse: yes
+    state: directory
+  when: TYPE == "vm"
+
+- name: Copy temporary skeleton files to the vagrant home directory.
+  command: cp --preserve --recursive {{ temp_creation.stdout }}/. /home/vagrant/
+  when: TYPE == "vm"
+
+- name: Remove temporary directory.
+  file:
+    path: "{{ temp_creation.stdout }}"
+    recurse: yes
+    state: absent
+  when: TYPE == "vm"

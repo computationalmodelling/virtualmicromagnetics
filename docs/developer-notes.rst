@@ -1,6 +1,6 @@
 .. _dev-notes:
 
-Developer Notes (valid for version 1.0.2)
+Developer Notes (valid for version 1.0.4)
 =========================================
 
 In :ref:`getting-started-poweruser`, we created a virtual environment from
@@ -9,66 +9,77 @@ completely specify your own environment. Knowledge of Ansible is needed, which
 can be gleaned from their excellent documentation at
 http://docs.ansible.com/ansible/.
 
-Overview: The Build and Run Processes
--------------------------------------
+.. _dev-build-process:
 
-This graph shows the operations involved in the build and run processes.
+Build and Run
+-------------
 
-.. image:: images/graph.png
+The Build and Run Processes for Virtual Machines
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Lets break this down:
+This graph shows the operations involved in the build and run processes for
+:term:`virtual machine`\s.
 
-- Input Environment -> Developer's Virtual Machine: The input environment is a
-  :term:`virtual environment` containing only the operating system and few
+.. image:: images/vm_graph.png
+
+The run process is simple: the user follows the instructions in
+:ref:`getting-started-user` to create a virtual machine for themselves. Lets
+break down the build process:
+
+- Input Environment Box File -> Initial Virtual Machine: The input environment
+  is a :term:`virtual environment` containing only the operating system and few
   convenience tools. In development, Vagrant and VirtualBox create a
   :term:`virtual machine` from this environment in the ``create_vm`` role (see
   :ref:`dev-build-process`).
 
-- Ansible Provisions: Vagrant commands Ansible to provision this machine using
-  an Ansible playbook.
+- Initial Virtual Machine -> Virtual Machine with Simulation Packages: Vagrant
+  commands Ansible to provision this machine using an Ansible playbook.
 
-- Developer's Virtual Machine -> Output Environment: Vagrant then packages the
-  virtual machine into a new virtual environment, which can be distributed to
-  others. Tagged releases are uploaded by administrators to
-  atlas.hashicorp.com, where they become available to all Vagrant users.
+- Virtual Machine with Simulation Packages -> Output Environment Box File:
+  Vagrant then packages the virtual machine into a new virtual environment,
+  which can be distributed to others. Tagged releases are uploaded by
+  administrators to atlas.hashicorp.com, where they become available to all
+  Vagrant users.
 
-- Output Environment -> User's Virtual Machine: The previous steps are run in
-  the build phase by a developer as the build process. This step represents the
-  user following the instructions in :ref:`getting-started-user` to create a
-  virtual machine for themselves, which is referred to as the run process.
+The Build and Run Processes for Containers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The run process performed by the user has been documented in
-:ref:`getting-started-user`. Here we introduce the build process, which
-represents the other section of this diagram.
+In the same way, this graph shows the operations involved in the build and run
+processes for :term:`container`\s.
 
-.. _dev-build-process:
+.. image:: images/container_graph.png
 
-The Build Process
-~~~~~~~~~~~~~~~~~
+Again the process of creating and running a container as a user is as simple as
+following the instructions in :ref:`getting-started-user`. The build process is
+also similar; a container template (:term:`image`) is downloaded, a container
+is created and provisioned, and the container is packaged as an image for
+download by all Docker users. The key difference is that Docker pushes the
+image to https://hub.docker.com/ as opposed to Vagrant.
+
+Details
+~~~~~~~
 
 The build (make) process in step 3 in :ref:`getting-started-poweruser` allowed
 us to create a virtual environment. The Makefile in the software repository can
 build multiple targets. Each target runs Ansible on the ``master.yml``
-playbook, which in turn runs the ``create_vm`` role in the roles
-directory. This creates a virtual machine and provisions it with the playbook
-passed as a command-line argument in ``Makefile``, which lives in the jobs
-directory. It will also do some post-provisioning tasks using the hookbook,
-again passed as a command-line argument. The fundamental difference between the
-playbook and the hookbook is that the playbook is run on the guest virtual
-machine by vagrant, and the hookbook is run on the host machine. Different
-Makefile targets may place different build artefacts in the artefacts
-directory.
+playbook, which in turn runs the ``create_vm`` or ``create_container`` role in
+the roles directory. This creates a virtual machine or container and provisions
+it with the playbook passed as a command-line argument in ``Makefile``, which
+lives in the jobs directory. It will also do some post-provisioning tasks using
+the hookbook, again passed as a command-line argument. The fundamental
+difference between the playbook and the hookbook is that the playbook is run on
+the guest virtual machine by :term:`Vagrant`, and the hookbook is run on the
+host machine. Different Makefile targets may place different build artefacts in
+the artefacts directory.
 
 Roles add or configure software, playbooks describe the roles that must be
 enacted to provision the machine, hookbooks describe what to do with that
 machine (like creating a :term:`box file`), and jobs are Makefile targets that
-produce certain machines.
-
-To add a new environment, one needs to add a job that follows the pattern of
-existing jobs.
+produce certain machines. To add a new environment, one needs to add a job that
+follows the pattern of existing jobs.
 
 Where Things Are
-----------------
+~~~~~~~~~~~~~~~~
 
 In order to add jobs, one should edit ``Makefile``. In order to do that, one
 would need to know where things are, hence the purpose of this section. The
@@ -115,8 +126,8 @@ server. Firstly, we add a target to ``Makefile`` (append the following to the ``
 
   # This target builds a virtual hard disk file containing an OOMMF and Fidimag
   # installation.
-  doc-example:
-      ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="vm_name=virtualmicromagnetics-doc-example playbook=provision_virtualmicromagnetics_doc-example.yml hookbook=hook.yml extra_resources_dir=guest_resources/"
+  doc-example-vm:
+      ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="type=vm vm_name=virtualmicromagnetics-doc-example playbook=provision_virtualmicromagnetics_doc-example.yml hookbook=hook_vm.yml extra_resources_dir=guest_resources/"
 
 Now we need to describe what the state of the machine should be, by writing the
 playbook `jobs/provision_virtualmicromagnetics_doc-examples.yml`::
@@ -199,8 +210,25 @@ now looks like::
       - { role: set_hostname, HOSTNAME: {{ vm_name }} }
       - emacs
 
-Further Tinkering
-~~~~~~~~~~~~~~~~~
+Can I have a Container Too?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You certainly can, with minimal changes too. Add this target to your Makefile::
+
+  # This target builds a container image containing an OOMMF and Fidimag
+  # installation.
+  doc-example-container:
+      ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="type=container container_name=doc-example playbook=provision_virtualmicromagnetics_doc-example.yml hookbook=hook_container.yml extra_resources_dir=guest_resources/"
+
+The only differences between this target and the one added previously are:
+
+ - The value of "type" is now "container", not "vm".
+ - The value of "hookbook" is now "hook_container.yml", not "hook_vm.yml".
+ - "vm_name=virtualmicromagnetics-doc-example" is now
+   "container_name=doc-example".
+
+Further Tinkering with the Virtual Machine
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We have explored how a new :term:`virtual environment` can be created, and how
 new software can be added. In this section, we describe how the virtual machine
@@ -240,9 +268,10 @@ Summary and Final Words
 To summarise, :term:`virtual environment`\s are created from an empty Ubuntu
 virtual machine after being provisioned and packaged. This build process allows
 the user to create a Virtual Micromagnetics :term:`virtual machine` using
-Vagrant and VirtualBox. We have also presented how a new environment can be
-created, how the software of that environment can be controlled, and how the
-virtual machines can be parameterised.
+Vagrant and VirtualBox. A similar approach is used to create :term:`image`\s
+for :term:`Docker` :term:`containers`\. We have also presented how a new
+environment can be created, how the software of that environment can be
+controlled, and how the virtual machines can be parameterised.
 
 Thank you for using Virtual Micromagnetics! If you create roles for your
 favourite software, consider sharing them with the community. You can create a

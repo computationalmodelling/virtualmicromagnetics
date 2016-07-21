@@ -1,0 +1,18 @@
+digraph "run-process" {
+    margin=0
+
+    // Add title
+    fontname="verdana bold"
+    labelloc = "t"
+    label = "Run Process"
+
+    // Define nodes and style
+    node [fillcolor=black, fontcolor=white, fontname="verdana",
+          margin="0.1, 0.1", rankdir="UD", shape=rect, style=filled]
+    d [label="Virtual Micromagnetics\nEnvironment (image\nat hub.docker.com)"]
+    e [label="User's Container", fillcolor=white fontcolor=black]
+
+    // Define edges and style
+    edge [fontname="verdana"]
+    d -> e [label="Vagrant and\nDocker creates"]
+}

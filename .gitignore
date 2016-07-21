@@ -4,4 +4,9 @@ machines/
 roles/thydel.patch/
 roles/yaegashi.blockinfile/
 docs/_build/
-docs/graphs/*.pdf
+docs/images/graphs/*.pdf
+docs/images/graphs/*.png
+
+*.aux
+*.log
+*.synctex.gz

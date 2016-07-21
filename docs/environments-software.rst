@@ -91,7 +91,7 @@ they contain:
 +-----------------+--------+----+----+-----+------+----+-------+
 
 See :ref:`getting-started-poweruser` if more fine-grained control over your
-software interests you. However, we firstly recommend reading :ref:`software`
-to understand more about :term:`virtual machine`\s, :term:`virtual
-environment`\s, and the software used to create them in the Virtual
-Micromagnetics project.
+software interests you. However, we firstly recommend reading
+:ref:`vm-software` to understand more about :term:`virtual machine`\s,
+:term:`virtual environment`\s, and the software used to create them in the
+Virtual Micromagnetics project.

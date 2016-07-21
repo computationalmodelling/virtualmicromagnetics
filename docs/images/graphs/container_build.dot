@@ -1,0 +1,24 @@
+digraph "build-process" {
+    margin=0
+
+    // Add title
+    fontname="verdana bold"
+    labelloc = "t"
+    label = "Build Process"
+
+    // Define nodes and style
+    node [fillcolor=black, fontcolor=white, fontname="verdana",
+          margin="0.1, 0.1", rankdir="UD", shape=rect, style=filled]
+    a [label="Input Image"]
+    b [label="Initial Container",
+       fillcolor=white fontcolor=black]
+    c [label="Container with\nSimulation Packages",
+       fillcolor=white fontcolor=black]
+    d [label="Output Image\n(at hub.docker.com)"]
+
+    // Define edges and style
+    edge [fontname="verdana"]
+    a -> b [label="Vagrant and\nDocker creates"]
+    b -> c [label="Ansible\nprovisions"]
+    c -> d [label="Docker\npackages"]
+}

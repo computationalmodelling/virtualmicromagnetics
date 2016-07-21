@@ -7,7 +7,7 @@ In :ref:`environments`, we learned about the different :term:`Virtual
 Micromagnetics` environments available to users, which bundle sets of
 configured software. Here we outline how you can create virtual environments
 yourself, which you can distribute to others. We recommend reading
-:ref:`software`, if you have not already.
+:ref:`vm-software`, if you have not already.
 
 To create a new, custom :term:`virtual environment`, you will need the
 following software in addition to the software list in

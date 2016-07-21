@@ -1,0 +1,95 @@
+---
+# This Ansible playbook creates a container using vagrant and the
+# Vagrantfile template.
+
+- name: Define a directory for the vagrant environment for the intermediate container to inhabit. It will be the directory of the Makefile concatenated with the name of the machine.
+  set_fact:
+    container_dir: "{{ lookup('pipe','pwd') }}/../../../machines/{{ container_name }}-container"
+
+- name: Ensure that a directory is created for the container.
+  file:
+    name={{ container_dir }}
+    state=directory
+
+- name: Place the Vagrantfile in the container directory.
+  template:
+    src=Vagrantfile
+    dest={{ container_dir }}
+
+- name: Place the Dockerfile in the container directory.
+  template:
+    src=Dockerfile
+    dest={{ container_dir }}
+
+- name: Check the status of container and store it.
+  command: vagrant status
+    chdir={{ container_dir }}
+  register: status
+  changed_when: false
+
+- name: Destroy the container if its status suggests it exists and it is desired to do so.
+  command: vagrant destroy --force
+    chdir={{ container_dir }}
+  when: (not "not created" in status.stdout) and destroy_existing_container
+
+- name: Copy the provisioning playbook to the container directory.
+  copy:
+    src={{ playbook_root_dir }}/{{ playbook }}
+    dest={{ container_dir }}
+
+- name: Copy the extra resources directory to the container directory if it was specified.
+  copy:
+    src={{ extra_resources_dir }}/
+    dest={{ container_dir }}/extra_resources
+  when: extra_resources_dir is defined
+
+- name: Add the roles directory of this repository to the ansible configuration in the container directory so that roles can be found.
+  ini_file:
+    dest={{ container_dir }}/ansible.cfg
+    section=defaults
+    option=roles_path
+    value={{ lookup('pipe','pwd') }}/../..
+
+- name: Obtain the current tag, (or version if untagged) of this repository.
+  shell: |
+    TAG=$(git name-rev --tags --name-only HEAD | cut -f1 -d^)
+    if [ "$(echo $TAG | tr -d [:space:])" == "undefined" ]; then
+        git rev-parse --short HEAD
+    else
+        echo $TAG
+    fi
+  args:
+    chdir: "{{ container_dir }}"
+    executable: /bin/bash
+  register: current_version
+
+- name: Store this version or tag in a file so that the container can access it.
+  lineinfile:
+    dest={{ container_dir }}/repository_version
+    create=yes
+    state=present
+    regexp="^[0-9a-zA-Z]*"
+    line={{ current_version.stdout }}
+
+- name: Obtain build machine information.
+  shell: |
+    echo "Build VirtualBox version: $(VBoxManage --version)" > {{ container_dir }}/build_information
+    echo "Build Vagrant version: $(vagrant --version)" >> {{ container_dir }}/build_information
+    echo "Build hostname: $HOSTNAME" >> {{ container_dir }}/build_information
+    echo "Uname output: $(uname -a)" >> {{ container_dir }}/build_information
+    echo "lsb_release output: $(lsb_release -a)" >> {{ container_dir }}/build_information
+  args:
+    chdir: "{{ container_dir }}"
+    executable: /bin/bash
+
+- name: Start the container. Vagrant may attempt to install VirtualBox Guest Additions here.
+  shell: vagrant up --no-provision > {{ container_name }}.log
+    chdir={{ container_dir }}
+
+- name: Provision the container. A log exists in machines/.
+  shell: vagrant provision >> {{ container_name }}.log
+    chdir={{ container_dir }}
+
+- name: Run post-build hooks if a hookbook has been passed.
+  include: "../../../{{ playbook_root_dir }}/{{ hookbook }}"
+  when: hookbook is defined
