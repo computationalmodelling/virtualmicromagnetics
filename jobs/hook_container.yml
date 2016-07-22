@@ -77,7 +77,7 @@
 
 - name: Push the Docker image with tag equal to tag.
   command: docker push {{ output_image_name_tag }}
-  when: container_push and (tag.stdout != "undefined")
+  when: (container_push == "true") and (tag.stdout != "undefined")
 
 # Remove the evidence.
 
