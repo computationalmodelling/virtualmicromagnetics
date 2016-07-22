@@ -4,10 +4,13 @@
 # SUNDIALS.
 
 # Install local dependencies.
-- name: Install FFTW and SUNDIALS from the Fidimag installation script.
-  command: bash ubuntu_install_script.sh
+- name: Install FFTW and SUNDIALS from Fidimag installation scripts.
+  command: bash {{ item }}
   args:
     chdir: "{{ FIDIMAG_INSTALL_PATH }}/bin"
+  with_items:
+    - install-fftw.sh
+    - install-sundials-2.5.sh
   sudo: yes
 
 # Build Fidimag. Makefile module?
