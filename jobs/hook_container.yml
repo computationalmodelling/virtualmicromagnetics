@@ -13,51 +13,73 @@
     name={{ artefact_dir }}
     state=directory
 
-- name: Obtain the current tag, (or version if untagged) of this repository.
-  shell: |
-    TAG=$(git name-rev --tags --name-only HEAD | cut -f1 -d^)
-    if [ "$(echo $TAG | tr -d [:space:])" == "undefined" ]; then
-        git rev-parse --short HEAD
-    else
-        echo $TAG
-    fi
+- name: Obtain current tag of this repository, if any.
+  shell: git name-rev --tags --name-only HEAD | cut -f1 -d^
   args:
     chdir: "{{ container_dir }}"
     executable: /bin/bash
-  register: current_version
+  register: tag
 
-- name: Set artefact name.
+- name: Obtain current version hash of this repository.
+  shell: git rev-parse --short HEAD
+  args:
+    chdir: "{{ container_dir }}"
+    executable: /bin/bash
+  register: version
+
+- name: Obtain current branch of this repository.
+  shell: git symbolic-ref HEAD | grep -o [^/]*$
+  args:
+    chdir: "{{ container_dir }}"
+    executable: /bin/bash
+  register: branch
+
+# Exporting container filesystem as tarball.
+
+- name: Set artefact name with tag, if we could find one.
   set_fact:
-    artefact_name: "{{ container_name }}_{{ current_version.stdout }}.tar"
+    artefact_name: "{{ container_name }}_{{ tag.stdout }}.tar"
+  when: tag.stdout != "undefined"
+
+- name: Set artefact name with version hash, if we could not find a tag.
+  set_fact:
+    artefact_name: "{{ container_name }}_{{ version.stdout }}.tar"
+  when: tag.stdout == "undefined"
 
 - name: Export the container filesystem as an artefact.
   command: docker export --output={{ artefact_dir }}{{ artefact_name }} {{ container_name }}
   args:
     creates: "{{ artefact_dir }}{{ artefact_name }}"
 
-- name: Obtain the current tag (or branch if untagged) of this repository.
-  shell: |
-    TAG=$(git name-rev --tags --name-only HEAD | cut -f1 -d^)
-    if [ "$(echo $TAG | tr -d [:space:])" == "undefined" ]; then
-        git describe --all | grep -o [^/]*$
-    else
-        echo $TAG
-    fi
-  args:
-    chdir: "{{ container_dir }}"
-    executable: /bin/bash
-  register: current_branch
+# Storing container with tag=branch.
 
-- name: Define the name used for the output Docker image
+- name: Define the name used for the output Docker image using the branch.
   set_fact:
-    output_image_name: virtualmicromagnetics/{{ container_name }}:{{ current_branch.stdout }}
+    output_image_name_branch: virtualmicromagnetics/{{ container_name }}:{{ branch.stdout }}
 
 - name: Create a Docker image from our provisioned container.
-  command: docker commit {{ container_name }} {{ output_image_name }}
+  command: docker commit {{ container_name }} {{ output_image_name_branch }}
 
-- name: Push the Docker image.
-  command: docker push {{ output_image_name }}
+- name: Push the Docker image with tag equal to branch.
+  command: docker push {{ output_image_name_branch }}
   when: container_push
+
+# Storing container with tag=tag.
+
+- name: Define the name used for the output Docker image using the tag.
+  set_fact:
+    output_image_name_tag: virtualmicromagnetics/{{ container_name }}:{{ tag.stdout }}
+  when: tag.stdout != "undefined"
+
+- name: Create a Docker image from our provisioned container.
+  command: docker commit {{ container_name }} {{ output_image_name_tag }}
+  when: tag.stdout != "undefined"
+
+- name: Push the Docker image with tag equal to tag.
+  command: docker push {{ output_image_name_tag }}
+  when: (container_push == "true") and (tag.stdout != "undefined")
+
+# Remove the evidence.
 
 - name: Destroy the container.
   command: vagrant destroy --force
