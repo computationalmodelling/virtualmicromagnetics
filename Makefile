@@ -3,22 +3,22 @@
 
 ## Container targets
 full-container:
-	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="type=container container_name=full playbook=provision_virtualmicromagnetics_full.yml hookbook=hook_container.yml extra_resources_dir=guest_resources/"
+	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="type=container container_name=full playbook=provision_virtualmicromagnetics_full.yml hookbook=hook_container.yml extra_resources_dir=guest_resources/ container_push=false"
 
 lite-container:
-	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="type=container container_name=lite playbook=provision_virtualmicromagnetics_lite.yml hookbook=hook_container.yml extra_resources_dir=guest_resources/"
+	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="type=container container_name=lite playbook=provision_virtualmicromagnetics_lite.yml hookbook=hook_container.yml extra_resources_dir=guest_resources/ container_push=false"
 
 oommf-container:
-	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="type=container container_name=oommf playbook=provision_virtualmicromagnetics_oommf.yml hookbook=hook_container.yml extra_resources_dir=guest_resources/"
+	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="type=container container_name=oommf playbook=provision_virtualmicromagnetics_oommf.yml hookbook=hook_container.yml extra_resources_dir=guest_resources/ container_push=false"
 
 magpar-container:
-	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="type=container container_name=magpar playbook=provision_virtualmicromagnetics_magpar.yml hookbook=hook_container.yml extra_resources_dir=guest_resources/"
+	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="type=container container_name=magpar playbook=provision_virtualmicromagnetics_magpar.yml hookbook=hook_container.yml extra_resources_dir=guest_resources/ container_push=false"
 
 nmag-container:
-	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="type=container container_name=nmag playbook=provision_virtualmicromagnetics_nmag.yml hookbook=hook_container.yml extra_resources_dir=guest_resources/"
+	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="type=container container_name=nmag playbook=provision_virtualmicromagnetics_nmag.yml hookbook=hook_container.yml extra_resources_dir=guest_resources/ container_push=false"
 
 fidimag-container:
-	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="type=container container_name=fidimag playbook=provision_virtualmicromagnetics_fidimag.yml hookbook=hook_container.yml extra_resources_dir=guest_resources/"
+	ansible-playbook master.yml -c local -i localhost, -v -k --extra-vars="type=container container_name=fidimag playbook=provision_virtualmicromagnetics_fidimag.yml hookbook=hook_container.yml extra_resources_dir=guest_resources/ container_push=false"
 
 ## VM targets
 full-vm: full

@@ -57,6 +57,7 @@
 
 - name: Push the Docker image.
   command: docker push {{ output_image_name }}
+  when: container_push
 
 - name: Destroy the container.
   command: vagrant destroy --force
