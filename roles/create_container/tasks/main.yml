@@ -83,7 +83,7 @@
     executable: /bin/bash
 
 - name: Start the container. Vagrant may attempt to install VirtualBox Guest Additions here.
-  shell: vagrant up --no-provision > {{ container_name }}.log
+  shell: vagrant up --no-provision --provider docker > {{ container_name }}.log
     chdir={{ container_dir }}
 
 - name: Provision the container. A log exists in machines/.
