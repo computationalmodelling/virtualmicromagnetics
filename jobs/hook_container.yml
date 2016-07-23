@@ -27,12 +27,23 @@
     executable: /bin/bash
   register: version
 
-- name: Obtain current branch of this repository.
+- name: Obtain current branch of this repository. Does not work in detached-head state.
   shell: git symbolic-ref HEAD | grep -o [^/]*$
   args:
     chdir: "{{ container_dir }}"
     executable: /bin/bash
   register: branch
+  when: ("{{ lookup('env','GIT_BRANCH') }}" == "")
+
+# Alternatively, we can obtain the branch in detached-head state using the
+# environment variable GIT_BRANCH if it is set. This helps out Jenkins.
+- name: Obtain current branch of this repository using GIT_BRANCH environment variable.
+  shell: echo $GIT_BRANCH
+  args:
+    chdir: "{{ container_dir }}"
+    executable: /bin/bash
+  register: branch
+  when: ("{{ lookup('env','GIT_BRANCH') }}" == "")
 
 # Exporting container filesystem as tarball.
 
