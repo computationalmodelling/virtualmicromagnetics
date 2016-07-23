@@ -30,7 +30,7 @@
 # Alternatively, we can obtain the branch in detached-head state using the
 # environment variable GIT_BRANCH if it is set. This helps out Jenkins.
 - name: Obtain current branch of this repository.
-  shell: if [ -z "$GIT_BRANCH" ]; then git symbolic-ref HEAD | grep -o [^/]*$; else echo "$GIT_BRANCH"; fi
+  shell: if [ -z "$GIT_BRANCH" ]; then git symbolic-ref HEAD | grep -o [^/]*$; else echo "$GIT_BRANCH" | grep -o [^/][a-zA-Z0-9-]*$; fi
   args:
     chdir: "{{ container_dir }}"
     executable: /bin/bash
