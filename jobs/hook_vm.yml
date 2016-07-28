@@ -69,10 +69,13 @@
   when: (not vagrantfile.stat.exists) and (not box_status.stat.exists or (box_status.stat.isreg and clobber_output))
 
 - name: Extract the virtual machine disk (VMDK) file from the box.
-  command: tar -xvf {{ output_box }} -C {{ artefact_dir }} ./box-disk1.vmdk
+  command: tar -xzvf {{ output_box }} -C {{ artefact_dir }} ./box-disk1.vmdk
     chdir={{ artefact_dir }}
     creates={{ artefact_dir }}/box-disk1.vmdk
   when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_output)
+  register: result
+  until: result.rc == 0
+  retries: 3
 
 - name: Convert the virtual machine disk (VMDK) to a virtual hard disk (VHD).
   command: VBoxManage clonehd --format VHD box-disk1.vmdk {{ output_name }}.vhd

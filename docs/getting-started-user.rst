@@ -48,7 +48,7 @@ Your user will need to be in the docker group on the machine you are running on
 [#]_. After restarting your machine, command the following in an empty
 directory::
 
- docker run -ti virtualmicromagnetics/full:release /bin/bash
+ docker run -ti virtualmicromagnetics/lite:1.1.0 /bin/bash -l
 
 This command will download the Full Virtual Micromagnetics container image from
 the Internet to your computer, and start bash in your shell.
@@ -58,5 +58,5 @@ besides the Full Virtual Micromagnetics environment.
 
 .. [#] Note that the docker group is root-equivalent, so you will likely need
    to own the machine to use Virtual Micromagnetics containers. To avoid this,
-   consider using a different provider that does not require root priveleges,
+   consider using a different provider that does not require root privileges,
    but beware, as Docker is the only container provider supported at present.
