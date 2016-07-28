@@ -1,6 +1,6 @@
 .. _dev-notes:
 
-Developer Notes (valid for version 1.0.4)
+Developer Notes (valid for version 1.1.0)
 =========================================
 
 In :ref:`getting-started-poweruser`, we created a virtual environment from
