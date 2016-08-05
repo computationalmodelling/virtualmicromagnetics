@@ -8,10 +8,10 @@ The intended way to use the Virtual Micromagnetics environment is through
 [Vagrant](https://www.vagrantup.com/) using
 [VirtualBox](https://www.virtualbox.org/wiki/Downloads) as a provider (see
 [About](/about/)). Commanding the following in an empty directory with Vagrant
-and VirtualBox installed will download and run the full Virtual Micromagnetics
+and VirtualBox installed will download and run the lite Virtual Micromagnetics
 environment:
 
-    vagrant init virtualmicromagnetics/full
+    vagrant init virtualmicromagnetics/lite
     vagrant up --provider virtualbox
 
 The complete list of virtualmicromagnetics environments can be found
