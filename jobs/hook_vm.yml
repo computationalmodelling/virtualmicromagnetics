@@ -75,3 +75,32 @@
 - name: Inform the user that the Vagrant box has been created.
   debug:
     msg="Virtual machine '{{ vm_name }}' has been successfully created, and build artefacts are in {{ artefact_dir }}."
+
+# Attempt to create a virtual machine with this new box. This simulates the
+# user's run process.
+
+- name: Create directory to perform checks on the new box (1/2).
+  set_fact:
+    run_dir: "/tmp/{{ vm_name }}-test/"
+
+- name: Create directory to perform checks on the new box (2/2).
+  file:
+    name={{ run_dir }}
+    state=directory
+
+- name: Create a Vagrant environment with the new box.
+  command: vagrant init {{ artefact_dir }}/{{ output_box }}
+    chdir={{ run_dir }}
+
+- name: Use the new Vagrant box to create a virtual machine, mimicing the user run process.
+  command: vagrant up --provider virtualbox
+    chdir={{ run_dir }}
+
+- name: Clean the test environment (1/2).
+  command: vagrant destroy --force
+    chdir={{ run_dir }}
+
+- name: Clean the test environment (2/2).
+  file:
+    name={{ run_dir }}
+    state=absent
