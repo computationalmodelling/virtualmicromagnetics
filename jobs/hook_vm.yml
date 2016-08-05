@@ -56,13 +56,13 @@
     path: "{{ inbuilt_vagrantfile_path }}/Vagrantfile_{{ vm_name }}_builtin"
   register: vagrantfile
 
-- name: Create box file using vagrant, and include a built-in Vagrant file if it exists.
+- name: Create box file using Vagrant, and include a built-in Vagrant file if it exists.
   command: vagrant package --output {{ artefact_dir }}/{{ output_box }} --vagrantfile {{ inbuilt_vagrantfile_path }}/Vagrantfile_{{ vm_name }}_builtin
     chdir={{ vm_dir }}
     creates={{ artefact_dir }}/{{ output_box }}
   when: vagrantfile.stat.exists and (not box_status.stat.exists or (box_status.stat.isreg and clobber_output))
 
-- name: Create box file using vagrant without a built-in Vagrant file if it is absent.
+- name: Create box file using Vagrant without a built-in Vagrant file if it is absent.
   command: vagrant package --output {{ artefact_dir }}/{{ output_box }}
     chdir={{ vm_dir }}
     creates={{ artefact_dir }}/{{ output_box }}
@@ -72,6 +72,6 @@
   command: vagrant destroy --force
     chdir={{ vm_dir }}
 
-- name: Inform the user that the virtual hard disk has been created.
+- name: Inform the user that the Vagrant box has been created.
   debug:
     msg="Virtual machine '{{ vm_name }}' has been successfully created, and build artefacts are in {{ artefact_dir }}."
