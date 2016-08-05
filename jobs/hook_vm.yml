@@ -88,8 +88,12 @@
     name={{ run_dir }}
     state=directory
 
-- name: Create a Vagrant environment with the new box.
-  command: vagrant init {{ artefact_dir }}/{{ output_box }}
+- name: Create a Vagrant environment with the new box (1/2).
+  command: ln --symbolic {{ artefact_dir }}/{{ output_box }} testbox.box
+    chdir={{ run_dir }}
+
+- name: Create a Vagrant environment with the new box (2/2).
+  command: vagrant init testbox.box
     chdir={{ run_dir }}
 
 - name: Use the new Vagrant box to create a virtual machine, mimicing the user run process.
