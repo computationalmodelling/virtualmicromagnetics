@@ -2,9 +2,13 @@
 # This Ansible playbook creates a container using vagrant and the
 # Vagrantfile template.
 
+- name: Identify the root directory of this repository.
+  set_fact:
+    root_dir: "{{ lookup('pipe','pwd') }}/../../.."
+
 - name: Define a directory for the vagrant environment for the intermediate container to inhabit. It will be the directory of the Makefile concatenated with the name of the machine.
   set_fact:
-    container_dir: "{{ lookup('pipe','pwd') }}/../../../machines/{{ container_name }}-container"
+    container_dir: "{{ root_dir }}/machines/{{ container_name }}-container"
 
 - name: Ensure that a directory is created for the container.
   file:

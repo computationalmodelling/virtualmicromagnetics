@@ -5,7 +5,7 @@
 
 - name: Set the location to look for and place build artefacts, and whether or not to clobber the output files.
   set_fact:
-    artefact_dir: "{{ vm_dir }}/../../artefacts/"
+    artefact_dir: "{{ root_dir }}/artefacts/"
     clobber_output: false
 
 - name: Ensure that a directory is created for build artefacts.
@@ -49,60 +49,80 @@
 
 - name: Define the path for in-built Vagrantfiles.
   set_fact:
-    inbuilt_vagrantfile_path: "{{ vm_dir }}/../../guest_resources/vagrantfiles"
+    inbuilt_vagrantfile_path: "{{ root_dir }}/guest_resources/vagrantfiles"
 
 - name: Determine whether or not a builtin Vagrantfile exists for this target.
   stat:
     path: "{{ inbuilt_vagrantfile_path }}/Vagrantfile_{{ vm_name }}_builtin"
   register: vagrantfile
 
-- name: Create box file using vagrant, and include a built-in Vagrant file if it exists.
+- name: Create box file using Vagrant, and include a built-in Vagrant file if it exists.
   command: vagrant package --output {{ artefact_dir }}/{{ output_box }} --vagrantfile {{ inbuilt_vagrantfile_path }}/Vagrantfile_{{ vm_name }}_builtin
     chdir={{ vm_dir }}
     creates={{ artefact_dir }}/{{ output_box }}
   when: vagrantfile.stat.exists and (not box_status.stat.exists or (box_status.stat.isreg and clobber_output))
 
-- name: Create box file using vagrant without a built-in Vagrant file if it is absent.
+- name: Create box file using Vagrant without a built-in Vagrant file if it is absent.
   command: vagrant package --output {{ artefact_dir }}/{{ output_box }}
     chdir={{ vm_dir }}
     creates={{ artefact_dir }}/{{ output_box }}
   when: (not vagrantfile.stat.exists) and (not box_status.stat.exists or (box_status.stat.isreg and clobber_output))
 
-- name: Extract the virtual machine disk (VMDK) file from the box.
-  command: tar -xzvf {{ output_box }} -C {{ artefact_dir }} ./box-disk1.vmdk
-    chdir={{ artefact_dir }}
-    creates={{ artefact_dir }}/box-disk1.vmdk
-  when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_output)
-  register: result
-  until: result.rc == 0
-  retries: 3
-
-- name: Convert the virtual machine disk (VMDK) to a virtual hard disk (VHD).
-  command: VBoxManage clonehd --format VHD box-disk1.vmdk {{ output_name }}.vhd
-    chdir={{ artefact_dir }}
-    creates={{ artefact_dir }}/{{ output_name }}.vhd
-  when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_output)
-
-- name: Remove the virtual machine disk (VMDK).
-  file:
-    path={{ artefact_dir }}/box-disk1.vmdk
-    state=absent
-
-- name: Compress the virtual hard disk (VHD) into a zip file with a readme.
-  command: zip {{ output_zip }} {{ output_name }}.vhd ../guest_resources/zip_readme.txt
-    chdir={{ artefact_dir }}
-    creates={{ artefact_dir }}/{{ output_zip }}
-  when: not zip_status.stat.exists or (zip_status.stat.isreg and clobber_output)
-
-- name: Remove the virtual hard disk (VHD).
-  file:
-    path={{ artefact_dir }}/{{ output_name }}.vhd
-    state=absent
-
 - name: Destroy the virtual machine.
   command: vagrant destroy --force
     chdir={{ vm_dir }}
 
-- name: Inform the user that the virtual hard disk has been created.
+- name: Inform the user that the Vagrant box has been created.
   debug:
     msg="Virtual machine '{{ vm_name }}' has been successfully created, and build artefacts are in {{ artefact_dir }}."
+
+# Attempt to create a virtual machine with this new box. This simulates the
+# user's run process.
+
+- name: Define directory to perform checks on the new box.
+  set_fact:
+    run_dir: "/tmp/{{ vm_name }}-test/"
+
+- name: Create directory to perform checks on the new box.
+  file:
+    name={{ run_dir }}
+    state=directory
+
+- name: Check the status of a Vagrant environment in this directory, and store it.
+  command: vagrant status
+    chdir={{ run_dir }}
+  register: test_env_status
+  changed_when: false
+  ignore_errors: yes
+
+- name: Destroy the test virtual machine if its status suggests it exists.
+  command: vagrant destroy --force
+    chdir={{ vm_dir }}
+  when: not "not created" in test_env_status.stdout
+
+- name: Remove existing Vagrantfile in test directory, if any.
+  file:
+    name={{ run_dir }}/Vagrantfile
+    state=absent
+
+- name: Copy box to the test directory.
+  command: cp {{ artefact_dir }}/{{ output_box }} {{ run_dir }}/testbox.box
+    creates={{ run_dir }}/testbox.box
+
+- name: Create a Vagrant environment with the new box, without GUI.
+  shell: |
+    printf "\nVagrant.configure(2) do |config|\n  config.vm.box = \"testbox.box\"\n  config.vm.provider \"virtualbox\" do |vb|\n    vb.gui = false\n  end\nend" > {{ run_dir }}/Vagrantfile
+    chdir={{ run_dir }}
+
+- name: Use the new Vagrant box to create a virtual machine, mimicing the user run process.
+  command: vagrant up --provider virtualbox
+    chdir={{ run_dir }}
+
+- name: Clean the test environment (1/2).
+  command: vagrant destroy --force
+    chdir={{ run_dir }}
+
+- name: Clean the test environment (2/2).
+  file:
+    name={{ run_dir }}
+    state=absent
