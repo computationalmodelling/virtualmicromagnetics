@@ -88,6 +88,22 @@
     name={{ run_dir }}
     state=directory
 
+- name: Check the status of a Vagrant environment in this directory, and store it.
+  command: vagrant status
+    chdir={{ run_dir }}
+  register: test_env_status
+  changed_when: false
+
+- name: Destroy the test virtual machine if its status suggests it exists.
+  command: vagrant destroy --force
+    chdir={{ vm_dir }}
+  when: not "not created" in test_env_status.stdout
+
+- name: Remove existing Vagrantfile in test directory, if any.
+  file:
+    name={{ run_dir }}/Vagrantfile
+    state=absent
+
 - name: Create a Vagrant environment with the new box.
   command: vagrant init {{ artefact_dir }}/{{ output_box }}
     chdir={{ run_dir }}
