@@ -110,11 +110,9 @@
     creates={{ run_dir }}/testbox.box
 
 - name: Create a Vagrant environment with the new box, without GUI.
-  blockinfile:
-    dest={{ run_dir }}/Vagrantfile
-    marker="# --- {mark} ADDED BY ANSIBLE ---"
-    content="\nVagrant.configure(2) do |config|\n  config.vm.box = \"testbox.box\"\n  config.vm.provider \"virtualbox\" do |vb|\n    vb.gui = false\n  end\nend"
-    create=yes
+  shell: |
+    printf "\nVagrant.configure(2) do |config|\n  config.vm.box = \"testbox.box\"\n  config.vm.provider \"virtualbox\" do |vb|\n    vb.gui = false\n  end\nend" > {{ run_dir }}/Vagrantfile
+    chdir={{ run_dir }}
 
 - name: Use the new Vagrant box to create a virtual machine, mimicing the user run process.
   command: vagrant up --provider virtualbox
