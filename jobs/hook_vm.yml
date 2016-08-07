@@ -109,9 +109,12 @@
   command: cp {{ artefact_dir }}/{{ output_box }} {{ run_dir }}/testbox.box
     creates={{ run_dir }}/testbox.box
 
-- name: Create a Vagrant environment with the new box.
-  command: vagrant init testbox.box
-    chdir={{ run_dir }}
+- name: Create a Vagrant environment with the new box, without GUI.
+  blockinfile:
+    dest={{ run_dir }}/Vagrantfile
+    marker="# --- {mark} ADDED BY ANSIBLE ---"
+    content="\nVagrant.configure(2) do |config|\n  config.vm.box = \"testbox.box\"\n  config.vm.provider \"virtualbox\" do |vb|\n    vb.gui = false\n  end\nend"
+    create=yes
 
 - name: Use the new Vagrant box to create a virtual machine, mimicing the user run process.
   command: vagrant up --provider virtualbox
