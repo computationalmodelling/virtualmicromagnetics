@@ -105,8 +105,12 @@
     name={{ run_dir }}/Vagrantfile
     state=absent
 
+- name: Copy box to the test directory.
+  command: cp {{ artefact_dir }}/{{ output_box }} {{ run_dir }}/testbox.box
+    creates={{ run_dir }}/testbox.box
+
 - name: Create a Vagrant environment with the new box.
-  command: vagrant init {{ artefact_dir }}/{{ output_box }}
+  command: vagrant init testbox.box
     chdir={{ run_dir }}
 
 - name: Use the new Vagrant box to create a virtual machine, mimicing the user run process.
