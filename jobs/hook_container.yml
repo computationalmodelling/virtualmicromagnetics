@@ -5,7 +5,7 @@
 
 - name: Set the location to look for and place build artefacts, and whether or not to clobber the output files.
   set_fact:
-    artefact_dir: "{{ container_dir }}/../../artefacts/"
+    artefact_dir: "{{ root_dir }}/artefacts/"
     clobber_output: false
 
 - name: Ensure that a directory is created for build artefacts.
