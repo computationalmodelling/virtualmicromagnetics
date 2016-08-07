@@ -5,7 +5,7 @@
 
 - name: Set the location to look for and place build artefacts, and whether or not to clobber the output files.
   set_fact:
-    artefact_dir: "{{ vm_dir }}/../../artefacts/"
+    artefact_dir: "{{ root_dir }}/artefacts/"
     clobber_output: false
 
 - name: Ensure that a directory is created for build artefacts.
@@ -49,7 +49,7 @@
 
 - name: Define the path for in-built Vagrantfiles.
   set_fact:
-    inbuilt_vagrantfile_path: "{{ vm_dir }}/../../guest_resources/vagrantfiles"
+    inbuilt_vagrantfile_path: "{{ root_dir }}/guest_resources/vagrantfiles"
 
 - name: Determine whether or not a builtin Vagrantfile exists for this target.
   stat:
