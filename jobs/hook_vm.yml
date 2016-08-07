@@ -93,6 +93,7 @@
     chdir={{ run_dir }}
   register: test_env_status
   changed_when: false
+  ignore_errors: yes
 
 - name: Destroy the test virtual machine if its status suggests it exists.
   command: vagrant destroy --force
