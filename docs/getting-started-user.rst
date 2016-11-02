@@ -51,7 +51,11 @@ directory::
  docker run -ti virtualmicromagnetics/lite:1.1.0 /bin/bash -l
 
 This command will download the Full Virtual Micromagnetics container image from
-the Internet to your computer, and start bash in your shell.
+the Internet to your computer, and start bash in your shell. Alternatively, you
+can run a simulation in the container without connecting to it explicitly by
+commanding the following, with :code:`square.mif` in your current directory::
+
+ docker run -v $PWD:/host/ virtualmicromagnetics/oommf:release oommf boxsi /host/square.mif
 
 Now take a look at :ref:`environments` for the environments that are available
 besides the Full Virtual Micromagnetics environment.
