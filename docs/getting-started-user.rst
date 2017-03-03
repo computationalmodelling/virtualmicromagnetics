@@ -10,7 +10,7 @@ To start a :term:`Virtual Micromagnetics` environment, you will need the
 following software:
 
 - VirtualBox >= 5.0 (https://www.virtualbox.org/wiki/downloads)
-- Vagrant >= 1.7.4 (https://www.vagrantup.com/downloads)
+- Vagrant >= 1.7.4 (https://www.vagrantup.com/downloads.html)
 
 After restarting your machine, command the following in an empty directory::
 
