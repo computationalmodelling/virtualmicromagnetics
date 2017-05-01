@@ -17,7 +17,7 @@ Micromagnetics:
 
  - OOMMF (http://math.nist.gov/oommf/)
  - MagPar (http://www.magpar.net/)
- - NMag (http://nmag.soton.ac.uk/nmag/)
+ - Nmag (http://nmag.soton.ac.uk/nmag/)
  - Fidimag (http://computationalmodelling.github.io/fidimag/)
 
 Each environment that uses a simulation package also contains its examples, and
@@ -59,13 +59,13 @@ they contain:
 
 
 +--------------------------+----+----+-----+------+----+-------+
-| Software vs. Environment |Full|Lite|OOMMF|Magpar|NMag|Fidimag|
+| Software vs. Environment |Full|Lite|OOMMF|Magpar|Nmag|Fidimag|
 +=================+========+====+====+=====+======+====+=======+
 |Micromagnetic    | OOMMF  | ✔  | ✔  |  ✔  |      |    |       |
 |                 +--------+----+----+-----+------+----+-------+
 |                 | Magpar | ✔  | ✔  |     |  ✔   |    |       |
 |                 +--------+----+----+-----+------+----+-------+
-|                 | NMag   | ✔  | ✔  |     |      | ✔  |       |
+|                 | Nmag   | ✔  | ✔  |     |      | ✔  |       |
 |                 +--------+----+----+-----+------+----+-------+
 |                 |Fidimag | ✔  | ✔  |     |      |    |   ✔   |
 +-----------------+--------+----+----+-----+------+----+-------+
