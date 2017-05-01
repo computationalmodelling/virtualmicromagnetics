@@ -48,7 +48,7 @@ Your user will need to be in the docker group on the machine you are running on
 [#]_. After restarting your machine, command the following in an empty
 directory::
 
- docker run -ti virtualmicromagnetics/lite:1.1.0 /bin/bash -l
+ docker run -ti virtualmicromagnetics/lite:release /bin/bash -l
 
 This command will download the Full Virtual Micromagnetics container image from
 the Internet to your computer, and start bash in your shell. Alternatively, you
